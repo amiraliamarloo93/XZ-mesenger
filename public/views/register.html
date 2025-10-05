@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ثبت‌نام | XZ Messenger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="auth-card">
+  <h2>ثبت‌نام</h2>
+  <input type="text" id="regPhone" placeholder="شماره موبایل">
+  <button onclick="requestOtp()">ارسال OTP</button>
+  <input type="text" id="otpInput" placeholder="کد OTP" class="hidden">
+  <input type="text" id="fullName" placeholder="نام و نام خانوادگی" class="hidden">
+  <input type="password" id="regPin" maxlength="4" placeholder="رمز ۴ رقمی" class="hidden">
+  <button id="verifyBtn" class="hidden" onclick="verifyOtp()">تایید و ثبت‌نام</button>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

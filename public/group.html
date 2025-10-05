@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>گروه | XZ Messenger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+  <button onclick="backHome()">🏠 خانه</button>
+  <div class="group-settings" id="groupSettings">
+    <input type="text" id="groupNameInput" placeholder="نام گروه">
+    <input type="file" id="groupIconInput">
+    <button onclick="updateGroup()">ذخیره تنظیمات گروه</button>
+  </div>
+</div>
+<div class="chat-area">
+  <div class="chat-header" id="chatHeader">گروه</div>
+  <div class="messages" id="messages"></div>
+  <div class="chat-input">
+    <input type="text" id="msgInput" placeholder="پیام خود را بنویسید..." onkeypress="enterSend(event)">
+    <button onclick="sendMessage()">ارسال</button>
+    <button onclick="sendVoice()">🎤</button>
+    <button onclick="sendImage()">🖼️</button>
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

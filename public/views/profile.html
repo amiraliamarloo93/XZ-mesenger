@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>پروفایل - XZ Messenger</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="center-box">
+  <h2>پروفایل شما</h2>
+  <img id="avatar" src="" style="width:100px;height:100px;border-radius:50%;object-fit:cover;"><br>
+  <input id="fullName" placeholder="نام و نام خانوادگی">
+  <input id="bio" placeholder="بیوگرافی کوتاه">
+  <input type="file" id="avatarFile"><br>
+  <button onclick="saveProfile()">ذخیره تغییرات</button>
+  <button onclick="location.href='home.html'">بازگشت</button>
+</div>
+
+<script>
+let user = JSON.parse(localStorage.getItem("user"));
+document.getElementById("fullName").value = user.fullName;
+document.getElementById("bio").value = user.bio || "";
+if(user.avatar) document.getElementById("avatar").src = user.avatar;
+
+document.getElementById("avatarFile").addEventListener("change",e=>{
+  const reader = new FileReader();
+  reader.onload = function(){ document.getElementById("avatar").src = reader.result; };
+  reader.readAsDataURL(e.target.files[0]);
+});
+
+function saveProfile(){
+  user.fullName = document.getElementById("fullName").value;
+  user.bio = document.getElementById("bio").value;
+  user.avatar = document.getElementById("avatar").src;
+  localStorage.setItem("user",JSON.stringify(user));
+  alert("تغییرات ذخیره شد");
+}
+</script>
+</body>
+</html>

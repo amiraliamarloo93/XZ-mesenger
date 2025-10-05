@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>چت - XZ Messenger</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.png">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body class="chat-page">
+  <!-- سایدبار -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>📱 XZ Messenger</h2>
+    </div>
+    <div class="sidebar-section">
+      <button onclick="showHome()" class="btn white full">🏠 خانه</button>
+      <button onclick="openProfile()" class="btn white full">👤 پروفایل</button>
+      <button onclick="openSettings()" class="btn white full">⚙️ تنظیمات</button>
+      <button onclick="openCreateGroup()" class="btn white full">➕ ساخت گروه</button>
+      <button onclick="logout()" class="btn black full">🚪 خروج</button>
+    </div>
+    <hr>
+    <div class="sidebar-section">
+      <h3>📂 گروه‌ها</h3>
+      <div id="groupList" class="chat-list"></div>
+    </div>
+  </div>
+
+  <!-- بخش اصلی -->
+  <div class="main">
+    <!-- هدر -->
+    <div class="chat-header" id="chatHeader">
+      <span>یک گروه انتخاب کنید</span>
+      <button id="groupSettingsBtn" class="btn small hidden" onclick="openGroupSettings()">⚙️ تنظیمات گروه</button>
+    </div>
+
+    <!-- پیام‌ها -->
+    <div id="messages" class="messages"></div>
+
+    <!-- ورودی پیام -->
+    <div class="chat-input">
+      <input type="text" id="msgInput" placeholder="پیام خود را بنویسید... (Enter = ارسال)">
+      <input type="file" id="fileInput" class="hidden" onchange="sendFile(event)">
+      <button onclick="document.getElementById('fileInput').click()">📎</button>
+      <button onclick="startRecording()">🎤</button>
+      <button onclick="sendMessage()">ارسال</button>
+    </div>
+  </div>
+
+  <!-- مودال‌ها -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <script src="client.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پیام‌رسان XZ</title>
+<link rel="icon" href="xz_messenger_icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- صفحه خوش آمد -->
+<div id="welcomePage" class="page active">
+  <div class="welcome-container">
+    <h1>پیام‌رسان XZ</h1>
+    <div class="btn-group">
+      <button id="goLogin" class="btn-black">ورود</button>
+      <button id="goRegister" class="btn-white">ثبت‌نام</button>
+    </div>
+  </div>
+</div>
+
+<!-- صفحه ثبت‌نام -->
+<div id="registerPage" class="page">
+  <div class="auth-card">
+    <h2>ثبت‌نام</h2>
+    <input type="text" id="regPhone" placeholder="شماره موبایل">
+    <button id="sendOtpReg">ارسال کد تایید</button>
+    <input type="text" id="otpInputReg" placeholder="کد OTP" class="hidden">
+    <input type="text" id="regFullName" placeholder="نام و نام خانوادگی" class="hidden">
+    <input type="password" id="regPin" placeholder="رمز ۴ رقمی" class="hidden">
+    <button id="verifyReg" class="hidden">تایید و ادامه</button>
+    <button class="btn-back" id="backWelcomeFromReg">بازگشت</button>
+  </div>
+</div>
+
+<!-- صفحه ورود -->
+<div id="loginPage" class="page">
+  <div class="auth-card">
+    <h2>ورود</h2>
+    <input type="text" id="loginPhone" placeholder="شماره موبایل">
+    <input type="password" id="loginPin" placeholder="رمز ۴ رقمی">
+    <button id="loginBtn">ورود</button>
+    <button class="btn-back" id="backWelcomeFromLogin">بازگشت</button>
+  </div>
+</div>
+
+<!-- صفحه اصلی -->
+<div id="homePage" class="page">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>پیام‌رسان XZ</h2>
+    </div>
+    <input type="text" class="search-box" placeholder="🔍 جستجو گفتگو...">
+    <div class="chat-list" id="chatList"></div>
+    <button id="createGroupBtn">ساخت گروه</button>
+    <button id="profileBtn">پروفایل</button>
+    <button id="settingsBtn">تنظیمات</button>
+    <button id="logoutBtn">خروج</button>
+  </div>
+  <div class="chat-area">
+    <div class="chat-header" id="chatHeader">یک گفتگو انتخاب کنید</div>
+    <div class="messages" id="messages"></div>
+    <div class="chat-input">
+      <input type="text" id="msgInput" placeholder="پیام خود را بنویسید...">
+      <input type="file" id="fileInput">
+      <button id="sendBtn">ارسال</button>
+      <button id="voiceBtn">🎤</button>
+    </div>
+  </div>
+</div>
+
+<!-- پروفایل -->
+<div id="profilePage" class="page">
+  <div class="profile-card">
+    <h2>پروفایل</h2>
+    <input type="text" id="profileName" placeholder="نام و نام خانوادگی">
+    <input type="password" id="profilePin" placeholder="رمز ۴ رقمی">
+    <button id="saveProfileBtn">ذخیره</button>
+    <button class="btn-back" id="backHomeFromProfile">بازگشت</button>
+  </div>
+</div>
+
+<!-- تنظیمات -->
+<div id="settingsPage" class="page">
+  <div class="settings-card">
+    <h2>تنظیمات کاربر</h2>
+    <p>ChatGPT سازنده: ساخته شده توسط امیرعلی عمارلو و </p>
+    <button class="btn-back" id="backHomeFromSettings">بازگشت</button>
+  </div>
+</div>
+
+<!-- ساخت گروه -->
+<div id="createGroupPage" class="page">
+  <div class="group-card">
+    <h2>ساخت گروه</h2>
+    <input type="text" id="groupName" placeholder="نام گروه">
+    <input type="file" id="groupImage">
+    <button id="createGroupConfirmBtn">ساخت</button>
+    <button class="btn-back" id="backHomeFromCreateGroup">بازگشت</button>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>تنظیمات - XZ Messenger</title>
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="center-box">
+  <h2>تنظیمات</h2>
+  <h3>تم</h3>
+  <button onclick="setTheme('light')">روشن</button>
+  <button onclick="setTheme('dark')">تاریک</button>
+
+  <h3>تغییر رمز</h3>
+  <input id="newPin" maxlength="4" placeholder="رمز جدید ۴ رقمی">
+  <button onclick="changePin()">تغییر رمز</button>
+
+  <h3>درباره سازنده</h3>
+  <p>ساخته شده توسط: میرعلی عمارلو و ChatGPT</p>
+
+  <button onclick="location.href='home.html'">بازگشت</button>
+</div>
+
+<script>
+let user = JSON.parse(localStorage.getItem("user"));
+function setTheme(t){
+  if(t==='dark') document.body.style.background="#111"; else document.body.style.background="#f7f7f7";
+}
+function changePin(){
+  const pin = document.getElementById("newPin").value;
+  if(pin.length!==4) return alert("رمز باید ۴ رقمی باشد");
+  user.pin = pin;
+  localStorage.setItem("user",JSON.stringify(user));
+  alert("رمز تغییر کرد");
+}
+</script>
+</body>
+</html>
