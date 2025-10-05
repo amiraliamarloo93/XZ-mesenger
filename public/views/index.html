@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پیام‌رسان XZ</title>
+  <link rel="icon" href="/xz_messenger_icon.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="loginRegister">
+      <h1>پیام‌رسان XZ</h1>
+      <button id="loginBtn">ورود</button>
+      <button id="registerBtn">ثبت‌نام</button>
+      <div id="loginForm" class="hidden">
+        <input id="loginPhone" placeholder="شماره موبایل">
+        <input id="loginPin" placeholder="رمز ۴ رقمی">
+        <button id="loginSubmit">ورود</button>
+      </div>
+      <div id="registerForm" class="hidden">
+        <input id="registerPhone" placeholder="شماره موبایل">
+        <button id="registerOtpBtn">ارسال کد OTP</button>
+        <input id="otpInput" class="hidden" placeholder="کد OTP">
+        <input id="fullName" class="hidden" placeholder="نام و نام خانوادگی">
+        <input id="registerPin" class="hidden" placeholder="رمز ۴ رقمی">
+        <button id="registerSubmit" class="hidden">تایید و ادامه</button>
+      </div>
+    </div>
+
+    <div id="home" class="hidden">
+      <div class="sidebar">
+        <div class="sidebar-header">پیام‌رسان XZ</div>
+        <button id="profileBtn">پروفایل</button>
+        <button id="settingsBtn">تنظیمات</button>
+        <button id="createGroupBtn">ساخت گروه</button>
+        <button id="logoutBtn">خروج</button>
+        <input type="text" id="searchBox" placeholder="🔍 جستجو گفتگو...">
+        <div id="chatList"></div>
+      </div>
+      <div class="chat-area">
+        <div id="chatHeader">یک گفتگو انتخاب کنید</div>
+        <div id="messages" class="messages"></div>
+        <div class="chat-input">
+          <input id="msgInput" placeholder="پیام خود را بنویسید...">
+          <input type="file" id="fileInput">
+          <button id="sendBtn">ارسال</button>
+          <button id="voiceBtn">🎤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
