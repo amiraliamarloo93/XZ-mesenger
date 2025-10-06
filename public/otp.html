@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="UTF-8">
-<title>تایید OTP</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تأیید OTP — XZ</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-<h2>کد ارسال شده را وارد کنید</h2>
-<input id="otp" placeholder="کد ۴ رقمی">
-<button onclick="verifyOtp()">تأیید</button>
-<p id="msg"></p>
-</div>
-<script>
-const urlParams=new URLSearchParams(window.location.search);
-const phone=urlParams.get('phone');
-async function verifyOtp(){
-    const otp=document.getElementById('otp').value;
-    const res=await fetch('/verify-otp',{method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({phone,otp})
-    }).then(r=>r.json());
-    if(res.success) window.location.href='login.html';
-    else document.getElementById('msg').innerText="کد اشتباه است!";
-}
-</script>
+  <main class="auth-page">
+    <div class="auth-card glass">
+      <h2>کد تایید را وارد کنید</h2>
+      <input id="otp" placeholder="کد ۴ رقمی">
+      <button onclick="verifyOtp()">تایید و ادامه</button>
+      <button onclick="backToAuth()">بازگشت</button>
+      <p id="optMsg" class="msg"></p>
+    </div>
+  </main>
+  <script src="js/auth.js"></script>
 </body>
 </html>

@@ -1,90 +1,50 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>پیام‌رسان XZ</title>
-<link rel="icon" href="assets/logo.png">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>XZ Messenger — ورود / ثبت‌نام</title>
+  <link rel="icon" type="image/png" sizes="512x512" href="xz_messenger_icon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <main class="auth-page">
+    <div class="split-left"></div>
+    <div class="split-right"></div>
 
-<!-- ورود / ثبت نام -->
-<div id="loginRegister">
-  <div class="page" id="loginPage">
-    <h1>پیام‌رسان XZ</h1>
-    <button onclick="showRegister()">ثبت‌نام</button>
-    <button onclick="showLogin()">ورود</button>
-  </div>
+    <div class="auth-card glass">
+      <h1>پیام‌رسان XZ</h1>
 
-  <div class="page hidden" id="registerPage">
-    <input id="phoneInput" placeholder="شماره موبایل">
-    <button onclick="requestOtp()">ارسال کد تایید</button>
-    <div id="otpContainer" class="hidden">
-      <input id="otpInput" placeholder="کد OTP">
-      <input id="fullNameInput" placeholder="نام و نام خانوادگی">
-      <input id="pinInput" placeholder="رمز ۴ رقمی">
-      <button id="verifyBtn" onclick="verifyOtp()">تایید و ادامه</button>
+      <div class="auth-toggle">
+        <button id="btnLogin" class="active">ورود</button>
+        <button id="btnRegister">ثبت‌نام</button>
+      </div>
+
+      <form id="formLogin" class="auth-form">
+        <input id="loginPhone" placeholder="شماره موبایل" />
+        <input id="loginPin" type="password" placeholder="رمز ۴ رقمی" maxlength="4" />
+        <div class="row">
+          <button type="button" onclick="doLogin()">ورود</button>
+          <button type="button" onclick="goToRegister()">رفتن به ثبت‌نام</button>
+        </div>
+        <p class="hint">یا با شماره ثبت‌نام کن</p>
+      </form>
+
+      <form id="formRegister" class="auth-form hidden">
+        <input id="regPhone" placeholder="شماره موبایل" />
+        <input id="regFirst" placeholder="نام" />
+        <input id="regLast" placeholder="نام خانوادگی" />
+        <input id="regPin" type="password" placeholder="رمز ۴ رقمی" maxlength="4" />
+        <div class="row">
+          <button type="button" onclick="doRegister()">ارسال کد تایید</button>
+          <button type="button" onclick="goToLogin()">بازگشت</button>
+        </div>
+      </form>
+
+      <div id="msg" class="msg"></div>
     </div>
-    <button onclick="showLogin()">بازگشت</button>
-  </div>
-
-  <div class="page hidden" id="loginFormPage">
-    <input id="phoneLogin" placeholder="شماره موبایل">
-    <input id="pinLogin" placeholder="رمز ۴ رقمی">
-    <button onclick="loginUser()">ورود</button>
-    <button onclick="showRegister()">بازگشت</button>
-  </div>
-</div>
-
-<!-- خانه -->
-<div id="home" class="hidden">
-  <header>
-    <img src="assets/logo.png" class="logo">
-    <h2>پیام‌رسان XZ</h2>
-  </header>
-  <aside id="sidebar">
-    <button onclick="openProfile()">پروفایل</button>
-    <button onclick="openSettings()">تنظیمات</button>
-    <button onclick="openCreateGroup()">ساخت گروه</button>
-    <button onclick="logout()">خروج</button>
-    <input type="text" id="searchChat" placeholder="🔍 جستجو گفتگو...">
-    <div id="chatList"></div>
-  </aside>
-  <main>
-    <h3 id="chatHeader">یک گفتگو انتخاب کنید</h3>
-    <div id="messages"></div>
-    <div id="chatInputArea">
-      <input type="text" id="msgInput" placeholder="پیام خود را بنویسید...">
-      <input type="file" id="fileInput">
-      <button onclick="sendMessage()">ارسال</button>
-    </div>
-    <div id="groupSettings"></div>
   </main>
-</div>
 
-<!-- پروفایل -->
-<div id="profilePage" class="hidden page">
-  <input id="profileName" placeholder="نام و نام خانوادگی">
-  <input id="profilePin" placeholder="رمز ۴ رقمی">
-  <button onclick="saveProfile()">ذخیره</button>
-  <button onclick="closeProfile()">بازگشت</button>
-</div>
-
-<!-- تنظیمات -->
-<div id="settingsPage" class="hidden page">
-  <p>سازنده: ساخته شده توسط امیرعلی عمارلو و ChatGPT</p>
-  <button onclick="closeSettings()">بازگشت</button>
-</div>
-
-<!-- ساخت گروه -->
-<div id="createGroupPage" class="hidden page">
-  <input id="groupNameInput" placeholder="نام گروه">
-  <input type="file" id="groupFile">
-  <button onclick="createGroup()">ساخت</button>
-  <button onclick="closeCreateGroup()">بازگشت</button>
-</div>
-
-<script src="script.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
