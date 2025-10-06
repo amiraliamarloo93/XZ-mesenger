@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html lang="fa"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>تنظیمات — XZ</title>
-<link rel="stylesheet" href="style.css"></head><body>
-  <div class="center">
-    <div class="card glass">
-      <h2>تنظیمات</h2>
-      <div><label><input id="notifyToggle" type="checkbox"/> نوتیفیکیشن مرورگر فعال باشد</label></div>
-      <div><label><input id="desktopNotify" type="checkbox"/> نوتیفیکیشن دسکتاپ (اگر ممکن است)</label></div>
-      <div class="row"><button onclick="saveSettings()">ذخیره</button><button onclick="location.href='groups.html'">بازگشت</button></div>
-    </div>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تنظیمات | XZ</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+<body>
+<div class="container">
+  <h1>تنظیمات کاربر</h1>
+  <form>
+    <label>نام و نام خانوادگی</label>
+    <input type="text" name="fullname">
+    <label>رمز ۴ رقمی</label>
+    <input type="password" name="pin" maxlength="4">
+    <button type="submit" class="btn btn-black">ذخیره</button>
+  </form>
+  <div class="creator">
+    <p>سازنده: ساخته شده توسط امیرعلی عمارلو و ChatGPT</p>
   </div>
-  <script>
-    function saveSettings(){ alert('تنظیمات ذخیره شد (نمایشی)'); location.href='groups.html'; }
-  </script>
-</body></html>
+  <a href="index.html" class="link">بازگشت</a>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>

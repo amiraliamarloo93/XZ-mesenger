@@ -1,16 +1,18 @@
 {
   "name": "xz-messenger",
   "version": "1.0.0",
-  "description": "XZ Messenger - local WebSocket chat",
+  "description": "XZ Messenger - local chat",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "body-parser": "^1.20.2",
     "express": "^4.18.2",
-    "node-notifier": "^10.0.0",
     "ws": "^8.13.0",
-    "uuid": "^9.0.0"
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=16"
   }
 }

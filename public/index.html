@@ -3,48 +3,84 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>XZ Messenger — ورود / ثبت‌نام</title>
-  <link rel="icon" type="image/png" sizes="512x512" href="xz_messenger_icon.png">
-  <link rel="stylesheet" href="style.css">
+  <title>XZ Messenger - خوش آمدید</title>
+  <link rel="icon" href="assets/xz_messenger_icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* small adjustments for this page */
+    .auth-center{display:flex;align-items:center;justify-content:center;height:100vh}
+    .auth-box{width:760px;display:flex;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+    .auth-left{width:50%;background:linear-gradient(180deg,#111,#222);color:#fff;padding:28px;display:flex;flex-direction:column;gap:12px}
+    .auth-right{width:50%;background:var(--soft);padding:28px;display:flex;flex-direction:column;gap:12px}
+    .big-btn{padding:12px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .big-btn.dark{background:#111;color:#fff}
+    .big-btn.light{background:#fff;border:1px solid #ddd}
+  </style>
 </head>
 <body>
-  <main class="auth-page">
-    <div class="split-left"></div>
-    <div class="split-right"></div>
-
-    <div class="auth-card glass">
-      <h1>پیام‌رسان XZ</h1>
-
-      <div class="auth-toggle">
-        <button id="btnLogin" class="active">ورود</button>
-        <button id="btnRegister">ثبت‌نام</button>
+  <div class="auth-center">
+    <div class="auth-box">
+      <div class="auth-left">
+        <div style="display:flex;align-items:center;gap:12px">
+          <img src="assets/xz_messenger_icon.png" style="width:64px;height:64px;border-radius:12px" alt="">
+          <div>
+            <h2 style="margin-bottom:4px">XZ پیام‌رسان </h2>
+            <div class="small-muted">ChatGPT امن، زیبا و محلی — ساخته شده توسط امیرعلی عمارلو و </div>
+          </div>
+        </div>
+        <div style="margin-top:18px">
+<h3 style="color:#fff">به XZ خوش آمدید</h3>
+          <p style="color:rgba(255,255,255,0.8)">برای استفاده ابتدا ثبت‌نام کنید یا وارد شوید.</p>
+        </div>
+        <div style="margin-top:auto;display:flex;gap:10px">
+          <button class="big-btn dark" onclick="goRegister()">ثبت‌نام</button>
+          <button class="big-btn light" onclick="goLogin()">ورود</button>
+        </div>
       </div>
-
-      <form id="formLogin" class="auth-form">
-        <input id="loginPhone" placeholder="شماره موبایل" />
-        <input id="loginPin" type="password" placeholder="رمز ۴ رقمی" maxlength="4" />
-        <div class="row">
-          <button type="button" onclick="doLogin()">ورود</button>
-          <button type="button" onclick="goToRegister()">رفتن به ثبت‌نام</button>
+      <div class="auth-right">
+        <h3>ثبت‌نام سریع</h3>
+        <div class="field"><label class="label">شماره موبایل</label><input id="phone" class="input" placeholder="مثال: 0912...."></div>
+        <div class="field"><label class="label">نام</label><input id="firstName" class="input" placeholder="نام"></div>
+        <div class="field"><label class="label">نام خانوادگی</label><input id="lastName" class="input" placeholder="نام خانوادگی"></div>
+        <div class="field"><label class="label">رمز ۴ رقمی</label><input id="pin" class="input" placeholder="مثلاً 1234" maxlength="4" type="password"></div>
+        <div style="display:flex;gap:10px">
+          <button class="btn primary" onclick="startRegister()">ارسال کد تایید</button>
+          <button class="btn ghost" onclick="goLogin()">رفتن به ورود</button>
         </div>
-        <p class="hint">یا با شماره ثبت‌نام کن</p>
-      </form>
-
-      <form id="formRegister" class="auth-form hidden">
-        <input id="regPhone" placeholder="شماره موبایل" />
-        <input id="regFirst" placeholder="نام" />
-        <input id="regLast" placeholder="نام خانوادگی" />
-        <input id="regPin" type="password" placeholder="رمز ۴ رقمی" maxlength="4" />
-        <div class="row">
-          <button type="button" onclick="doRegister()">ارسال کد تایید</button>
-          <button type="button" onclick="goToLogin()">بازگشت</button>
-        </div>
-      </form>
-
-      <div id="msg" class="msg"></div>
+        <div id="msg" class="small-muted" style="margin-top:8px"></div>
+      </div>
     </div>
-  </main>
+  </div>
 
-  <script src="js/auth.js"></script>
+<script>
+function goRegister(){ window.location.href = "index.html"; }
+function goLogin(){ window.location.href = "login.html"; }
+
+async function startRegister(){
+  const phone = document.getElementById('phone').value.trim();
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const pin = document.getElementById('pin').value.trim();
+  const msg = document.getElementById('msg');
+  msg.innerText = "";
+
+  if(!/^\d{5,}$/.test(phone)){ msg.innerText = "شماره معتبر وارد کنید"; return; }
+  if(!/^\d{4}$/.test(pin)){ msg.innerText = "رمز باید ۴ رقم باشد"; return; }
+
+  const res = await fetch("/api/register", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ phone, firstName, lastName, pin })
+  }).then(r=>r.json());
+
+  if(res.success){
+    // redirect to otp page (where user enters code)
+    localStorage.setItem("regPhone", phone);
+    window.location.href = "otp.html?phone=" + encodeURIComponent(phone);
+  } else {
+    msg.innerText = res.message || "خطا";
+  }
+}
+</script>
 </body>
 </html>

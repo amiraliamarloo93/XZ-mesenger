@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<html lang="fa"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>ورود — XZ</title>
-<link rel="stylesheet" href="style.css"></head>
+<html lang="fa">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ورود - XZ</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-  <main class="auth-page">
-    <div class="auth-card glass">
-      <h2>ورود</h2>
-      <input id="loginPhone2" placeholder="شماره موبایل">
-      <input id="loginPin2" placeholder="رمز ۴ رقمی" type="password" maxlength="4">
-      <div class="row"><button onclick="doLoginFromPage()">ورود</button><button onclick="location.href='index.html'">بازگشت</button></div>
-      <p id="loginMsg" class="msg"></p>
+  <div style="max-width:520px;margin:60px auto;padding:20px;background:var(--glass);border-radius:12px">
+    <h3>ورود</h3>
+    <div class="field"><label class="label">شماره موبایل</label><input id="phone" class="input"></div>
+    <div class="field"><label class="label">رمز ۴ رقمی</label><input id="pin" class="input" maxlength="4" type="password"></div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn primary" onclick="login()">ورود</button>
+      <button class="btn ghost" onclick="register()">ثبت‌نام</button>
     </div>
-  </main>
-  <script src="js/auth.js"></script>
-</body></html>
+    <p id="msg" class="small-muted"></p>
+  </div>
+
+<script>
+function register(){ window.location.href = "index.html"; }
+async function login(){
+  const phone = document.getElementById('phone').value.trim();
+  const pin = document.getElementById('pin').value.trim();
+  const el = document.getElementById('msg');
+  el.innerText = "";
+  if(!phone || !/^\d{4,}$/.test(phone)) { el.innerText = "شماره معتبر وارد کنید"; return; }
+  if(!/^\d{4}$/.test(pin)) { el.innerText = "رمز ۴ رقمی وارد کنید"; return; }
+
+  const res = await fetch("/api/login", {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ phone, pin })
+  }).then(r=>r.json());
+
+  if(res.success){
+    localStorage.setItem('user', JSON.stringify({ phone, firstName: res.firstName || "", lastName: res.lastName || "" }));
+    window.location.href = "groups.html";
+  } else {
+    el.innerText = res.message || "خطا در ورود";
+  }
+}
+</script>
+</body>
+</html>
