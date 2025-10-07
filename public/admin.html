@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پنل ادمین | XZ Messenger</title>
+  <link rel="icon" href="assets/icon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: "Vazirmatn", sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #1f1f1f;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #333;
+    }
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #00bcd4;
+    }
+    button.refresh-btn {
+      background: #00bcd4;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button.refresh-btn:hover {
+      background: #0288d1;
+    }
+
+    main {
+      padding: 30px;
+    }
+    .section {
+      background: #1e1e1e;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+    }
+    .section h2 {
+      color: #00e676;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #333;
+      text-align: center;
+    }
+    th {
+      background: #222;
+      color: #00e5ff;
+    }
+    tr:nth-child(even) {
+      background: #181818;
+    }
+    tr:hover {
+      background: #252525;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #1a1a1a;
+      color: #999;
+      font-size: 14px;
+      border-top: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>پنل مدیریت XZ Messenger</h1>
+    <button class="refresh-btn" onclick="refreshData()">🔄 بروز رسانی</button>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>📱 کدهای OTP</h2>
+      <table id="otpTable">
+        <thead>
+          <tr>
+            <th>شماره موبایل</th>
+            <th>کد OTP</th>
+            <th>زمان ایجاد</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>👤 کاربران ثبت‌شده</h2>
+      <table id="usersTable">
+        <thead>
+          <tr>
+            <th>شماره موبایل</th>
+            <th>نام</th>
+            <th>رمز عبور</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+   ChatGPT ساخته شده توسط امیرعلی عمارلو و  ❤️
+  </footer>
+
+  <script>
+    async function loadData() {
+      try {
+        const [otpRes, userRes] = await Promise.all([
+          fetch('/api/admin/otps'),
+          fetch('/api/admin/users')
+        ]);
+        const otps = await otpRes.json();
+        const users = await userRes.json();
+
+        const otpTable = document.querySelector("#otpTable tbody");
+        const userTable = document.querySelector("#usersTable tbody");
+
+        otpTable.innerHTML = otps.map(o =>
+          `<tr><td>${o.phone}</td><td>${o.otp}</td><td>${new Date(o.time).toLocaleString('fa-IR')}</td></tr>`
+        ).join('');
+
+        userTable.innerHTML = users.map(u =>
+          `<tr><td>${u.phone}</td><td>${u.name}</td><td>${u.password}</td></tr>`
+        ).join('');
+      } catch (err) {
+        alert("خطا در دریافت اطلاعات از سرور");
+        console.error(err);
+      }
+    }
+
+    function refreshData() {
+      loadData();
+    }
+
+    loadData();
+  </script>
+</body>
+</html>

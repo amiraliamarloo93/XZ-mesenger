@@ -1,19 +1,14 @@
-document.getElementById('loginForm')?.addEventListener('submit', function(e){
-    e.preventDefault();
-    let phone = document.getElementById('loginPhone').value;
-    let pass = document.getElementById('loginPass').value;
-    alert(`ورود با شماره ${phone}`);
+const loginTab = document.getElementById('loginTab');
+const registerTab = document.getElementById('registerTab');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+
+loginTab.addEventListener('click', () => {
+  loginForm.style.display = 'block';
+  registerForm.style.display = 'none';
 });
 
-document.getElementById('registerForm')?.addEventListener('submit', function(e){
-    e.preventDefault();
-    let phone = document.getElementById('regPhone').value;
-    alert(`ارسال OTP به شماره ${phone}`);
+registerTab.addEventListener('click', () => {
+  loginForm.style.display = 'none';
+  registerForm.style.display = 'block';
 });
-
-function saveProfile() {
-    let name = document.getElementById('profileName').value;
-    let family = document.getElementById('profileFamily').value;
-    let pass = document.getElementById('profilePass').value;
-    alert(`پروفایل ذخیره شد: ${name} ${family}`);
-}

@@ -1,65 +1,94 @@
-// auth.js - handles register/login/otp flow (client)
-async function doRegister() {
-  const phone = document.getElementById('regPhone').value.trim();
-  const first = document.getElementById('regFirst').value.trim();
-  const last = document.getElementById('regLast').value.trim();
-  const pin = document.getElementById('regPin').value.trim();
-  if (!phone || pin.length !== 4) { showMsg('شماره و رمز ۴ رقمی لازم است'); return; }
-  const res = await fetch('/register', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({phone, firstName:first, lastName:last, pin})});
-  const data = await res.json();
-  if(data.success){
-    // show OTP via Notification if allowed or alert
-    if (Notification.permission === 'granted') new Notification('XZ OTP', { body: `کد: ${data.otp}` });
-    else Notification.requestPermission().then(p => p==='granted' ? new Notification('XZ OTP',{body:`کد: ${data.otp}`}) : alert('کد: '+data.otp));
-    localStorage.setItem('regPhone', phone);
-    // redirect to otp page
-    window.location.href = 'otp.html?phone=' + encodeURIComponent(phone);
-  } else showMsg(data.message || 'خطا در ثبت‌نام');
-}
+// ==========================================================
+// JS مدیریت فرم‌های پیام‌رسان XZ
+// نویسنده: امیرعلی عمارلو و ChatGPT
+// ==========================================================
 
-async function verifyOtp() {
-  const url = new URL(location.href);
-  const phone = url.searchParams.get('phone') || localStorage.getItem('regPhone');
-  const otp = document.getElementById('otp') ? document.getElementById('otp').value.trim() : prompt('کد OTP را وارد کنید');
-  if (!phone || !otp) return;
-  const res = await fetch('/verify-otp', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({phone, otp}) });
-  const data = await res.json();
-  if (data.success) {
-    showOptMsg('ثبت‌نام موفق! اکنون وارد شوید.');
-    setTimeout(()=> location.href = 'login.html', 900);
-  } else {
-    showOptMsg(data.message || 'کد اشتباه است');
-  }
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const switchToLogin = document.getElementById('switch-to-login');
+    const switchToRegister = document.getElementById('switch-to-register');
+    const otpDisplay = document.getElementById('otp-display');
 
-async function doLogin() {
-  const phone = document.getElementById('loginPhone').value.trim();
-  const pin = document.getElementById('loginPin').value.trim();
-  if (!phone || pin.length!==4) { showMsg('شماره و رمز صحیح وارد کنید'); return; }
-  const res = await fetch('/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({phone, pin})});
-  const data = await res.json();
-  if (data.success) {
-    localStorage.setItem('user', JSON.stringify({ phone, name: data.user ? (data.user.firstName + ' ' + data.user.lastName) : '' }));
-    location.href = 'groups.html';
-  } else showMsg('شماره یا رمز اشتباه است');
-}
+    // سوئیچ فرم‌ها
+    switchToLogin.addEventListener('click', () => {
+        registerForm.classList.add('hidden');
+        loginForm.classList.remove('hidden');
+    });
 
-function showMsg(t){ const m=document.getElementById('msg'); if(m){ m.innerText=t; m.style.display='block'; } else alert(t); }
-function showOptMsg(t){ const m=document.getElementById('optMsg'); if(m){ m.innerText=t; } else alert(t); }
+    switchToRegister.addEventListener('click', () => {
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+    });
 
-function goToRegister(){ document.getElementById('formLogin').classList.add('hidden'); document.getElementById('formRegister').classList.remove('hidden'); document.getElementById('btnLogin').classList.remove('active'); document.getElementById('btnRegister').classList.add('active'); }
-function goToLogin(){ document.getElementById('formLogin').classList.remove('hidden'); document.getElementById('formRegister').classList.add('hidden'); document.getElementById('btnLogin').classList.add('active'); document.getElementById('btnRegister').classList.remove('active'); }
+    // ذخیره OTPها به صورت موقت
+    const otpStore = {}; // ساختار: { '09157726080': '1234' }
 
-function doLoginFromPage(){ // for login.html
-  const phone = document.getElementById('loginPhone2').value.trim();
-  const pin = document.getElementById('loginPin2').value.trim(); if(!phone||pin.length!==4) return alert('ورود: شماره و رمز'); fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone,pin})}).then(r=>r.json()).then(d=>{ if(d.success){ localStorage.setItem('user',JSON.stringify({phone})); location.href='groups.html'; } else alert('خطا');});
-}
+    // تولید OTP
+    function generateOTP() {
+        return Math.floor(1000 + Math.random() * 9000).toString(); // ۴ رقمی
+    }
 
-document.getElementById && (() => {
-  const b1 = document.getElementById('btnLogin');
-  const b2 = document.getElementById('btnRegister');
-  if (b1 && b2) {
-    b1.addEventListener('click', ()=>{ goToLogin(); });
-    b2.addEventListener('click', ()=>{ goToRegister(); });
-  }
-})();
+    // بررسی شماره موبایل
+    function validatePhone(phone) {
+        const phoneRegex = /^09\d{9}$/;
+        return phoneRegex.test(phone);
+    }
+
+    // بررسی رمز ۴ رقمی
+    function validatePIN(pin) {
+        const pinRegex = /^\d{4}$/;
+        return pinRegex.test(pin);
+    }
+
+    // ارسال OTP برای ثبت‌نام
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const phone = document.getElementById('reg-phone').value.trim();
+        const firstName = document.getElementById('reg-firstname').value.trim();
+        const lastName = document.getElementById('reg-lastname').value.trim();
+        const pin = document.getElementById('reg-pin').value.trim();
+
+        if (!validatePhone(phone)) {
+            alert('شماره موبایل صحیح نیست!');
+            return;
+        }
+        if (!validatePIN(pin)) {
+            alert('رمز باید ۴ رقمی باشد!');
+            return;
+        }
+        if (!firstName || !lastName) {
+            alert('نام و نام خانوادگی را وارد کنید!');
+            return;
+        }
+
+        const otp = generateOTP();
+        otpStore[phone] = otp;
+        otpDisplay.textContent = `کد OTP برای شماره ${phone}: ${otp}`;
+        alert(`کد OTP تولید شد و در بخش OTP نمایش داده می‌شود.`);
+    });
+
+    // ورود با OTP
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const phone = document.getElementById('login-phone').value.trim();
+        const pin = document.getElementById('login-pin').value.trim();
+        const otpInput = document.getElementById('login-otp').value.trim();
+
+        if (!validatePhone(phone)) {
+            alert('شماره موبایل صحیح نیست!');
+            return;
+        }
+        if (!validatePIN(pin)) {
+            alert('رمز باید ۴ رقمی باشد!');
+            return;
+        }
+        if (!otpInput || otpInput !== otpStore[phone]) {
+            alert('OTP اشتباه است یا هنوز تولید نشده!');
+            return;
+        }
+
+        alert(`ورود موفق برای شماره ${phone}`);
+        // بعداً اینجا می‌توان به صفحه اصلی پیام‌رسان ریدایرکت کرد
+    });
+});

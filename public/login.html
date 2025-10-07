@@ -1,45 +1,37 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ورود - XZ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پیام‌رسان XZ</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div style="max-width:520px;margin:60px auto;padding:20px;background:var(--glass);border-radius:12px">
-    <h3>ورود</h3>
-    <div class="field"><label class="label">شماره موبایل</label><input id="phone" class="input"></div>
-    <div class="field"><label class="label">رمز ۴ رقمی</label><input id="pin" class="input" maxlength="4" type="password"></div>
-    <div style="display:flex;gap:8px;margin-top:10px">
-      <button class="btn primary" onclick="login()">ورود</button>
-      <button class="btn ghost" onclick="register()">ثبت‌نام</button>
-    </div>
-    <p id="msg" class="small-muted"></p>
+<div class="container">
+  <h1>پیام‌رسان XZ</h1>
+  
+  <div class="tabs">
+    <button id="loginTab">ورود</button>
+    <button id="registerTab">ثبت‌نام</button>
   </div>
+  
+  <!-- فرم ورود -->
+  <form id="loginForm" action="/login" method="POST">
+    <input type="text" name="phone" placeholder="شماره موبایل" required>
+    <input type="password" name="password" placeholder="رمز ۴ رقمی" required>
+    <button type="submit">ورود</button>
+  </form>
 
-<script>
-function register(){ window.location.href = "index.html"; }
-async function login(){
-  const phone = document.getElementById('phone').value.trim();
-  const pin = document.getElementById('pin').value.trim();
-  const el = document.getElementById('msg');
-  el.innerText = "";
-  if(!phone || !/^\d{4,}$/.test(phone)) { el.innerText = "شماره معتبر وارد کنید"; return; }
-  if(!/^\d{4}$/.test(pin)) { el.innerText = "رمز ۴ رقمی وارد کنید"; return; }
+  <!-- فرم ثبت‌نام -->
+  <form id="registerForm" action="/register" method="POST" style="display:none;">
+    <input type="text" name="phone" placeholder="شماره موبایل" required>
+    <input type="text" name="firstName" placeholder="نام" required>
+    <input type="text" name="lastName" placeholder="نام خانوادگی" required>
+    <input type="password" name="password" placeholder="رمز ۴ رقمی" required>
+    <button type="submit">ثبت‌نام و دریافت OTP</button>
+  </form>
+</div>
 
-  const res = await fetch("/api/login", {
-    method:"POST", headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({ phone, pin })
-  }).then(r=>r.json());
-
-  if(res.success){
-    localStorage.setItem('user', JSON.stringify({ phone, firstName: res.firstName || "", lastName: res.lastName || "" }));
-    window.location.href = "groups.html";
-  } else {
-    el.innerText = res.message || "خطا در ورود";
-  }
-}
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خانه | پیام‌رسان XZ</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="home-body">
+  <header class="app-header">
+    <img src="assets/logo.png" alt="XZ Logo" class="logo">
+    <h2>خوش آمدی به XZ Messenger</h2>
+    <button id="logoutBtn" class="logout">خروج</button>
+  </header>
+
+  <main class="chat-main">
+    <div class="chat-sidebar">
+      <h3>گروه‌ها</h3>
+      <ul id="groupList">
+        <li>عمومی</li>
+        <li>دوستان</li>
+        <li>کدزن‌ها</li>
+      </ul>
+    </div>
+
+    <div class="chat-area">
+      <div id="messages"></div>
+      <form id="chatForm">
+        <input type="text" id="msgInput" placeholder="پیام خود را بنویسید..." autocomplete="off" required>
+        <button type="submit">ارسال</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.onclick = () => {
+      localStorage.removeItem('userPhone');
+      window.location.href = '/login.html';
+    };
+  </script>
+</body>
+</html>
