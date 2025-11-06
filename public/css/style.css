@@ -1,457 +1,520 @@
-/* =========================================================================
-   XZ Messenger - style.css
-   Professional UI (Dark/Light split), animations, responsive layout,
-   chat bubbles, forms, admin table, profile, file & audio controls, etc.
-   Place this file in public/css/style.css and link from HTML.
-   ========================================================================= */
+/* ---------------------------------------------------------------------
+   XZ Messenger - MAIN STYLE SHEET
+   - Default theme: dark (half black/white split visual)
+   - Additional themes: neon, muted (switchable via body.theme-*)
+   - Includes: layout, sidebar, chat area, forms, buttons, cards,
+     message bubbles, modals, file input, voice button, profile,
+     settings, group panels, admin panel, animations, utilities.
+   - Author note: default visual tuned for "سیاه‌وسفید شفاف" (theme 1)
+   --------------------------------------------------------------------- */
 
-/* ------------------------------------------------------------
-   :root variables (colors, sizes, transitions)
-   ------------------------------------------------------------ */
+/* -------------------------
+   Reset / Base
+   ------------------------- */
+* { box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 :root{
-  /* main palette */
-  --xz-dark: #0f1114;
-  --xz-mid-dark: #181a1d;
-  --xz-gray-900: #0b0c0f;
-  --xz-gray-800: #111315;
-  --xz-gray-700: #1c1f23;
-  --xz-gray-600: #23262a;
-  --xz-gray-500: #2b2e33;
-  --xz-accent: #2e9cff; /* accent (you said no blue? replace if needed) */
-  --xz-accent-2: #00bfa5;
-  --xz-light: #f7f8fa;
-  --xz-muted: #b6bcc4;
-  --xz-success: #2ecc71;
-  --xz-warn: #ffb74d;
-  --xz-danger: #ff6b6b;
-
-  /* background split */
-  --split-left: linear-gradient(180deg, rgba(10,10,10,1) 0%, rgba(20,20,20,1) 100%);
-  --split-right: linear-gradient(180deg, rgba(250,250,250,1) 0%, rgba(239,239,239,1) 100%);
-
-  /* sizes */
-  --sidebar-width: 320px;
-  --container-radius: 14px;
-  --card-padding: 18px;
-
-  --shadow-soft: 0 6px 20px rgba(2,6,23,0.45);
-  --shadow-light: 0 4px 10px rgba(2,6,23,0.15);
-
-  --transition-fast: 160ms ease;
-  --transition-normal: 280ms ease;
-  --transition-slow: 420ms ease;
+  /* Core color tokens (dark theme default) */
+  --bg-left: #0b0b0b;            /* left half */
+  --bg-right: #ffffff;           /* right half */
+  --panel-bg: rgba(255,255,255,0.96);
+  --panel-bg-dark: rgba(18,18,18,0.96);
+  --muted: #9aa4b2;
+  --accent: #0b93f6;
+  --accent-2: #00b9ff;
+  --accent-3: #ffd166;
+  --text: #111;
+  --text-on-accent: #fff;
+  --shadow: 0 8px 30px rgba(2,6,23,0.45);
+  --glass: rgba(255,255,255,0.06);
+  --glass-strong: rgba(0,0,0,0.45);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --max-width: 1100px;
+  --transition: 240ms cubic-bezier(.2,.9,.3,1);
+  --border: 1px solid rgba(0,0,0,0.06);
+  --easing: cubic-bezier(.2,.9,.3,1);
+  --tts-shadow: 0 6px 20px rgba(11, 147, 246, 0.12);
+  --voice-color: linear-gradient(90deg,#0b93f6,#00b9ff);
+  --focus-ring: 0 0 0 6px rgba(11,147,246,0.08);
 }
 
-/* ------------------------------------------------------------
-   Reset & core
-   ------------------------------------------------------------ */
-*{box-sizing:border-box}
-html,body{height:100%}
+/* Theme override variables - applied by toggling body class */
+body.theme-dark { /* default; black/white split handled separately visually */
+  --panel-bg: rgba(255,255,255,0.96);
+  --panel-bg-dark: rgba(18,18,18,0.98);
+  --text: #111;
+  --muted: #9aa4b2;
+  --accent: #0b93f6;
+  --accent-2: #00b9ff;
+  --accent-3: #ffd166;
+  --shadow: 0 10px 40px rgba(2,6,23,0.45);
+}
+body.theme-neon {
+  --bg-left: #071224;
+  --bg-right: #050212;
+  --panel-bg: rgba(6,6,14,0.65);
+  --panel-bg-dark: rgba(2,2,8,0.8);
+  --text: #e6f7ff;
+  --muted: #9adfff;
+  --accent: #7cfcff;
+  --accent-2: #b24cff;
+  --accent-3: #ff9de2;
+  --shadow: 0 12px 40px rgba(124, 252, 255, 0.06);
+}
+body.theme-muted {
+  --bg-left: #2b2f36;
+  --bg-right: #f2f4f7;
+  --panel-bg: rgba(250,250,253,0.95);
+  --panel-bg-dark: rgba(34,36,39,0.97);
+  --text: #0e1216;
+  --muted: #7d8790;
+  --accent: #495057;
+  --accent-2: #6c757d;
+  --accent-3: #adb5bd;
+  --shadow: 0 8px 28px rgba(3,6,12,0.08);
+}
+
+/* Basic body layout: split background */
+html,body{ height:100%; margin:0; font-family: "Vazirmatn", "Segoe UI", Roboto, system-ui, -apple-system; color:var(--text); }
 body{
-  margin:0;
-  font-family: "Vazirmatn", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(90deg, var(--bg-left) 50%, var(--bg-right) 50%);
   -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  color:var(--xz-gray-900);
-  background: linear-gradient(90deg, var(--split-left) 50%, var(--split-right) 50%);
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  line-height:1.45;
+  display:flex; justify-content:center; align-items:flex-start;
+  padding:28px;
 }
 
-/* generic container used by many pages */
-.container{
-  width: min(1100px, 96%);
-  border-radius:calc(var(--container-radius) + 2px);
-  background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.92) 100%);
-  box-shadow: var(--shadow-soft);
-  overflow: hidden;
-  display:flex;
-  gap: 0;
-  min-height: 640px;
-}
-
-/* small card (auth) */
-.card {
-  width: 420px;
-  border-radius: 12px;
-  background: linear-gradient(180deg,#ffffff 0%, #fbfdff 100%);
-  box-shadow: var(--shadow-light);
-  overflow: hidden;
-}
-
-/* Utility helpers */
-.hidden{display:none!important}
-.flex{display:flex}
-.center{display:flex;align-items:center;justify-content:center}
-.column{flex-direction:column}
-.row{flex-direction:row}
-.mt-8{margin-top:8px}
-.mb-8{margin-bottom:8px}
-.p-8{padding:8px}
-.p-16{padding:16px}
-.text-muted{color:var(--xz-muted)}
-.small{font-size:13px}
-.btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
-.btn:active{transform:translateY(1px)}
-.btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
-.round{border-radius:999px}
-.badge{padding:6px 10px;border-radius:999px;background:rgba(0,0,0,0.06);font-size:12px}
-
-/* ------------------------------------------------------------
-   Header & Logo
-   ------------------------------------------------------------ */
-.app-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding:18px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04));
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-}
-.logo{
-  width:48px;height:48px;border-radius:10px;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,0.12);
-  display:inline-block;
-}
-.app-header h2{margin:0;font-size:18px;color:var(--xz-gray-900)}
-
-/* logout */
-.logout{
-  background: linear-gradient(90deg,var(--xz-danger), #e64545);
-  color:white;border:none;padding:8px 12px;border-radius:10px;cursor:pointer;
-  box-shadow: 0 6px 14px rgba(214,77,77,0.18);
-}
-.logout:hover{transform:translateY(-2px)}
-.logout:active{transform:translateY(0)}
-
-/* ------------------------------------------------------------
-   App layout: sidebar + main chat area (desktop)
-   ------------------------------------------------------------ */
-.chat-main{
-  display:flex;
+/* Central app frame */
+.app-frame {
   width:100%;
-  min-height:640px;
+  max-width:var(--max-width);
+  height:calc(100vh - 56px);
+  border-radius:20px;
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  position:relative;
 }
 
-/* Sidebar (left) */
-.chat-sidebar{
-  width:var(--sidebar-width);
-  background: linear-gradient(180deg,#0f1114 0%, #161719 100%);
-  color:white;padding:18px;flex-shrink:0;display:flex;flex-direction:column;
-  border-right: 1px solid rgba(255,255,255,0.03);
+/* subtle overlay division indicator */
+.app-frame::before{
+  content:"";
+  position:absolute; left:50%; top:0; bottom:0; width:2px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.04));
+  transform:translateX(-1px);
+  pointer-events:none;
 }
-.chat-sidebar h3{margin:0 0 12px 0;font-size:16px}
-.chat-sidebar ul{list-style:none;margin:0;padding:0}
-.chat-sidebar li{
-  padding:10px;border-radius:10px;margin-bottom:8px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  display:flex;align-items:center;justify-content:space-between;cursor:pointer;
-}
-.chat-sidebar li:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,0.22)}
 
-/* action buttons inside sidebar */
-.sidebar-actions{display:flex;gap:8px;margin-top:12px}
-.sidebar-actions .btn{padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--xz-accent), #0070e6);color:white}
+/* -------------------------
+   SIDEBAR
+   ------------------------- */
+.sidebar {
+  background: linear-gradient(180deg, var(--panel-bg-dark), rgba(0,0,0,0.4));
+  color:var(--text-on-accent, #fff);
+  display:flex; flex-direction:column; padding:18px;
+  gap:10px; border-right:1px solid rgba(255,255,255,0.02);
+}
 
-/* Chat area (right) */
-.chat-area{
-  flex:1;display:flex;flex-direction:column;min-width:0;background:linear-gradient(180deg,#f7f8fb 0%, #ffffff 100%);
+.brand {
+  display:flex; align-items:center; gap:12px;
 }
-.chat-header{
-  padding:18px;border-bottom: 1px solid rgba(0,0,0,0.04);font-weight:600;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
+.brand .logo {
+  width:56px; height:56px; border-radius:12px;
+  background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent-3));
+  display:flex; align-items:center; justify-content:center;
+  color:var(--text-on-accent); font-weight:800; font-size:22px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45), inset 0 -6px 18px rgba(255,255,255,0.06);
+  transform:translateZ(0);
 }
-.chat-header .title{font-size:18px}
-.chat-header .sub{color:var(--xz-muted);font-size:13px}
+.brand .title {
+  font-size:16px; font-weight:700; letter-spacing:0.2px;
+  color:var(--text-on-accent);
+}
+
+/* search */
+.search-wrap { margin-top:6px; margin-bottom:6px; }
+.search {
+  display:flex; gap:8px; align-items:center;
+  background: rgba(255,255,255,0.03);
+  padding:8px; border-radius:10px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.search input {
+  background:transparent; border:0; outline:none; color:var(--text-on-accent); width:100%;
+  font-size:14px;
+}
+.search .icon { opacity:0.7; }
+
+/* chat list */
+.chat-list { overflow:auto; padding-right:6px; display:flex; flex-direction:column; gap:10px; }
+.chat-card {
+  display:flex; gap:10px; align-items:center; padding:10px; border-radius:12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  cursor:pointer; transition: transform var(--transition), box-shadow var(--transition);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.chat-card:hover{ transform:translateY(-4px); box-shadow:0 8px 28px rgba(0,0,0,0.35); }
+.chat-card .avatar { width:48px; height:48px; border-radius:12px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); display:flex;align-items:center;justify-content:center; font-weight:700; color:var(--text-on-accent); }
+.chat-card .meta { display:flex; flex-direction:column; gap:4px; }
+.chat-card .meta .name{ font-weight:700; font-size:14px; color:var(--text-on-accent); }
+.chat-card .meta .sub{ font-size:12px; color:var(--muted); }
+
+/* controls at bottom of sidebar */
+.sidebar-footer { margin-top:auto; display:flex; gap:8px; align-items:center; justify-content:space-between; }
+.btn {
+  padding:10px 14px; border-radius:10px; cursor:pointer; border:none; outline:none;
+  background:var(--accent); color:var(--text-on-accent); font-weight:700; transition:transform var(--transition), box-shadow var(--transition);
+  box-shadow: var(--tts-shadow);
+}
+.btn.ghost { background:transparent; color:var(--text-on-accent); border:1px solid rgba(255,255,255,0.06); box-shadow:none; }
+.btn.small { padding:8px 10px; font-size:13px; border-radius:8px; }
+
+/* -------------------------
+   MAIN CHAT AREA
+   ------------------------- */
+.chat-area {
+  display:flex; flex-direction:column; background:var(--panel-bg);
+  padding:18px; gap:14px;
+}
+
+/* chat header */
+.chat-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.01));
+  border:1px solid rgba(0,0,0,0.04);
+}
+.chat-header .left { display:flex; gap:12px; align-items:center; }
+.chat-header .title { font-weight:800; font-size:18px; }
+.chat-header .actions { display:flex; gap:8px; align-items:center; }
+
+.status-dot { width:10px; height:10px; border-radius:50%; background:#44c767; box-shadow:0 4px 12px rgba(68,199,103,0.12); }
 
 /* messages list */
-.messages{
-  flex:1;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:8px;
-  background-image: linear-gradient(180deg, rgba(0,0,0,0.01) 0%, rgba(255,255,255,0.01) 100%);
+.messages {
+  flex:1; overflow:auto; padding:12px; display:flex; flex-direction:column; gap:10px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(255,255,255,0.01));
+  border-radius:12px;
 }
 
 /* message bubble */
-.message{
-  padding:10px 14px;border-radius:12px;max-width:68%;word-wrap:break-word;box-shadow:var(--shadow-light);
-  opacity:0; transform: translateY(8px); animation:popIn .28s var(--transition-fast) forwards;
+.msg-row { display:flex; gap:10px; align-items:flex-start; }
+.msg-row.me { justify-content:flex-end; }
+.msg-bubble {
+  max-width:72%; padding:12px 14px; border-radius:14px; line-height:1.45; word-break:break-word;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.06); transition: transform var(--transition), box-shadow var(--transition);
 }
-@keyframes popIn{to{opacity:1;transform:none}}
-.message.sent{
-  background: linear-gradient(90deg,var(--xz-accent),var(--xz-accent-2)); color:white;margin-left:auto;border-bottom-right-radius:4px;
+.msg-bubble.sent { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:var(--text-on-accent); border-bottom-right-radius:4px; }
+.msg-bubble.recv { background:var(--panel-bg); color:var(--text); border-bottom-left-radius:4px; border:1px solid rgba(0,0,0,0.04); }
+
+.msg-meta { font-size:12px; color:var(--muted); margin-top:6px; display:flex; gap:8px; align-items:center; }
+
+/* show sender name above bubble (user requested) */
+.msg-sender { font-weight:800; font-size:12px; color:var(--muted); margin-bottom:6px; }
+
+/* smoother enter/exit animations */
+.msg-bubble { transform-origin:center; }
+@keyframes msg-in { 0%{ opacity:0; transform:translateY(8px) scale(.98); } 100%{ opacity:1; transform:translateY(0) scale(1); } }
+.msg-bubble { animation: msg-in 320ms var(--easing); }
+
+/* chat input area */
+.chat-composer {
+  padding:12px; display:flex; gap:10px; align-items:center; border-radius:12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
+  border:1px solid rgba(0,0,0,0.04);
 }
-.message.received{
-  background: #eceff3;color:#111;margin-right:auto;border-bottom-left-radius:4px;
+.composer-input { flex:1; display:flex; gap:8px; align-items:center; }
+.composer-input input[type="text"] {
+  flex:1; padding:12px 14px; border-radius:10px; border:1px solid rgba(0,0,0,0.05); outline:none;
 }
-.message .meta{display:block;margin-top:6px;font-size:12px;color:rgba(0,0,0,0.45)}
+.composer-actions { display:flex; gap:8px; align-items:center; }
 
-/* input area */
-.chat-input{display:flex;padding:16px;border-top:1px solid rgba(0,0,0,0.04);gap:8px;align-items:center}
-.chat-input input[type="text"], .chat-input input[type="file"], .chat-input textarea{
-  flex:1;padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);outline:none;background:white;
-  transition:box-shadow var(--transition-normal), transform var(--transition-fast);
+/* file input (styled) */
+.file-input {
+  position:relative; overflow:hidden; display:inline-block;
 }
-.chat-input input:focus, .chat-input textarea:focus{box-shadow:0 6px 20px rgba(46,156,255,0.12);transform:translateY(-1px)}
-.chat-input button{
-  padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--xz-accent),#0b83d9);color:white;cursor:pointer;
-  box-shadow:0 8px 16px rgba(11,131,217,0.12);
+.file-input input[type=file] {
+  position:absolute; left:0; top:0; opacity:0; width:100%; height:100%; cursor:pointer;
 }
-.chat-input button:active{transform:translateY(1px)}
+.file-btn { padding:8px 10px; border-radius:10px; background:transparent; color:var(--muted); border:1px dashed rgba(0,0,0,0.05); }
 
-/* file & voice controls */
-.file-chooser{display:flex;align-items:center;gap:8px}
-.input-file{display:none}
-.voice-btn{background:transparent;border:1px dashed rgba(0,0,0,0.08);padding:8px;border-radius:10px}
-
-/* ------------------------------------------------------------
-   AUTH (login / register / OTP) forms
-   ------------------------------------------------------------ */
-.auth-wrapper{
-  display:flex;justify-content:center;align-items:center;height:100vh;padding:20px;
-}
-.auth-card{
-  width:420px;background:linear-gradient(180deg,#ffffff, #fbfdff);border-radius:14px;padding:22px;box-shadow:var(--shadow-soft);
-}
-.auth-card h1{margin:0 0 12px 0;font-size:20px}
-.form-row{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
-.input{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:linear-gradient(180deg,#fff,#fbfbff)}
-.input:focus{box-shadow:0 10px 30px rgba(2,6,23,0.06)}
-.btn-primary{background: linear-gradient(90deg,var(--xz-accent), #0b7fe0); color:white; padding:12px;border-radius:10px;border:none;cursor:pointer}
-
-/* big split landing style (two buttons for login/register) */
-.split-landing{
-  max-width:950px;width:95%;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:40px;
-}
-.split-card{
-  border-radius:18px;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:var(--shadow-soft);min-height:360px;
-}
-.split-card.dark{background:linear-gradient(180deg,#08090b,#0f1114);color:white}
-.split-card.light{background:linear-gradient(180deg,#ffffff,#f4f7fb);color:#111}
-.split-card .main-btn{padding:14px 22px;border-radius:12px;border:none;font-size:16px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.12)}
-.split-card.dark .main-btn{background:linear-gradient(90deg,#1e90ff,#1767c9);color:white}
-.split-card.light .main-btn{background:linear-gradient(90deg,#22c1c3,#2ec6a1);color:white}
-
-/* OTP box */
-.otp-box{display:flex;gap:8px;justify-content:center}
-.otp-box input{width:60px;text-align:center;font-size:18px;padding:12px;border-radius:8px;border:1px solid rgba(0,0,0,0.07)}
-
-/* tiny hint */
-.hint{font-size:13px;color:var(--xz-muted)}
-
-/* ------------------------------------------------------------
-   Groups / Channels page elements
-   ------------------------------------------------------------ */
-.groups-wrap{display:flex;gap:18px;padding:20px}
-.group-list{width:320px;background:linear-gradient(180deg,#0f1114,#141617);color:white;padding:18px;border-radius:12px;box-shadow:var(--shadow-light)}
-.group-list h4{margin:0 0 12px 0}
-.group-card{background:linear-gradient(180deg,#1b1d20,#111);padding:12px;border-radius:10px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-.group-actions{display:flex;gap:8px}
-.group-actions button{padding:8px 10px;border-radius:8px;cursor:pointer}
-
-/* Create group area */
-.create-group{display:flex;gap:8px;padding:12px;background:linear-gradient(180deg,#fff,#fafafa);border-radius:10px;box-shadow:var(--shadow-light)}
-.create-group input{flex:1}
-
-/* ------------------------------------------------------------
-   Profile & Settings
-   ------------------------------------------------------------ */
-.profile-wrap{display:flex;gap:20px;padding:20px}
-.profile-card{flex:1;background:linear-gradient(180deg,#fff,#fbfdff);padding:18px;border-radius:12px;box-shadow:var(--shadow-light)}
-.profile-card h3{margin-top:0}
-.profile-row{display:flex;gap:12px;align-items:center}
-.avatar{
-  width:84px;height:84px;border-radius:14px;background:linear-gradient(180deg,#dfe8f7,#cde0f5);display:flex;align-items:center;justify-content:center;font-weight:700;
-  color:var(--xz-mid-dark);box-shadow:0 6px 18px rgba(0,0,0,0.08)
+/* voice recorder button */
+.voice-btn {
+  width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(180deg, rgba(11,147,246,0.14), rgba(0,185,255,0.05));
+  border: 1px solid rgba(11,147,246,0.08);
+  box-shadow: var(--tts-shadow);
+  cursor:pointer;
 }
 
-/* settings list */
-.settings-list{display:flex;flex-direction:column;gap:8px}
-.settings-item{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfbff);display:flex;justify-content:space-between;align-items:center}
+/* bind Enter to send (helper class) - actual behavior via JS; style here */
+.hint { font-size:12px; color:var(--muted); }
 
-/* special credit block for author (as requested) */
-.creator-box{
-  margin-top:12px;padding:12px;border-radius:10px;background:linear-gradient(90deg,#f6f6f6,#fff);
-  border-left:4px solid var(--xz-accent);
+/* -------------------------
+   PROFILE PANEL & SETTINGS
+   ------------------------- */
+.profile-panel {
+  display:flex; flex-direction:column; gap:12px; padding:12px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
 }
-.creator-box strong{display:block}
-.creator-box small{display:block;color:var(--xz-muted)}
+.profile-row { display:flex; gap:10px; align-items:center; }
+.profile-avatar { width:84px; height:84px; border-radius:18px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); display:flex; align-items:center; justify-content:center; font-weight:900; color:var(--text-on-accent); font-size:28px; }
+.profile-info { display:flex; flex-direction:column; gap:6px; }
+.profile-info input { padding:8px; border-radius:10px; border:1px solid rgba(0,0,0,0.06); }
 
-/* ------------------------------------------------------------
-   Admin OTP table
-   ------------------------------------------------------------ */
-.admin-container{
-  padding:20px;
-  min-height:80vh;
-  display:flex;flex-direction:column;gap:16px;background:linear-gradient(180deg,#fff,#fbfdff);
+/* settings toggles */
+.toggle {
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
 }
-#otpTable{width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-light)}
-#otpTable thead tr{background:linear-gradient(90deg,#111,#333);color:white}
-#otpTable th,#otpTable td{padding:12px;border-bottom:1px solid rgba(0,0,0,0.04);text-align:left}
-#otpTable tbody tr:hover{background:linear-gradient(90deg,rgba(100,170,255,0.04),transparent)}
-
-/* ------------------------------------------------------------
-   File & voice controls styling in chat input
-   ------------------------------------------------------------ */
-.file-control{
-  display:flex;gap:8px;align-items:center;
+.toggle .switch {
+  width:44px; height:26px; background:rgba(0,0,0,0.06); border-radius:40px; position:relative; transition:all var(--transition);
 }
-.file-control label{
-  display:inline-flex;align-items:center;gap:8px;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);cursor:pointer;background:white;
+.toggle .knob {
+  width:20px; height:20px; background:white; border-radius:50%; position:absolute; top:3px; left:3px; transition:all var(--transition);
+  box-shadow:0 6px 18px rgba(2,6,23,0.08);
 }
-.voice-record{display:inline-flex;align-items:center;gap:8px;padding:8px;border-radius:8px;background:#ff6b6b;color:white}
+.toggle.active .switch { background: linear-gradient(90deg,var(--accent),var(--accent-2)); }
+.toggle.active .knob { left:21px; }
 
-/* ------------------------------------------------------------
-   Private chat UI tweaks (name above messages)
-   ------------------------------------------------------------ */
-.message .author{
-  display:block;font-size:12px;font-weight:600;margin-bottom:6px;color:var(--xz-muted);
+/* creator note block (as requested) */
+.creator-note {
+  border-radius:10px; padding:12px; background:linear-gradient(90deg, rgba(0,0,0,0.03), rgba(255,255,255,0.02));
+  font-size:13px; color:var(--muted);
+}
+.creator-note strong { color:var(--accent); }
+
+/* -------------------------
+   GROUP / CHANNEL PAGE
+   ------------------------- */
+.group-page {
+  display:flex; flex-direction:column; gap:12px; padding:12px; background:var(--panel-bg);
+  border-radius:12px;
+}
+.group-header { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.group-meta { display:flex; gap:12px; align-items:center; }
+.group-avatar { width:72px; height:72px; border-radius:12px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); display:flex; align-items:center; justify-content:center; font-size:22px; color:var(--text-on-accent); }
+.group-actions { display:flex; gap:8px; }
+
+/* members list */
+.members { display:flex; gap:8px; flex-wrap:wrap; }
+.member { display:flex; gap:8px; align-items:center; padding:6px 10px; border-radius:8px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); }
+
+/* group settings card (only visible to owner/admin) */
+.group-settings { padding:10px; border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); }
+
+/* -------------------------
+   ADMIN PANEL
+   ------------------------- */
+.admin-panel {
+  display:flex; flex-direction:column; gap:10px; padding:12px; border-radius:12px; background:var(--panel-bg-dark);
+  color:var(--text-on-accent);
+}
+.admin-title { font-weight:900; font-size:18px; color:var(--text-on-accent); }
+.admin-table { width:100%; border-collapse:collapse; }
+.admin-table th, .admin-table td { padding:10px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.03); font-size:13px; color:var(--text-on-accent); }
+.admin-actions { display:flex; gap:8px; }
+
+/* admin login (simple) */
+.admin-login { display:flex; gap:8px; align-items:center; }
+
+/* -------------------------
+   MODALS
+   ------------------------- */
+.modal-backdrop {
+  position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+  background:rgba(2,6,23,0.5); z-index:9999;
+}
+.modal {
+  width:640px; max-width:94%; border-radius:14px; padding:18px; background:var(--panel-bg);
+  box-shadow:0 18px 50px rgba(2,6,23,0.6);
 }
 
-/* ------------------------------------------------------------
-   Buttons, inputs and micro-interactions
-   ------------------------------------------------------------ */
-button{transition:all var(--transition-fast)}
-input, textarea{transition:all var(--transition-normal);font-family:inherit}
-a{color:var(--xz-accent);text-decoration:none}
+/* -------------------------
+   UTILITIES
+   ------------------------- */
+.row { display:flex; gap:10px; align-items:center; }
+.col { display:flex; flex-direction:column; gap:10px; }
+.center { display:flex; align-items:center; justify-content:center; }
+.hidden { display:none !important; }
+.mt-4 { margin-top:16px; }
+.mb-4 { margin-bottom:16px; }
 
-/* subtle hover lift */
-.lift:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(0,0,0,0.14)}
-
-/* tiny form feedback */
-.input-error{border-color:var(--xz-danger);box-shadow:0 6px 18px rgba(255,107,107,0.08)}
-.form-note{font-size:12px;color:var(--xz-muted)}
-
-/* ------------------------------------------------------------
-   Responsive tweaks
-   ------------------------------------------------------------ */
-@media (max-width:1100px){
-  .container{flex-direction:column;padding:12px}
-  .chat-main{flex-direction:column}
-  .chat-sidebar{width:100%;flex-direction:row;align-items:center;gap:8px;padding:12px;overflow:auto}
-  .chat-sidebar ul{display:flex;gap:8px}
-  .chat-area{width:100%}
-}
-@media (max-width:700px){
-  body{padding:10px}
-  .card{width:96%}
-  .split-landing{grid-template-columns:1fr;gap:12px}
-  .chat-input{padding:12px}
-  .chat-sidebar{display:none}
-  .container{min-height:100vh}
-  .chat-header{padding:12px}
-  .messages{padding:12px}
+/* responsive */
+@media (max-width:980px){
+  .app-frame { grid-template-columns: 1fr; height:calc(100vh - 28px); }
+  .app-frame::before { display:none; }
+  .sidebar { order:2; width:100%; height:240px; overflow:auto; }
+  .chat-area { order:1; height:calc(100vh - 300px); }
 }
 
-/* ------------------------------------------------------------
-   Accessibility & focus
-   ------------------------------------------------------------ */
-:focus{outline: 3px solid rgba(46,156,255,0.12);outline-offset:2px}
-[aria-hidden="true"]{display:none!important}
+/* -------------------------
+   Fancy visual flavor - 3D buttons + hover glow
+   ------------------------- */
+.btn-3d {
+  position:relative; display:inline-block; padding:12px 18px; border-radius:12px; color:var(--text-on-accent);
+  background:linear-gradient(180deg,var(--accent),var(--accent-2));
+  box-shadow: 0 10px 30px rgba(11,147,246,0.12), inset 0 -6px 18px rgba(255,255,255,0.06);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.btn-3d:active{ transform:translateY(2px) scale(.998); box-shadow: 0 6px 18px rgba(11,147,246,0.10); }
+.btn-3d[disabled]{ opacity:.6; cursor:not-allowed; transform:none; box-shadow:none; }
 
-/* ------------------------------------------------------------
-   Longform decorative styles (gradients, shadows, complex UI)
-   We'll add blocks and helper classes so the file is extensive and rich.
-   ------------------------------------------------------------ */
+/* hover neon glow (only in neon theme) */
+body.theme-neon .btn-3d:hover{ box-shadow: 0 14px 46px rgba(124,252,255,0.12), 0 0 40px rgba(178,76,255,0.06); transform:translateY(-4px); }
+
+/* -------------------------
+   Fancy loading placeholders and skeletons
+   ------------------------- */
+.skeleton { background:linear-gradient(90deg,#f0f0f0 25%, #e6e6e6 37%, #f0f0f0 63%); background-size:400% 100%; animation: loading 1.6s linear infinite; border-radius:8px; }
+@keyframes loading { 0%{ background-position:100% 0 } 100%{ background-position:-100% 0 } }
+
+/* -------------------------
+   Accessibility focus rings
+   ------------------------- */
+:focus { outline:none; box-shadow: var(--focus-ring); border-radius:8px; }
+
+/* -------------------------
+   Extra controls: theme switcher panel (position fixed)
+   ------------------------- */
+.theme-panel {
+  position:fixed; right:28px; bottom:28px; z-index:999;
+  display:flex; gap:8px; align-items:center;
+}
+.theme-dot {
+  width:44px; height:44px; border-radius:10px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+}
+
+/* theme colors for selector */
+.theme-dot.dark { background:linear-gradient(90deg,#111,#333); }
+.theme-dot.neon { background:linear-gradient(90deg,#0b1220,#1b0035); }
+.theme-dot.muted { background:linear-gradient(90deg,#3b3f46,#cfd6df); }
+
+/* -------------------------
+   Deep styling for long CSS requirement:
+   - Define many small helpers, variant classes, and animations to extend lines.
+   - This section intentionally verbose: component variants, borders, shadows, spacing utilities.
+   ------------------------- */
+
+/* layout helpers */
+.flex { display:flex; }
+.flex-col { display:flex; flex-direction:column; }
+.items-center { align-items:center; }
+.justify-between { justify-content:space-between; }
+.gap-6 { gap:6px; }
+.gap-8 { gap:8px; }
+.gap-12 { gap:12px; }
+
+/* spacing utilities (some common) */
+.p-6 { padding:6px; } .p-8 { padding:8px; } .p-12 { padding:12px; } .p-16 { padding:16px; }
+.m-6 { margin:6px; } .m-8 { margin:8px; } .m-12 { margin:12px; } .m-16 { margin:16px; }
+
+/* border radius helpers */
+.round { border-radius:999px; }
+.radius-sm { border-radius:8px; }
+.radius-lg { border-radius:18px; }
+
+/* more shadows */
+.shadow-soft { box-shadow: 0 6px 18px rgba(2,6,23,0.06); }
+.shadow-strong { box-shadow: 0 20px 60px rgba(2,6,23,0.18); }
+
+/* micro interactions */
+@keyframes floaty { 0%{ transform:translateY(0) } 50%{ transform:translateY(-6px) } 100%{ transform:translateY(0) } }
+.floaty { animation: floaty 4s ease-in-out infinite; }
 
 /* card variants */
-.card-primary{
-  background: linear-gradient(90deg,#fff,#f4f9ff);
-  border-radius:14px;padding:18px;box-shadow:0 8px 30px rgba(0,0,0,0.08);
+.card-sm { padding:12px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96)); box-shadow:var(--shadow); }
+.card-dark { background:var(--panel-bg-dark); color:var(--text-on-accent); }
+
+/* small badges */
+.badge {
+  padding:6px 8px; border-radius:999px; font-size:12px; background:rgba(0,0,0,0.06); color:var(--muted);
 }
-.card-dark{
-  background: linear-gradient(180deg,#0e1115,#121418);color:white;border-radius:14px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,0.45)
+.badge.new { background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:var(--text-on-accent); font-weight:800; }
+
+/* icon button */
+.icon-btn { width:44px; height:44px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); border:1px solid rgba(0,0,0,0.04); }
+
+/* responsive message sizing */
+@media (max-width:600px){
+  .chat-card .meta .name{ font-size:13px; }
+  .brand .logo{ width:44px; height:44px; font-size:18px; border-radius:10px; }
+  .app-frame { border-radius:12px; padding:12px; }
+  .chat-composer { padding:8px; }
 }
 
-/* complex layout helpers */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+/* -------------------------
+   Validation states
+   ------------------------- */
+.input-error { border-color:#ff4d6d !important; box-shadow:0 6px 18px rgba(255,77,109,0.06); }
+.text-error { color:#ff4d6d; }
 
-/* notification toast */
-.toast{
-  position:fixed;right:20px;bottom:20px;background:linear-gradient(90deg,#222,#333);color:white;padding:12px 18px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.3);
-  z-index:9999;opacity:0;transform:translateY(10px);animation:toastIn .28s forwards;
+/* -------------------------
+   Long list of decorative gradients / backgrounds to reach verbosity while staying useful
+   ------------------------- */
+.grad-1 { background: linear-gradient(90deg,#0b93f6,#00b9ff); }
+.grad-2 { background: linear-gradient(90deg,#ffd166,#ff8a80); }
+.grad-3 { background: linear-gradient(90deg,#8eecff,#7f5af0); }
+.grad-4 { background: linear-gradient(90deg,#00c9a7,#005bea); }
+.grad-5 { background: linear-gradient(90deg,#f6d365,#fda085); }
+.grad-6 { background: linear-gradient(90deg,#e0c3fc,#8ec5fc); }
+.grad-7 { background: linear-gradient(90deg,#f093fb,#f5576c); }
+
+/* striped ribbon */
+.ribbon {
+  position:relative; padding:8px 12px; border-radius:999px; color:#fff; font-weight:800;
 }
-@keyframes toastIn{to{opacity:1;transform:none}}
-
-/* tooltip */
-.tooltip{
-  position:relative;display:inline-block;
+.ribbon:after {
+  content:""; position:absolute; right:-12px; top:0; bottom:0; width:24px; background: linear-gradient(135deg, rgba(0,0,0,0.08), rgba(255,255,255,0.04)); transform:skewX(-18deg);
 }
-.tooltip .tip{
-  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:8px 10px;border-radius:8px;background:#222;color:white;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:all .18s;
+
+/* -------------------------
+   Animated borders and glows
+   ------------------------- */
+@keyframes pulse-border {
+  0% { box-shadow: 0 0 0 0 rgba(11,147,246,0.12); }
+  70% { box-shadow: 0 0 0 12px rgba(11,147,246,0); }
+  100% { box-shadow: 0 0 0 0 rgba(11,147,246,0); }
 }
-.tooltip:hover .tip{opacity:1;transform:translateX(-50%) translateY(-6px)}
+.pulse { animation: pulse-border 1.8s infinite; }
 
-/* skeleton loaders for lists / chats */
-.skeleton{background:linear-gradient(90deg,#eee #f5f5f5 #eee);background-size:200% 100%;animation:skeletonLoading 1.2s linear infinite;border-radius:6px}
-@keyframes skeletonLoading{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.skeleton-row{height:14px;width:80%;margin:8px 0}
+/* -------------------------
+   Very long tail: more utilities, spacing, text helpers (keeps file dense)
+   ------------------------- */
+.text-xs { font-size:12px; }
+.text-sm { font-size:13px; }
+.text-md { font-size:15px; }
+.text-lg { font-size:18px; }
+.text-muted { color:var(--muted); }
 
-/* ------------------------------------------------------------
-   Form validation & UX
-   ------------------------------------------------------------ */
-.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
-.form-error{color:var(--xz-danger);font-size:13px}
-.form-success{color:var(--xz-success);font-size:13px}
+.list-none { list-style:none; padding:0; margin:0; }
+.flex-wrap { flex-wrap:wrap; }
 
-/* ------------------------------------------------------------
-   Large decorative blocks (for richness) - repeated variants
-   ------------------------------------------------------------ */
-.decor-1{background:linear-gradient(135deg, rgba(46,156,255,0.08), rgba(0,191,165,0.06));padding:12px;border-radius:12px}
-.decor-2{background:linear-gradient(135deg, rgba(10,10,10,0.04), rgba(255,255,255,0.02));padding:12px;border-radius:12px}
-.decor-3{box-shadow:0 12px 40px rgba(11,131,217,0.06);border-radius:12px;padding:18px}
+/* extra large button (for primary actions) */
+.btn-primary-lg { padding:14px 26px; border-radius:14px; font-size:16px; font-weight:800; }
 
-/* variant color themes (in case you want to switch accent) */
-.theme-ocean{--xz-accent:#00a3ff;--xz-accent-2:#00e0d2}
-.theme-warm{--xz-accent:#ff7a59;--xz-accent-2:#ffb86b}
-.theme-purple{--xz-accent:#7a5cff;--xz-accent-2:#b084ff}
+/* tiny helpers */
+.float-right { float:right; }
+.float-left { float:left; }
+.clearfix::after { content:""; display:block; clear:both; }
 
-/* ------------------------------------------------------------
-   Extra layout utilities + large CSS "weight" (repetition for richness)
-   (a lot of small tweaks and helpers to increase lines and options)
-   ------------------------------------------------------------ */
+/* -------------------------
+   FINAL polish: focus on UX details, tooltips, small animations
+   ------------------------- */
+.tooltip {
+  position:relative; display:inline-block;
+}
+.tooltip .tip {
+  position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:var(--panel-bg-dark);
+  color:var(--text-on-accent); padding:8px 10px; border-radius:8px; white-space:nowrap; font-size:13px;
+  box-shadow: 0 8px 24px rgba(2,6,23,0.3); opacity:0; transform-origin:bottom center; transition:opacity 180ms var(--easing), transform 180ms var(--easing);
+}
+.tooltip:hover .tip { opacity:1; transform:translateX(-50%) translateY(-6px); }
 
-/* sections & headings */
-.section{padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--shadow-light)}
-.h1{font-size:24px;margin:0 0 12px 0}
-.h2{font-size:20px;margin:0 0 10px 0}
-.kv-row{display:flex;gap:12px;align-items:center}
-
-/* small chips */
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chips .chip{padding:6px 10px;border-radius:999px;background:rgba(0,0,0,0.04)}
-
-/* input groups */
-.input-group{display:flex;align-items:center;gap:8px}
-.input-addon{padding:10px;border-radius:8px;background:rgba(0,0,0,0.03)}
-
-/* footer small */
-.app-footer{padding:12px;border-top:1px solid rgba(0,0,0,0.04);text-align:center;color:var(--xz-muted);font-size:13px}
-
-/* ------------------------------------------------------------
-   Very large set of repeated minor classes for customizations
-   (these create a richer stylesheet: padding, margin, borders, text)
-   ------------------------------------------------------------ */
-
-/* spacing utils */
-.m-0{margin:0}.m-4{margin:4px}.m-8{margin:8px}.m-12{margin:12px}.m-16{margin:16px}
-.mt-0{margin-top:0}.mt-4{margin-top:4px}.mt-8{margin-top:8px}.mt-12{margin-top:12px}
-.mb-0{margin-bottom:0}.mb-4{margin-bottom:4px}.mb-8{margin-bottom:8px}.mb-12{margin-bottom:12px}
-.p-0{padding:0}.p-4{padding:4px}.p-8{padding:8px}.p-12{padding:12px}.p-20{padding:20px}
-
-/* text utilities */
-.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}
-.bold{font-weight:700}.muted{color:var(--xz-muted)}.mono{font-family:monospace}
-
-/* borders */
-.border{border:1px solid rgba(0,0,0,0.06)}.rounded{border-radius:12px}
-
-/* tiny icon button */
-.icon-btn{width:36px;height:36px;border-radius:8px;background:transparent;border:1px solid rgba(0,0,0,0.04);display:flex;align-items:center;justify-content:center}
-
-/* card list */
-.list-card{display:flex;flex-direction:column;gap:8px}
-.list-card .item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:linear-gradient(180deg,#fff,#f9fbff);box-shadow:var(--shadow-light)}
-
+/* -------------------------
+   END OF STYLESHEET
+   Notes:
+   - To use: include <link rel="stylesheet" href="/css/style.css"> (or appropriate path)
+   - Toggle theme: <body class="theme-dark"> | theme-neon | theme-muted
+   - Many utility classes available for further enhancements in markup.
+   ------------------------- */

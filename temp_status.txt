@@ -1,0 +1,504 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	deleted:    admin/amin.js
+	new file:   data/db.json
+	new file:   node_modules/.bin/mkdirp
+	new file:   node_modules/.bin/mkdirp.cmd
+	new file:   node_modules/.bin/mkdirp.ps1
+	modified:   node_modules/.package-lock.json
+	new file:   node_modules/append-field/.npmignore
+	new file:   node_modules/append-field/LICENSE
+	new file:   node_modules/append-field/README.md
+	new file:   node_modules/append-field/index.js
+	new file:   node_modules/append-field/lib/parse-path.js
+	new file:   node_modules/append-field/lib/set-value.js
+	new file:   node_modules/append-field/package.json
+	new file:   node_modules/append-field/test/forms.js
+	new file:   node_modules/basic-auth/HISTORY.md
+	new file:   node_modules/basic-auth/LICENSE
+	new file:   node_modules/basic-auth/README.md
+	new file:   node_modules/basic-auth/index.js
+	new file:   node_modules/basic-auth/node_modules/safe-buffer/LICENSE
+	new file:   node_modules/basic-auth/node_modules/safe-buffer/README.md
+	new file:   node_modules/basic-auth/node_modules/safe-buffer/index.d.ts
+	new file:   node_modules/basic-auth/node_modules/safe-buffer/index.js
+	new file:   node_modules/basic-auth/node_modules/safe-buffer/package.json
+	new file:   node_modules/basic-auth/package.json
+	new file:   node_modules/buffer-from/LICENSE
+	new file:   node_modules/buffer-from/index.js
+	new file:   node_modules/buffer-from/package.json
+	new file:   node_modules/buffer-from/readme.md
+	new file:   node_modules/busboy/.eslintrc.js
+	new file:   node_modules/busboy/.github/workflows/ci.yml
+	new file:   node_modules/busboy/.github/workflows/lint.yml
+	new file:   node_modules/busboy/LICENSE
+	new file:   node_modules/busboy/README.md
+	new file:   node_modules/busboy/bench/bench-multipart-fields-100mb-big.js
+	new file:   node_modules/busboy/bench/bench-multipart-fields-100mb-small.js
+	new file:   node_modules/busboy/bench/bench-multipart-files-100mb-big.js
+	new file:   node_modules/busboy/bench/bench-multipart-files-100mb-small.js
+	new file:   node_modules/busboy/bench/bench-urlencoded-fields-100pairs-small.js
+	new file:   node_modules/busboy/bench/bench-urlencoded-fields-900pairs-small-alt.js
+	new file:   node_modules/busboy/lib/index.js
+	new file:   node_modules/busboy/lib/types/multipart.js
+	new file:   node_modules/busboy/lib/types/urlencoded.js
+	new file:   node_modules/busboy/lib/utils.js
+	new file:   node_modules/busboy/package.json
+	new file:   node_modules/busboy/test/common.js
+	new file:   node_modules/busboy/test/test-types-multipart-charsets.js
+	new file:   node_modules/busboy/test/test-types-multipart-stream-pause.js
+	new file:   node_modules/busboy/test/test-types-multipart.js
+	new file:   node_modules/busboy/test/test-types-urlencoded.js
+	new file:   node_modules/busboy/test/test.js
+	new file:   node_modules/concat-stream/LICENSE
+	new file:   node_modules/concat-stream/index.js
+	new file:   node_modules/concat-stream/package.json
+	new file:   node_modules/concat-stream/readme.md
+	new file:   node_modules/core-util-is/LICENSE
+	new file:   node_modules/core-util-is/README.md
+	new file:   node_modules/core-util-is/lib/util.js
+	new file:   node_modules/core-util-is/package.json
+	new file:   node_modules/isarray/.npmignore
+	new file:   node_modules/isarray/.travis.yml
+	new file:   node_modules/isarray/Makefile
+	new file:   node_modules/isarray/README.md
+	new file:   node_modules/isarray/component.json
+	new file:   node_modules/isarray/index.js
+	new file:   node_modules/isarray/package.json
+	new file:   node_modules/isarray/test.js
+	new file:   node_modules/minimist/.eslintrc
+	new file:   node_modules/minimist/.github/FUNDING.yml
+	new file:   node_modules/minimist/.nycrc
+	new file:   node_modules/minimist/CHANGELOG.md
+	new file:   node_modules/minimist/LICENSE
+	new file:   node_modules/minimist/README.md
+	new file:   node_modules/minimist/example/parse.js
+	new file:   node_modules/minimist/index.js
+	new file:   node_modules/minimist/package.json
+	new file:   node_modules/minimist/test/all_bool.js
+	new file:   node_modules/minimist/test/bool.js
+	new file:   node_modules/minimist/test/dash.js
+	new file:   node_modules/minimist/test/default_bool.js
+	new file:   node_modules/minimist/test/dotted.js
+	new file:   node_modules/minimist/test/kv_short.js
+	new file:   node_modules/minimist/test/long.js
+	new file:   node_modules/minimist/test/num.js
+	new file:   node_modules/minimist/test/parse.js
+	new file:   node_modules/minimist/test/parse_modified.js
+	new file:   node_modules/minimist/test/proto.js
+	new file:   node_modules/minimist/test/short.js
+	new file:   node_modules/minimist/test/stop_early.js
+	new file:   node_modules/minimist/test/unknown.js
+	new file:   node_modules/minimist/test/whitespace.js
+	new file:   node_modules/mkdirp/LICENSE
+	new file:   node_modules/mkdirp/bin/cmd.js
+	new file:   node_modules/mkdirp/bin/usage.txt
+	new file:   node_modules/mkdirp/index.js
+	new file:   node_modules/mkdirp/package.json
+	new file:   node_modules/mkdirp/readme.markdown
+	new file:   node_modules/multer/LICENSE
+	new file:   node_modules/multer/README.md
+	new file:   node_modules/multer/index.js
+	new file:   node_modules/multer/lib/counter.js
+	new file:   node_modules/multer/lib/file-appender.js
+	new file:   node_modules/multer/lib/make-middleware.js
+	new file:   node_modules/multer/lib/multer-error.js
+	new file:   node_modules/multer/lib/remove-uploaded-files.js
+	new file:   node_modules/multer/package.json
+	new file:   node_modules/multer/storage/disk.js
+	new file:   node_modules/multer/storage/memory.js
+	new file:   node_modules/process-nextick-args/index.js
+	new file:   node_modules/process-nextick-args/license.md
+	new file:   node_modules/process-nextick-args/package.json
+	new file:   node_modules/process-nextick-args/readme.md
+	new file:   node_modules/readable-stream/.travis.yml
+	new file:   node_modules/readable-stream/CONTRIBUTING.md
+	new file:   node_modules/readable-stream/GOVERNANCE.md
+	new file:   node_modules/readable-stream/LICENSE
+	new file:   node_modules/readable-stream/README.md
+	new file:   node_modules/readable-stream/doc/wg-meetings/2015-01-30.md
+	new file:   node_modules/readable-stream/duplex-browser.js
+	new file:   node_modules/readable-stream/duplex.js
+	new file:   node_modules/readable-stream/lib/_stream_duplex.js
+	new file:   node_modules/readable-stream/lib/_stream_passthrough.js
+	new file:   node_modules/readable-stream/lib/_stream_readable.js
+	new file:   node_modules/readable-stream/lib/_stream_transform.js
+	new file:   node_modules/readable-stream/lib/_stream_writable.js
+	new file:   node_modules/readable-stream/lib/internal/streams/BufferList.js
+	new file:   node_modules/readable-stream/lib/internal/streams/destroy.js
+	new file:   node_modules/readable-stream/lib/internal/streams/stream-browser.js
+	new file:   node_modules/readable-stream/lib/internal/streams/stream.js
+	new file:   node_modules/readable-stream/node_modules/safe-buffer/LICENSE
+	new file:   node_modules/readable-stream/node_modules/safe-buffer/README.md
+	new file:   node_modules/readable-stream/node_modules/safe-buffer/index.d.ts
+	new file:   node_modules/readable-stream/node_modules/safe-buffer/index.js
+	new file:   node_modules/readable-stream/node_modules/safe-buffer/package.json
+	new file:   node_modules/readable-stream/package.json
+	new file:   node_modules/readable-stream/passthrough.js
+	new file:   node_modules/readable-stream/readable-browser.js
+	new file:   node_modules/readable-stream/readable.js
+	new file:   node_modules/readable-stream/transform.js
+	new file:   node_modules/readable-stream/writable-browser.js
+	new file:   node_modules/readable-stream/writable.js
+	new file:   node_modules/streamsearch/.eslintrc.js
+	new file:   node_modules/streamsearch/.github/workflows/ci.yml
+	new file:   node_modules/streamsearch/.github/workflows/lint.yml
+	new file:   node_modules/streamsearch/LICENSE
+	new file:   node_modules/streamsearch/README.md
+	new file:   node_modules/streamsearch/lib/sbmh.js
+	new file:   node_modules/streamsearch/package.json
+	new file:   node_modules/streamsearch/test/test.js
+	new file:   node_modules/string_decoder/.travis.yml
+	new file:   node_modules/string_decoder/LICENSE
+	new file:   node_modules/string_decoder/README.md
+	new file:   node_modules/string_decoder/lib/string_decoder.js
+	new file:   node_modules/string_decoder/node_modules/safe-buffer/LICENSE
+	new file:   node_modules/string_decoder/node_modules/safe-buffer/README.md
+	new file:   node_modules/string_decoder/node_modules/safe-buffer/index.d.ts
+	new file:   node_modules/string_decoder/node_modules/safe-buffer/index.js
+	new file:   node_modules/string_decoder/node_modules/safe-buffer/package.json
+	new file:   node_modules/string_decoder/package.json
+	new file:   node_modules/typedarray/.travis.yml
+	new file:   node_modules/typedarray/LICENSE
+	new file:   node_modules/typedarray/example/tarray.js
+	new file:   node_modules/typedarray/index.js
+	new file:   node_modules/typedarray/package.json
+	new file:   node_modules/typedarray/readme.markdown
+	new file:   node_modules/typedarray/test/server/undef_globals.js
+	new file:   node_modules/typedarray/test/tarray.js
+	new file:   node_modules/util-deprecate/History.md
+	new file:   node_modules/util-deprecate/LICENSE
+	new file:   node_modules/util-deprecate/README.md
+	new file:   node_modules/util-deprecate/browser.js
+	new file:   node_modules/util-deprecate/node.js
+	new file:   node_modules/util-deprecate/package.json
+	new file:   node_modules/xtend/.jshintrc
+	new file:   node_modules/xtend/LICENSE
+	new file:   node_modules/xtend/README.md
+	new file:   node_modules/xtend/immutable.js
+	new file:   node_modules/xtend/mutable.js
+	new file:   node_modules/xtend/package.json
+	new file:   node_modules/xtend/test.js
+	modified:   package-lock.json
+	modified:   package.json
+	modified:   public/admin.html
+	renamed:    assets/favicon.ico -> public/assets/favicon.ico
+	renamed:    assets/xz_messenger_icon.png -> public/assets/xz_messenger_icon.png
+	modified:   public/chat.html
+	modified:   public/css/style.css
+	modified:   public/groups.html
+	modified:   public/index.html
+	new file:   public/js/amin.js
+	modified:   public/js/auth.js
+	modified:   public/js/chat.js
+	modified:   public/js/group.js
+	modified:   public/login.html
+	modified:   public/otp.html
+	modified:   public/profile.html
+	modified:   server.js
+	new file:   start-server.bat
+	new file:   temp_status.txt
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   data/groups.json
+	modified:   data/messages.json
+	modified:   data/otps.json
+	deleted:    node_modules/.bin/mkdirp
+	deleted:    node_modules/.bin/mkdirp.cmd
+	deleted:    node_modules/.bin/mkdirp.ps1
+	modified:   node_modules/.package-lock.json
+	deleted:    node_modules/append-field/.npmignore
+	deleted:    node_modules/append-field/LICENSE
+	deleted:    node_modules/append-field/README.md
+	deleted:    node_modules/append-field/index.js
+	deleted:    node_modules/append-field/lib/parse-path.js
+	deleted:    node_modules/append-field/lib/set-value.js
+	deleted:    node_modules/append-field/package.json
+	deleted:    node_modules/append-field/test/forms.js
+	deleted:    node_modules/basic-auth/HISTORY.md
+	deleted:    node_modules/basic-auth/LICENSE
+	deleted:    node_modules/basic-auth/README.md
+	deleted:    node_modules/basic-auth/index.js
+	deleted:    node_modules/basic-auth/node_modules/safe-buffer/LICENSE
+	deleted:    node_modules/basic-auth/node_modules/safe-buffer/README.md
+	deleted:    node_modules/basic-auth/node_modules/safe-buffer/index.d.ts
+	deleted:    node_modules/basic-auth/node_modules/safe-buffer/index.js
+	deleted:    node_modules/basic-auth/node_modules/safe-buffer/package.json
+	deleted:    node_modules/basic-auth/package.json
+	deleted:    node_modules/buffer-from/LICENSE
+	deleted:    node_modules/buffer-from/index.js
+	deleted:    node_modules/buffer-from/package.json
+	deleted:    node_modules/buffer-from/readme.md
+	deleted:    node_modules/busboy/.eslintrc.js
+	deleted:    node_modules/busboy/.github/workflows/ci.yml
+	deleted:    node_modules/busboy/.github/workflows/lint.yml
+	deleted:    node_modules/busboy/LICENSE
+	deleted:    node_modules/busboy/README.md
+	deleted:    node_modules/busboy/bench/bench-multipart-fields-100mb-big.js
+	deleted:    node_modules/busboy/bench/bench-multipart-fields-100mb-small.js
+	deleted:    node_modules/busboy/bench/bench-multipart-files-100mb-big.js
+	deleted:    node_modules/busboy/bench/bench-multipart-files-100mb-small.js
+	deleted:    node_modules/busboy/bench/bench-urlencoded-fields-100pairs-small.js
+	deleted:    node_modules/busboy/bench/bench-urlencoded-fields-900pairs-small-alt.js
+	deleted:    node_modules/busboy/lib/index.js
+	deleted:    node_modules/busboy/lib/types/multipart.js
+	deleted:    node_modules/busboy/lib/types/urlencoded.js
+	deleted:    node_modules/busboy/lib/utils.js
+	deleted:    node_modules/busboy/package.json
+	deleted:    node_modules/busboy/test/common.js
+	deleted:    node_modules/busboy/test/test-types-multipart-charsets.js
+	deleted:    node_modules/busboy/test/test-types-multipart-stream-pause.js
+	deleted:    node_modules/busboy/test/test-types-multipart.js
+	deleted:    node_modules/busboy/test/test-types-urlencoded.js
+	deleted:    node_modules/busboy/test/test.js
+	deleted:    node_modules/concat-stream/LICENSE
+	deleted:    node_modules/concat-stream/index.js
+	deleted:    node_modules/concat-stream/package.json
+	deleted:    node_modules/concat-stream/readme.md
+	deleted:    node_modules/core-util-is/LICENSE
+	deleted:    node_modules/core-util-is/README.md
+	deleted:    node_modules/core-util-is/lib/util.js
+	deleted:    node_modules/core-util-is/package.json
+	deleted:    node_modules/cors/CONTRIBUTING.md
+	deleted:    node_modules/cors/HISTORY.md
+	deleted:    node_modules/cors/LICENSE
+	deleted:    node_modules/cors/README.md
+	deleted:    node_modules/cors/lib/index.js
+	deleted:    node_modules/cors/package.json
+	deleted:    node_modules/isarray/.npmignore
+	deleted:    node_modules/isarray/.travis.yml
+	deleted:    node_modules/isarray/Makefile
+	deleted:    node_modules/isarray/README.md
+	deleted:    node_modules/isarray/component.json
+	deleted:    node_modules/isarray/index.js
+	deleted:    node_modules/isarray/package.json
+	deleted:    node_modules/isarray/test.js
+	deleted:    node_modules/minimist/.eslintrc
+	deleted:    node_modules/minimist/.github/FUNDING.yml
+	deleted:    node_modules/minimist/.nycrc
+	deleted:    node_modules/minimist/CHANGELOG.md
+	deleted:    node_modules/minimist/LICENSE
+	deleted:    node_modules/minimist/README.md
+	deleted:    node_modules/minimist/example/parse.js
+	deleted:    node_modules/minimist/index.js
+	deleted:    node_modules/minimist/package.json
+	deleted:    node_modules/minimist/test/all_bool.js
+	deleted:    node_modules/minimist/test/bool.js
+	deleted:    node_modules/minimist/test/dash.js
+	deleted:    node_modules/minimist/test/default_bool.js
+	deleted:    node_modules/minimist/test/dotted.js
+	deleted:    node_modules/minimist/test/kv_short.js
+	deleted:    node_modules/minimist/test/long.js
+	deleted:    node_modules/minimist/test/num.js
+	deleted:    node_modules/minimist/test/parse.js
+	deleted:    node_modules/minimist/test/parse_modified.js
+	deleted:    node_modules/minimist/test/proto.js
+	deleted:    node_modules/minimist/test/short.js
+	deleted:    node_modules/minimist/test/stop_early.js
+	deleted:    node_modules/minimist/test/unknown.js
+	deleted:    node_modules/minimist/test/whitespace.js
+	deleted:    node_modules/mkdirp/LICENSE
+	deleted:    node_modules/mkdirp/bin/cmd.js
+	deleted:    node_modules/mkdirp/bin/usage.txt
+	deleted:    node_modules/mkdirp/index.js
+	deleted:    node_modules/mkdirp/package.json
+	deleted:    node_modules/mkdirp/readme.markdown
+	deleted:    node_modules/multer/LICENSE
+	deleted:    node_modules/multer/README.md
+	deleted:    node_modules/multer/index.js
+	deleted:    node_modules/multer/lib/counter.js
+	deleted:    node_modules/multer/lib/file-appender.js
+	deleted:    node_modules/multer/lib/make-middleware.js
+	deleted:    node_modules/multer/lib/multer-error.js
+	deleted:    node_modules/multer/lib/remove-uploaded-files.js
+	deleted:    node_modules/multer/package.json
+	deleted:    node_modules/multer/storage/disk.js
+	deleted:    node_modules/multer/storage/memory.js
+	deleted:    node_modules/object-assign/index.js
+	deleted:    node_modules/object-assign/license
+	deleted:    node_modules/object-assign/package.json
+	deleted:    node_modules/object-assign/readme.md
+	deleted:    node_modules/process-nextick-args/index.js
+	deleted:    node_modules/process-nextick-args/license.md
+	deleted:    node_modules/process-nextick-args/package.json
+	deleted:    node_modules/process-nextick-args/readme.md
+	deleted:    node_modules/readable-stream/.travis.yml
+	modified:   node_modules/readable-stream/README.md
+	deleted:    node_modules/readable-stream/doc/wg-meetings/2015-01-30.md
+	deleted:    node_modules/readable-stream/duplex-browser.js
+	deleted:    node_modules/readable-stream/duplex.js
+	modified:   node_modules/readable-stream/lib/_stream_duplex.js
+	modified:   node_modules/readable-stream/lib/_stream_passthrough.js
+	modified:   node_modules/readable-stream/lib/_stream_readable.js
+	modified:   node_modules/readable-stream/lib/_stream_transform.js
+	modified:   node_modules/readable-stream/lib/_stream_writable.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/BufferList.js
+	modified:   node_modules/readable-stream/lib/internal/streams/destroy.js
+	deleted:    node_modules/readable-stream/node_modules/safe-buffer/LICENSE
+	deleted:    node_modules/readable-stream/node_modules/safe-buffer/README.md
+	deleted:    node_modules/readable-stream/node_modules/safe-buffer/index.d.ts
+	deleted:    node_modules/readable-stream/node_modules/safe-buffer/index.js
+	deleted:    node_modules/readable-stream/node_modules/safe-buffer/package.json
+	modified:   node_modules/readable-stream/package.json
+	deleted:    node_modules/readable-stream/passthrough.js
+	modified:   node_modules/readable-stream/readable-browser.js
+	modified:   node_modules/readable-stream/readable.js
+	deleted:    node_modules/readable-stream/transform.js
+	deleted:    node_modules/readable-stream/writable-browser.js
+	deleted:    node_modules/readable-stream/writable.js
+	deleted:    node_modules/streamsearch/.eslintrc.js
+	deleted:    node_modules/streamsearch/.github/workflows/ci.yml
+	deleted:    node_modules/streamsearch/.github/workflows/lint.yml
+	deleted:    node_modules/streamsearch/LICENSE
+	deleted:    node_modules/streamsearch/README.md
+	deleted:    node_modules/streamsearch/lib/sbmh.js
+	deleted:    node_modules/streamsearch/package.json
+	deleted:    node_modules/streamsearch/test/test.js
+	deleted:    node_modules/string_decoder/.travis.yml
+	deleted:    node_modules/string_decoder/node_modules/safe-buffer/LICENSE
+	deleted:    node_modules/string_decoder/node_modules/safe-buffer/README.md
+	deleted:    node_modules/string_decoder/node_modules/safe-buffer/index.d.ts
+	deleted:    node_modules/string_decoder/node_modules/safe-buffer/index.js
+	deleted:    node_modules/string_decoder/node_modules/safe-buffer/package.json
+	modified:   node_modules/string_decoder/package.json
+	deleted:    node_modules/typedarray/.travis.yml
+	deleted:    node_modules/typedarray/LICENSE
+	deleted:    node_modules/typedarray/example/tarray.js
+	deleted:    node_modules/typedarray/index.js
+	deleted:    node_modules/typedarray/package.json
+	deleted:    node_modules/typedarray/readme.markdown
+	deleted:    node_modules/typedarray/test/server/undef_globals.js
+	deleted:    node_modules/typedarray/test/tarray.js
+	deleted:    node_modules/ws/LICENSE
+	deleted:    node_modules/ws/README.md
+	deleted:    node_modules/ws/browser.js
+	deleted:    node_modules/ws/index.js
+	deleted:    node_modules/ws/lib/buffer-util.js
+	deleted:    node_modules/ws/lib/constants.js
+	deleted:    node_modules/ws/lib/event-target.js
+	deleted:    node_modules/ws/lib/extension.js
+	deleted:    node_modules/ws/lib/limiter.js
+	deleted:    node_modules/ws/lib/permessage-deflate.js
+	deleted:    node_modules/ws/lib/receiver.js
+	deleted:    node_modules/ws/lib/sender.js
+	deleted:    node_modules/ws/lib/stream.js
+	deleted:    node_modules/ws/lib/subprotocol.js
+	deleted:    node_modules/ws/lib/validation.js
+	deleted:    node_modules/ws/lib/websocket-server.js
+	deleted:    node_modules/ws/lib/websocket.js
+	deleted:    node_modules/ws/package.json
+	deleted:    node_modules/ws/wrapper.mjs
+	deleted:    node_modules/xtend/.jshintrc
+	deleted:    node_modules/xtend/LICENSE
+	deleted:    node_modules/xtend/README.md
+	deleted:    node_modules/xtend/immutable.js
+	deleted:    node_modules/xtend/mutable.js
+	deleted:    node_modules/xtend/package.json
+	deleted:    node_modules/xtend/test.js
+	modified:   package-lock.json
+	modified:   package.json
+	modified:   public/admin.html
+	modified:   public/css/style.css
+	modified:   public/groups.html
+	modified:   public/index.html
+	modified:   public/js/main.js
+	modified:   public/login.html
+	modified:   public/otp.html
+	modified:   public/profile.html
+	modified:   public/register.html
+	modified:   server.js
+	deleted:    start-server.bat
+	modified:   temp_status.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	data/privateChats.json
+	node_modules/.bin/qrcode
+	node_modules/.bin/qrcode.cmd
+	node_modules/.bin/qrcode.ps1
+	node_modules/.bin/uuid
+	node_modules/.bin/uuid.cmd
+	node_modules/.bin/uuid.ps1
+	node_modules/@colors/
+	node_modules/@dabh/
+	node_modules/@so-ric/
+	node_modules/@types/
+	node_modules/ansi-regex/
+	node_modules/ansi-styles/
+	node_modules/async/
+	node_modules/base32.js/
+	node_modules/bcryptjs/
+	node_modules/camelcase/
+	node_modules/cliui/
+	node_modules/color-convert/
+	node_modules/color-name/
+	node_modules/color-string/
+	node_modules/color/
+	node_modules/cookie-parser/
+	node_modules/cookie/
+	node_modules/csrf/
+	node_modules/csurf/
+	node_modules/decamelize/
+	node_modules/dijkstrajs/
+	node_modules/emoji-regex/
+	node_modules/enabled/
+	node_modules/express-rate-limit/
+	node_modules/express-session/
+	node_modules/fecha/
+	node_modules/find-up/
+	node_modules/fn.name/
+	node_modules/get-caller-file/
+	node_modules/helmet/
+	node_modules/is-fullwidth-code-point/
+	node_modules/is-stream/
+	node_modules/kuler/
+	node_modules/locate-path/
+	node_modules/logform/
+	node_modules/on-headers/
+	node_modules/one-time/
+	node_modules/p-limit/
+	node_modules/p-locate/
+	node_modules/p-try/
+	node_modules/path-exists/
+	node_modules/pngjs/
+	node_modules/qrcode/
+	node_modules/random-bytes/
+	node_modules/readable-stream/errors-browser.js
+	node_modules/readable-stream/errors.js
+	node_modules/readable-stream/experimentalWarning.js
+	node_modules/readable-stream/lib/internal/streams/async_iterator.js
+	node_modules/readable-stream/lib/internal/streams/buffer_list.js
+	node_modules/readable-stream/lib/internal/streams/end-of-stream.js
+	node_modules/readable-stream/lib/internal/streams/from-browser.js
+	node_modules/readable-stream/lib/internal/streams/from.js
+	node_modules/readable-stream/lib/internal/streams/pipeline.js
+	node_modules/readable-stream/lib/internal/streams/state.js
+	node_modules/require-directory/
+	node_modules/require-main-filename/
+	node_modules/rndm/
+	node_modules/safe-stable-stringify/
+	node_modules/set-blocking/
+	node_modules/speakeasy/
+	node_modules/stack-trace/
+	node_modules/string-width/
+	node_modules/strip-ansi/
+	node_modules/text-hex/
+	node_modules/triple-beam/
+	node_modules/tsscmp/
+	node_modules/uid-safe/
+	node_modules/uuid/
+	node_modules/validator/
+	node_modules/which-module/
+	node_modules/winston-transport/
+	node_modules/winston/
+	node_modules/wrap-ansi/
+	node_modules/y18n/
+	node_modules/yargs-parser/
+	node_modules/yargs/
+	start.bat
+

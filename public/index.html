@@ -1,63 +1,22 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پیام‌رسان XZ | ورود / ثبت‌نام</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="assets/icon.png" type="image/png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>پیام‌رسان XZ — خوش آمدید</title>
+  <link rel="icon" href="assets/xz_messenger_icon.png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>پیام‌رسان XZ</h1>
-        </header>
-
-        <main>
-            <div class="auth-wrapper">
-                <!-- انتخاب ورود یا ثبت‌نام -->
-                <div class="auth-choice">
-                    <button id="loginBtn" class="btn-black">ورود</button>
-                    <button id="signupBtn" class="btn-white">ثبت‌نام</button>
-                </div>
-
-                <!-- فرم ورود -->
-                <form id="loginForm" class="auth-form hidden">
-                    <label for="loginPhone">شماره موبایل</label>
-                    <input type="text" id="loginPhone" placeholder="مثال: 09123456789" required>
-
-                    <label for="loginPass">رمز ۴ رقمی</label>
-                    <input type="password" id="loginPass" maxlength="4" required>
-
-                    <button type="submit" class="btn-submit">ورود</button>
-                    <p class="switch-link">یا <span id="toSignup">با شماره ثبت‌نام کن</span></p>
-                </form>
-
-                <!-- فرم ثبت‌نام -->
-                <form id="signupForm" class="auth-form hidden">
-                    <label for="signupPhone">شماره موبایل</label>
-                    <input type="text" id="signupPhone" placeholder="مثال: 09123456789" required>
-
-                    <label for="signupFirstName">نام</label>
-                    <input type="text" id="signupFirstName" required>
-
-                    <label for="signupLastName">نام خانوادگی</label>
-                    <input type="text" id="signupLastName" required>
-
-                    <label for="signupPass">رمز ۴ رقمی</label>
-                    <input type="password" id="signupPass" maxlength="4" required>
-
-                    <button type="submit" class="btn-submit">ارسال کد تایید</button>
-                    <p class="switch-link">قبلا ثبت‌نام کرده‌اید؟ <span id="toLogin">وارد شوید</span></p>
-                </form>
-            </div>
-        </main>
-
-        <footer>
-            <p>ساخته شده توسط امیرعلی عمارلو و ChatGPT</p>
-        </footer>
+  <div class="welcome-root">
+    <div class="welcome-card">
+      <div class="brand"><img src="assets/xz_messenger_icon.png" alt="XZ" class="logo"> <h1>XZ Messenger</h1></div>
+      <div class="welcome-actions">
+        <a class="btn dark" href="login.html">ورود</a>
+        <a class="btn light" href="register.html">ثبت‌نام</a>
+      </div>
+      <p class="note"نسخه اصلی — ساخته شده توسط امیرعلی عمارلو و </p>
     </div>
-
-    <script src="js/auth.js"></script>
+  </div>
 </body>
 </html>

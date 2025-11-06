@@ -1,41 +1,34 @@
 <!DOCTYPE html>
-<html lang="fa">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>پروفایل - XZ</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
+<html lang="fa" dir="rtl">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>پروفایل — XZ</title><link rel="stylesheet" href="css/style.css"></head>
 <body>
-  <div style="max-width:720px;margin:40px auto">
-    <div class="panel">
-      <h3>پروفایل شما</h3>
-      <div class="field"><label class="label">نام</label><input id="firstName" class="input"></div>
-      <div class="field"><label class="label">نام خانوادگی</label><input id="lastName" class="input"></div>
-      <div class="field"><label class="label">رمز ۴ رقمی</label><input id="pin" class="input" maxlength="4" type="password"></div>
-      <div style="display:flex;gap:8px;margin-top:8px">
-        <button class="btn primary" onclick="save()">ذخیره</button>
-        <button class="btn ghost" onclick="back()">بازگشت</button>
-      </div>
-      <div style="margin-top:12px"><strong>سازنده:</strong>ChatGPT ساخته شده توسط امیرعلی عمارلو و </div>
+  <div class="auth-root">
+    <div class="card">
+      <h2>پروفایل</h2>
+      <input id="firstName" placeholder="نام">
+      <input id="lastName" placeholder="نام خانوادگی">
+      <input id="pin" placeholder="رمز ۴ رقمی" maxlength="4" type="password">
+      <button id="saveBtn">ذخیره</button>
+      <p class="muted"><a href="groups.html">بازگشت</a></p>
     </div>
   </div>
-
 <script>
-const user = JSON.parse(localStorage.getItem('user')||"null");
-if(!user) location.href='index.html';
-document.getElementById('firstName').value = user.firstName || "";
-document.getElementById('lastName').value = user.lastName || "";
-
-async function save(){
-  const firstName = document.getElementById('firstName').value.trim();
-  const lastName = document.getElementById('lastName').value.trim();
-  const pin = document.getElementById('pin').value.trim();
-  if(pin && !/^\d{4}$/.test(pin)){ alert('رمز باید ۴ رقم باشد'); return; }
-  const res = await fetch('/api/update-profile', { method:'POST', headers: {'Content-Type':'application/json'}, body:JSON.stringify({ phone:user.phone, firstName, lastName, pin }) }).then(r=>r.json());
-  if(res.success){ alert('بروزرسانی شد'); user.firstName=firstName; user.lastName=lastName; localStorage.setItem('user', JSON.stringify(user)); }
-  else alert('خطا');
-}
-function back(){ location.href='groups.html'; }
+  const u = JSON.parse(localStorage.getItem('user')||'null');
+  if(!u) location.href='login.html';
+  document.getElementById('firstName').value = u.firstName || '';
+  document.getElementById('lastName').value = u.lastName || '';
+  document.getElementById('saveBtn').onclick = async ()=> {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const pin = document.getElementById('pin').value.trim();
+    // call server to update
+    const res = await fetch('/update-profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ phone:u.phone, firstName, lastName, pin })});
+    const data = await res.json();
+    if(data.success){
+      alert('به‌روزرسانی شد');
+      localStorage.setItem('user', JSON.stringify({ phone:u.phone, firstName, lastName }));
+    } else alert('خطا');
+  };
 </script>
 </body>
 </html>

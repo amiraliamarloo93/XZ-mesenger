@@ -1,14 +1,19 @@
-const loginTab = document.getElementById('loginTab');
-const registerTab = document.getElementById('registerTab');
-const loginForm = document.getElementById('loginForm');
-const registerForm = document.getElementById('registerForm');
+// تعویض بین صفحات ورود و ثبت‌نام
+document.getElementById("goRegister").onclick = () => {
+  document.getElementById("loginPage").classList.remove("active");
+  document.getElementById("registerPage").classList.add("active");
+};
 
-loginTab.addEventListener('click', () => {
-  loginForm.style.display = 'block';
-  registerForm.style.display = 'none';
-});
+document.getElementById("backToLogin").onclick = () => {
+  document.getElementById("registerPage").classList.remove("active");
+  document.getElementById("loginPage").classList.add("active");
+};
 
-registerTab.addEventListener('click', () => {
-  loginForm.style.display = 'none';
-  registerForm.style.display = 'block';
-});
+// دکمه‌های نمونه برای تست
+document.getElementById("loginBtn").onclick = () => {
+  alert("ورود با موفقیت انجام شد ✅");
+};
+
+document.getElementById("registerBtn").onclick = () => {
+  alert("کد تأیید ارسال شد ✅ (شبیه‌سازی)");
+};

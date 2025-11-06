@@ -1,12 +1,77 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>گروه‌ها</title>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>گروه‌ها — XZ</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>به گروه‌ها خوش آمدید 🎉</h1>
-  <a href="index.html">بازگشت به صفحه اصلی</a>
+  <div class="app-root">
+    <aside class="left-panel">
+      <div class="brand">پیام‌رسان XZ</div>
+      <div class="menu">
+        <a href="profile.html">پروفایل</a>
+        <a href="admin.html">ادمین</a>
+        <a id="logout" href="#">خروج</a>
+      </div>
+    </aside>
+    <main class="main-panel">
+      <div class="panel-head">
+        <h2>گروه‌ها</h2>
+        <div class="create-row">
+          <input id="newGroup" placeholder="نام گروه جدید">
+          <button id="createBtn">ساخت</button>
+        </div>
+        <input id="search" placeholder="جستجو گروه..." />
+      </div>
+      <div id="groupsList" class="groups-list"></div>
+    </main>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    if(!user) location.href = 'login.html';
+    document.getElementById('logout').onclick = ()=>{ localStorage.removeItem('user'); location.href='login.html'; };
+
+    async function loadGroups(){
+      const res = await fetch('/api/groups');
+      const data = await res.json();
+      const container = document.getElementById('groupsList');
+      container.innerHTML = '';
+      const search = (document.getElementById('search').value||'').toLowerCase();
+      for(const g in data){
+        if(search && !g.toLowerCase().includes(search)) continue;
+        const el = document.createElement('div');
+        el.className = 'group-card';
+        el.innerHTML = `<div class="title">${g}</div><div class="meta">${data[g].members} عضو</div>
+          <div class="actions">
+            <button onclick="enterGroup('${g}')">ورود</button>
+            <button onclick="deleteGroup('${g}')">حذف</button>
+          </div>`;
+        container.appendChild(el);
+      }
+    }
+    async function createGroup(){
+      const name = document.getElementById('newGroup').value.trim();
+      if(!name) return alert('نام گروه را وارد کنید');
+      const phone = user.phone;
+      const res = await fetch('/api/create-group',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({groupName:name,description:'',creatorPhone:phone})});
+      const data = await res.json();
+      if(data.success) { loadGroups(); document.getElementById('newGroup').value=''; }
+      else alert(data.message);
+    }
+    async function deleteGroup(name){
+      if(!confirm('آیا از حذف اطمینان دارید؟')) return;
+      await fetch('/api/delete-group',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({groupName:name})});
+      loadGroups();
+    }
+    function enterGroup(name){
+      localStorage.setItem('group', name);
+      window.location.href = 'chat.html';
+    }
+    document.getElementById('createBtn').onclick = createGroup;
+    document.getElementById('search').oninput = loadGroups;
+    loadGroups();
+  </script>
 </body>
 </html>

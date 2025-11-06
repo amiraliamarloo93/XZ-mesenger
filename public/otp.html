@@ -1,22 +1,33 @@
-<script>
-document.getElementById("verifyForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const phone = localStorage.getItem("registerPhone");
-  const otp = document.getElementById("otp").value;
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تایید OTP — XZ</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-root">
+    <div class="card">
+      <h2>ورود کد تایید</h2>
+      <input id="otp" placeholder="کد ۴ رقمی">
+      <button id="verifyBtn">تایید و ادامه</button>
+      <p class="muted"><a href="index.html">بازگشت</a></p>
+    </div>
+  </div>
 
-  const res = await fetch("/api/verify-otp", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ phone, otp }),
-  });
-
-  const data = await res.json();
-  if (res.ok) {
-    alert("ثبت‌نام با موفقیت انجام شد ✅");
-    localStorage.setItem("user", JSON.stringify(data.user));
-    window.location.href = "/chat.html"; // مستقیم به چت برود
-  } else {
-    alert(data.message);
-  }
-});
-</script>
+  <script>
+    const url = new URL(location.href);
+    const phone = url.searchParams.get('phone') || localStorage.getItem('pendingPhone') || '';
+    document.getElementById('verifyBtn').onclick = async () => {
+      const otp = document.getElementById('otp').value.trim();
+      if(!otp) return alert('کد را وارد کنید');
+      const res = await fetch('/verify-otp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone,otp})});
+      const data = await res.json();
+      if(data.success){
+        alert('ثبت‌نام کامل شد، لطفا وارد شوید');
+        location.href = 'login.html';
+      } else alert(data.message || 'کد اشتباه است');
+    };
+  </script>
+</body>
+</html>

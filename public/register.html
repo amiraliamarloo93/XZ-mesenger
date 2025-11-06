@@ -1,28 +1,42 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ثبت‌نام | XZ</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="assets/favicon.png" type="image/png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ثبت‌نام — XZ</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="container">
-  <h1>ثبت‌نام</h1>
-  <form action="otp.html" method="post">
-    <label>شماره موبایل</label>
-    <input type="text" name="phone" required>
-    <label>نام</label>
-    <input type="text" name="first_name" required>
-    <label>نام خانوادگی</label>
-    <input type="text" name="last_name" required>
-    <label>رمز ۴ رقمی</label>
-    <input type="password" name="pin" maxlength="4" required>
-    <button type="submit" class="btn btn-white">ارسال کد تایید</button>
-  </form>
-  <a href="login.html" class="link">بازگشت به ورود</a>
-</div>
-<script src="js/main.js"></script>
+  <div class="auth-root">
+    <div class="card">
+      <h2>ثبت‌نام</h2>
+      <input id="phone" placeholder="شماره موبایل">
+      <input id="firstName" placeholder="نام">
+      <input id="lastName" placeholder="نام خانوادگی">
+      <input id="pin" placeholder="رمز ۴ رقمی برای ورود" maxlength="4" type="password">
+      <button id="sendOtp">ارسال کد تایید</button>
+      <p class="muted"><a href="login.html">قبلا ثبت‌نام کرده‌اید؟ ورود</a></p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('sendOtp').onclick = async () => {
+      const phone = document.getElementById('phone').value.trim();
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const pin = document.getElementById('pin').value.trim();
+      if(!phone || pin.length!==4) return alert('شماره و رمز ۴ رقمی را وارد کنید');
+      const res = await fetch('/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone,firstName,lastName,pin})});
+      const data = await res.json();
+      if(data.success){
+        // show OTP in notification if granted, otherwise show on page briefly
+        try {
+          if(Notification.permission === 'granted') new Notification('XZ OTP', { body: 'کد: ' + data.otp });
+          else Notification.requestPermission().then(p => { if(p==='granted') new Notification('XZ OTP', { body: 'کد: ' + data.otp }); });
+        } catch(e){ /*ignore*/ }
+        localStorage.setItem('pendingPhone', phone);
+        window.location.href = 'otp.html?phone=' + encodeURIComponent(phone);
+      } else alert(data.message || 'خطا');
+    };
+  </script>
 </body>
 </html>

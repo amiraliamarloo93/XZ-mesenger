@@ -1,37 +1,33 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>پیام‌رسان XZ</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ورود — XZ</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="container">
-  <h1>پیام‌رسان XZ</h1>
-  
-  <div class="tabs">
-    <button id="loginTab">ورود</button>
-    <button id="registerTab">ثبت‌نام</button>
+  <div class="auth-root">
+    <div class="card">
+      <h2>ورود</h2>
+      <input id="phone" placeholder="شماره موبایل">
+      <input id="pin" placeholder="رمز ۴ رقمی" type="password">
+      <button id="loginBtn">ورود</button>
+      <p class="muted"><a href="register.html">ثبت‌نام</a></p>
+    </div>
   </div>
-  
-  <!-- فرم ورود -->
-  <form id="loginForm" action="/login" method="POST">
-    <input type="text" name="phone" placeholder="شماره موبایل" required>
-    <input type="password" name="password" placeholder="رمز ۴ رقمی" required>
-    <button type="submit">ورود</button>
-  </form>
 
-  <!-- فرم ثبت‌نام -->
-  <form id="registerForm" action="/register" method="POST" style="display:none;">
-    <input type="text" name="phone" placeholder="شماره موبایل" required>
-    <input type="text" name="firstName" placeholder="نام" required>
-    <input type="text" name="lastName" placeholder="نام خانوادگی" required>
-    <input type="password" name="password" placeholder="رمز ۴ رقمی" required>
-    <button type="submit">ثبت‌نام و دریافت OTP</button>
-  </form>
-</div>
-
-<script src="js/main.js"></script>
+  <script>
+    document.getElementById('loginBtn').onclick = async () => {
+      const phone = document.getElementById('phone').value.trim();
+      const pin = document.getElementById('pin').value.trim();
+      if(!phone || pin.length!==4) return alert('شماره و رمز صحیح وارد کنید');
+      const res = await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone,pin})});
+      const data = await res.json();
+      if(data.success){
+        localStorage.setItem('user', JSON.stringify({ phone, firstName: data.user?.firstName || '' }));
+        window.location.href = 'groups.html';
+      } else alert(data.message || 'نام کاربری یا رمز اشتباه است');
+    };
+  </script>
 </body>
 </html>

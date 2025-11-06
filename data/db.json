@@ -1,0 +1,26 @@
+{
+  "users": {
+    "09017826080": {
+      "firstName": "hامیرعلی",
+      "lastName": "عمارلو",
+      "pin": "2624",
+      "phone": "09017826080",
+      "avatar": null
+    }
+  },
+  "otps": {},
+  "groups": {
+    "تست1": {
+      "members": [],
+      "messages": [
+        {
+          "user": "09017826080",
+          "message": "سلام",
+          "time": 1762267263140,
+          "meta": {}
+        }
+      ]
+    }
+  },
+  "private": {}
+}

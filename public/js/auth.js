@@ -1,94 +1,89 @@
-// ==========================================================
-// JS مدیریت فرم‌های پیام‌رسان XZ
-// نویسنده: امیرعلی عمارلو و ChatGPT
-// ==========================================================
+// public/js/auth.js
+const api = (path, opts={}) => fetch('/api'+path, { headers:{ 'Accept':'application/json' }, ...opts }).then(r=>r.json());
 
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
-    const switchToLogin = document.getElementById('switch-to-login');
-    const switchToRegister = document.getElementById('switch-to-register');
-    const otpDisplay = document.getElementById('otp-display');
+// UI helpers
+function showMsg(id, txt, color='red'){ const e=document.getElementById(id); if(e){ e.innerText=txt; e.style.color=color; }}
 
-    // سوئیچ فرم‌ها
-    switchToLogin.addEventListener('click', () => {
-        registerForm.classList.add('hidden');
-        loginForm.classList.remove('hidden');
-    });
+// toggle login/register
+document.getElementById('btnLogin')?.addEventListener('click', ()=>{ document.getElementById('loginBox').classList.remove('hidden'); document.getElementById('registerBox').classList.add('hidden'); document.getElementById('btnLogin').classList.add('active'); document.getElementById('btnRegister').classList.remove('active');});
+document.getElementById('btnRegister')?.addEventListener('click', ()=>{ document.getElementById('registerBox').classList.remove('hidden'); document.getElementById('loginBox').classList.add('hidden'); document.getElementById('btnRegister').classList.add('active'); document.getElementById('btnLogin').classList.remove('active');});
 
-    switchToRegister.addEventListener('click', () => {
-        loginForm.classList.add('hidden');
-        registerForm.classList.remove('hidden');
-    });
+function goRegister(){ document.getElementById('btnRegister').click(); }
+function goLogin(){ document.getElementById('btnLogin').click(); }
 
-    // ذخیره OTPها به صورت موقت
-    const otpStore = {}; // ساختار: { '09157726080': '1234' }
-
-    // تولید OTP
-    function generateOTP() {
-        return Math.floor(1000 + Math.random() * 9000).toString(); // ۴ رقمی
+async function requestOtp(){
+  const phone = document.getElementById('regPhone').value.trim();
+  const first = document.getElementById('regFirst').value.trim();
+  const last = document.getElementById('regLast').value.trim();
+  const pin = document.getElementById('regPin').value.trim();
+  if(!phone || !pin || pin.length!==4) return showMsg('regMsg','شماره یا رمز ۴ رقمی صحیح نیست');
+  const res = await api('/register', { method:'POST', body: JSON.stringify({ phone, firstName:first, lastName:last, pin }), headers:{ 'Content-Type':'application/json' }});
+  if(res.success){
+    // به صفحه otp می‌رویم و شماره ذخیره می‌شود
+    localStorage.setItem('pendingPhone', phone);
+    // نمایش نوتیف مرورگر (در dev otp را برمیگردانیم)
+    if(res.otp){
+      if(Notification.permission === 'granted') new Notification('XZ OTP', { body: 'کد شما: '+res.otp });
+      else Notification.requestPermission().then(p=>{ if(p==='granted') new Notification('XZ OTP',{ body: 'کد شما: '+res.otp }); else alert('کد OTP: '+res.otp); });
     }
+    window.location.href = '/otp.html?phone='+encodeURIComponent(phone);
+  } else showMsg('regMsg', res.message || 'خطا');
+}
 
-    // بررسی شماره موبایل
-    function validatePhone(phone) {
-        const phoneRegex = /^09\d{9}$/;
-        return phoneRegex.test(phone);
-    }
+async function verifyOtp(){
+  const url = new URL(location.href);
+  const phone = url.searchParams.get('phone') || document.getElementById('otpPhone')?.value || localStorage.getItem('pendingPhone');
+  const otp = document.getElementById('otpCode').value.trim();
+  if(!phone || !otp) return showMsg('otpMsg','شماره یا کد نامعتبر');
+  const res = await api('/verify-otp', { method:'POST', body: JSON.stringify({ phone, otp }), headers:{ 'Content-Type':'application/json' }});
+  if(res.success){
+    // کاربر ساخته شد؛ هدایت به صفحهٔ ورود
+    alert('ثبت‌نام انجام شد؛ اکنون وارد شوید');
+    window.location.href = '/';
+  } else showMsg('otpMsg', res.message || 'کد اشتباه');
+}
 
-    // بررسی رمز ۴ رقمی
-    function validatePIN(pin) {
-        const pinRegex = /^\d{4}$/;
-        return pinRegex.test(pin);
-    }
+async function doLogin(){
+  const phone = document.getElementById('loginPhone').value.trim();
+  const pin = document.getElementById('loginPin').value.trim();
+  if(!phone || !pin) return showMsg('loginMsg','شماره/رمز را وارد کنید');
+  const res = await api('/login', { method:'POST', body: JSON.stringify({ phone, pin }), headers:{ 'Content-Type':'application/json'}});
+  if(res.success){
+    localStorage.setItem('user', JSON.stringify(res.user));
+    localStorage.setItem('phone', res.user.phone);
+    window.location.href = '/groups.html';
+  } else showMsg('loginMsg', res.message || 'ورود ناموفق');
+}
 
-    // ارسال OTP برای ثبت‌نام
-    registerForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const phone = document.getElementById('reg-phone').value.trim();
-        const firstName = document.getElementById('reg-firstname').value.trim();
-        const lastName = document.getElementById('reg-lastname').value.trim();
-        const pin = document.getElementById('reg-pin').value.trim();
+function doLoginFromLogin(){
+  const phone = document.getElementById('loginPhone2').value.trim();
+  const pin = document.getElementById('loginPin2').value.trim();
+  document.getElementById('loginPhone').value = phone;
+  document.getElementById('loginPin').value = pin;
+  doLogin();
+}
 
-        if (!validatePhone(phone)) {
-            alert('شماره موبایل صحیح نیست!');
-            return;
-        }
-        if (!validatePIN(pin)) {
-            alert('رمز باید ۴ رقمی باشد!');
-            return;
-        }
-        if (!firstName || !lastName) {
-            alert('نام و نام خانوادگی را وارد کنید!');
-            return;
-        }
+function logout(){ localStorage.removeItem('user'); localStorage.removeItem('phone'); window.location.href='/'; }
 
-        const otp = generateOTP();
-        otpStore[phone] = otp;
-        otpDisplay.textContent = `کد OTP برای شماره ${phone}: ${otp}`;
-        alert(`کد OTP تولید شد و در بخش OTP نمایش داده می‌شود.`);
-    });
+// profile functions
+async function saveProfile(){
+  const phone = localStorage.getItem('phone');
+  const first = document.getElementById('pFirst').value;
+  const last = document.getElementById('pLast').value;
+  const pin = document.getElementById('pPin').value;
+  // این نسخه ساده؛ ما از api update-profile استفاده نکردیم؛ برای توسعه می‌تونی endpoint اضافه کنی.
+  const dbUser = JSON.parse(localStorage.getItem('user') || '{}');
+  dbUser.firstName = first; dbUser.lastName = last; if(pin) dbUser.pin = pin;
+  localStorage.setItem('user', JSON.stringify(dbUser));
+  showMsg('pMsg','ذخیره شد','green');
+}
+function goHome(){ window.location.href='/groups.html'; }
 
-    // ورود با OTP
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const phone = document.getElementById('login-phone').value.trim();
-        const pin = document.getElementById('login-pin').value.trim();
-        const otpInput = document.getElementById('login-otp').value.trim();
-
-        if (!validatePhone(phone)) {
-            alert('شماره موبایل صحیح نیست!');
-            return;
-        }
-        if (!validatePIN(pin)) {
-            alert('رمز باید ۴ رقمی باشد!');
-            return;
-        }
-        if (!otpInput || otpInput !== otpStore[phone]) {
-            alert('OTP اشتباه است یا هنوز تولید نشده!');
-            return;
-        }
-
-        alert(`ورود موفق برای شماره ${phone}`);
-        // بعداً اینجا می‌توان به صفحه اصلی پیام‌رسان ریدایرکت کرد
-    });
+// onload for profile page
+window.addEventListener('load', ()=>{
+  const user = JSON.parse(localStorage.getItem('user')||'null');
+  if(user){
+    const f = document.getElementById('pFirst'); if(f) f.value = user.firstName||'';
+    const l = document.getElementById('pLast'); if(l) l.value = user.lastName||'';
+  }
 });
