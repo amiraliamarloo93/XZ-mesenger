@@ -1,77 +1,93 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>گروه‌ها — XZ</title>
-  <link rel="stylesheet" href="css/style.css">
+<!doctype html>
+<html lang="fa">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>گروه‌ها - XZ</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-root">
-    <aside class="left-panel">
-      <div class="brand">پیام‌رسان XZ</div>
-      <div class="menu">
-        <a href="profile.html">پروفایل</a>
-        <a href="admin.html">ادمین</a>
-        <a id="logout" href="#">خروج</a>
+<div class="app-shell">
+  <div class="sidebar">
+    <div class="brand">
+      <div class="logo">XZ</div>
+      <div>
+        <h1>پیام‌رسان XZ</h1>
+        <small style="color:rgba(255,255,255,0.6)">سلام، خوش آمدید</small>
       </div>
-    </aside>
-    <main class="main-panel">
-      <div class="panel-head">
-        <h2>گروه‌ها</h2>
-        <div class="create-row">
-          <input id="newGroup" placeholder="نام گروه جدید">
-          <button id="createBtn">ساخت</button>
-        </div>
-        <input id="search" placeholder="جستجو گروه..." />
-      </div>
-      <div id="groupsList" class="groups-list"></div>
-    </main>
+    </div>
+    <input class="search" id="search" placeholder="🔍 جستجو کانال/مخاطب..." style="margin-top:8px">
+    <div class="chat-list" id="list"></div>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button id="btnNewGroup" class="action-btn">ساخت گروه</button>
+      <button id="btnNewChannel" class="action-btn">ساخت کانال</button>
+    </div>
+    <div style="margin-top:14px">
+      <button onclick="location.href='profile.html'" class="action-btn" style="background:#444">پروفایل</button>
+      <button onclick="location.href='settings.html'" class="action-btn" style="background:#666">تنظیمات</button>
+      <button id="logout" class="action-btn" style="background:#c33">خروج</button>
+    </div>
   </div>
 
-  <script>
-    const user = JSON.parse(localStorage.getItem('user') || 'null');
-    if(!user) location.href = 'login.html';
-    document.getElementById('logout').onclick = ()=>{ localStorage.removeItem('user'); location.href='login.html'; };
+  <div class="chat-area">
+    <div class="chat-header">
+      <div class="title">یک گفتگو انتخاب کنید</div>
+      <div><small id="userLabel"></small></div>
+    </div>
+    <div class="chat-main" id="mainArea">
+      <div class="message received">برای شروع، یک گروه یا کانال انتخاب کن.</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;padding-top:10px;">
+      <input id="msgBox" placeholder="پیام خود را بنویسید..." style="flex:1;padding:10px;border-radius:8px">
+      <input type="file" id="fileInput" style="display:none">
+      <label for="fileInput" class="action-btn" style="background:#888;cursor:pointer">📎</label>
+      <button id="sendBtn" class="action-btn">ارسال</button>
+    </div>
+  </div>
+</div>
 
-    async function loadGroups(){
-      const res = await fetch('/api/groups');
-      const data = await res.json();
-      const container = document.getElementById('groupsList');
-      container.innerHTML = '';
-      const search = (document.getElementById('search').value||'').toLowerCase();
-      for(const g in data){
-        if(search && !g.toLowerCase().includes(search)) continue;
-        const el = document.createElement('div');
-        el.className = 'group-card';
-        el.innerHTML = `<div class="title">${g}</div><div class="meta">${data[g].members} عضو</div>
-          <div class="actions">
-            <button onclick="enterGroup('${g}')">ورود</button>
-            <button onclick="deleteGroup('${g}')">حذف</button>
-          </div>`;
-        container.appendChild(el);
-      }
-    }
-    async function createGroup(){
-      const name = document.getElementById('newGroup').value.trim();
-      if(!name) return alert('نام گروه را وارد کنید');
-      const phone = user.phone;
-      const res = await fetch('/api/create-group',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({groupName:name,description:'',creatorPhone:phone})});
-      const data = await res.json();
-      if(data.success) { loadGroups(); document.getElementById('newGroup').value=''; }
-      else alert(data.message);
-    }
-    async function deleteGroup(name){
-      if(!confirm('آیا از حذف اطمینان دارید؟')) return;
-      await fetch('/api/delete-group',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({groupName:name})});
-      loadGroups();
-    }
-    function enterGroup(name){
-      localStorage.setItem('group', name);
-      window.location.href = 'chat.html';
-    }
-    document.getElementById('createBtn').onclick = createGroup;
-    document.getElementById('search').oninput = loadGroups;
-    loadGroups();
-  </script>
+<script>
+const phone = localStorage.getItem("phone");
+const user = JSON.parse(localStorage.getItem("user") || "null");
+if(!user){ location.href = "login.html"; }
+
+document.getElementById("userLabel").innerText = user.firstName || user.phone;
+
+async function loadGroups(q=""){
+  const res = await fetch("/api/groups");
+  const data = await res.json();
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  for(const id in data){
+    const g = data[id];
+    if(q && !(g.name+ " " + g.description).toLowerCase().includes(q.toLowerCase())) continue;
+    const el = document.createElement("div");
+    el.className = "chat-item";
+    el.innerHTML = `<div class="meta"><strong>${g.name}</strong><small>${g.description || ''}</small></div>
+                    <div style="text-align:center"><small>${g.members} عضو</small></div>`;
+    el.onclick = () => { localStorage.setItem("currentGroup", id); location.href = "chat.html"; };
+    list.appendChild(el);
+  }
+}
+loadGroups();
+
+document.getElementById("search").addEventListener("input", (e)=> loadGroups(e.target.value));
+document.getElementById("logout").addEventListener("click", ()=>{ localStorage.removeItem("user"); localStorage.removeItem("phone"); location.href="index.html"; });
+
+document.getElementById("btnNewGroup").addEventListener("click", async ()=>{
+  const name = prompt("نام گروه:");
+  if(!name) return;
+  const res = await fetch("/api/create-group",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,description:"",creator:phone})});
+  const d = await res.json();
+  if(d.success){ alert("گروه ساخته شد"); loadGroups(); } else alert(d.message || "خطا");
+});
+
+document.getElementById("btnNewChannel").addEventListener("click", async ()=>{
+  const name = prompt("نام کانال:");
+  if(!name) return;
+  const res = await fetch("/api/create-group",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,description:"کانال",creator:phone})});
+  const d = await res.json();
+  if(d.success){ alert("کانال ساخته شد"); loadGroups(); } else alert(d.message || "خطا");
+});
+
+</script>
 </body>
 </html>

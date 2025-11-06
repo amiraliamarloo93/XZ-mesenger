@@ -1,504 +1,1233 @@
 On branch main
 Your branch is up to date with 'origin/main'.
 
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-	deleted:    admin/amin.js
-	new file:   data/db.json
-	new file:   node_modules/.bin/mkdirp
-	new file:   node_modules/.bin/mkdirp.cmd
-	new file:   node_modules/.bin/mkdirp.ps1
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    node_modules/.bin/qrcode
+	deleted:    node_modules/.bin/qrcode.cmd
+	deleted:    node_modules/.bin/qrcode.ps1
+	deleted:    node_modules/.bin/uuid
+	deleted:    node_modules/.bin/uuid.cmd
+	deleted:    node_modules/.bin/uuid.ps1
 	modified:   node_modules/.package-lock.json
-	new file:   node_modules/append-field/.npmignore
-	new file:   node_modules/append-field/LICENSE
-	new file:   node_modules/append-field/README.md
-	new file:   node_modules/append-field/index.js
-	new file:   node_modules/append-field/lib/parse-path.js
-	new file:   node_modules/append-field/lib/set-value.js
-	new file:   node_modules/append-field/package.json
-	new file:   node_modules/append-field/test/forms.js
-	new file:   node_modules/basic-auth/HISTORY.md
-	new file:   node_modules/basic-auth/LICENSE
-	new file:   node_modules/basic-auth/README.md
-	new file:   node_modules/basic-auth/index.js
-	new file:   node_modules/basic-auth/node_modules/safe-buffer/LICENSE
-	new file:   node_modules/basic-auth/node_modules/safe-buffer/README.md
-	new file:   node_modules/basic-auth/node_modules/safe-buffer/index.d.ts
-	new file:   node_modules/basic-auth/node_modules/safe-buffer/index.js
-	new file:   node_modules/basic-auth/node_modules/safe-buffer/package.json
-	new file:   node_modules/basic-auth/package.json
-	new file:   node_modules/buffer-from/LICENSE
-	new file:   node_modules/buffer-from/index.js
-	new file:   node_modules/buffer-from/package.json
-	new file:   node_modules/buffer-from/readme.md
-	new file:   node_modules/busboy/.eslintrc.js
-	new file:   node_modules/busboy/.github/workflows/ci.yml
-	new file:   node_modules/busboy/.github/workflows/lint.yml
-	new file:   node_modules/busboy/LICENSE
-	new file:   node_modules/busboy/README.md
-	new file:   node_modules/busboy/bench/bench-multipart-fields-100mb-big.js
-	new file:   node_modules/busboy/bench/bench-multipart-fields-100mb-small.js
-	new file:   node_modules/busboy/bench/bench-multipart-files-100mb-big.js
-	new file:   node_modules/busboy/bench/bench-multipart-files-100mb-small.js
-	new file:   node_modules/busboy/bench/bench-urlencoded-fields-100pairs-small.js
-	new file:   node_modules/busboy/bench/bench-urlencoded-fields-900pairs-small-alt.js
-	new file:   node_modules/busboy/lib/index.js
-	new file:   node_modules/busboy/lib/types/multipart.js
-	new file:   node_modules/busboy/lib/types/urlencoded.js
-	new file:   node_modules/busboy/lib/utils.js
-	new file:   node_modules/busboy/package.json
-	new file:   node_modules/busboy/test/common.js
-	new file:   node_modules/busboy/test/test-types-multipart-charsets.js
-	new file:   node_modules/busboy/test/test-types-multipart-stream-pause.js
-	new file:   node_modules/busboy/test/test-types-multipart.js
-	new file:   node_modules/busboy/test/test-types-urlencoded.js
-	new file:   node_modules/busboy/test/test.js
-	new file:   node_modules/concat-stream/LICENSE
-	new file:   node_modules/concat-stream/index.js
-	new file:   node_modules/concat-stream/package.json
-	new file:   node_modules/concat-stream/readme.md
-	new file:   node_modules/core-util-is/LICENSE
-	new file:   node_modules/core-util-is/README.md
-	new file:   node_modules/core-util-is/lib/util.js
-	new file:   node_modules/core-util-is/package.json
-	new file:   node_modules/isarray/.npmignore
-	new file:   node_modules/isarray/.travis.yml
-	new file:   node_modules/isarray/Makefile
-	new file:   node_modules/isarray/README.md
-	new file:   node_modules/isarray/component.json
-	new file:   node_modules/isarray/index.js
-	new file:   node_modules/isarray/package.json
-	new file:   node_modules/isarray/test.js
-	new file:   node_modules/minimist/.eslintrc
-	new file:   node_modules/minimist/.github/FUNDING.yml
-	new file:   node_modules/minimist/.nycrc
-	new file:   node_modules/minimist/CHANGELOG.md
-	new file:   node_modules/minimist/LICENSE
-	new file:   node_modules/minimist/README.md
-	new file:   node_modules/minimist/example/parse.js
-	new file:   node_modules/minimist/index.js
-	new file:   node_modules/minimist/package.json
-	new file:   node_modules/minimist/test/all_bool.js
-	new file:   node_modules/minimist/test/bool.js
-	new file:   node_modules/minimist/test/dash.js
-	new file:   node_modules/minimist/test/default_bool.js
-	new file:   node_modules/minimist/test/dotted.js
-	new file:   node_modules/minimist/test/kv_short.js
-	new file:   node_modules/minimist/test/long.js
-	new file:   node_modules/minimist/test/num.js
-	new file:   node_modules/minimist/test/parse.js
-	new file:   node_modules/minimist/test/parse_modified.js
-	new file:   node_modules/minimist/test/proto.js
-	new file:   node_modules/minimist/test/short.js
-	new file:   node_modules/minimist/test/stop_early.js
-	new file:   node_modules/minimist/test/unknown.js
-	new file:   node_modules/minimist/test/whitespace.js
-	new file:   node_modules/mkdirp/LICENSE
-	new file:   node_modules/mkdirp/bin/cmd.js
-	new file:   node_modules/mkdirp/bin/usage.txt
-	new file:   node_modules/mkdirp/index.js
-	new file:   node_modules/mkdirp/package.json
-	new file:   node_modules/mkdirp/readme.markdown
-	new file:   node_modules/multer/LICENSE
-	new file:   node_modules/multer/README.md
-	new file:   node_modules/multer/index.js
-	new file:   node_modules/multer/lib/counter.js
-	new file:   node_modules/multer/lib/file-appender.js
-	new file:   node_modules/multer/lib/make-middleware.js
-	new file:   node_modules/multer/lib/multer-error.js
-	new file:   node_modules/multer/lib/remove-uploaded-files.js
-	new file:   node_modules/multer/package.json
-	new file:   node_modules/multer/storage/disk.js
-	new file:   node_modules/multer/storage/memory.js
-	new file:   node_modules/process-nextick-args/index.js
-	new file:   node_modules/process-nextick-args/license.md
-	new file:   node_modules/process-nextick-args/package.json
-	new file:   node_modules/process-nextick-args/readme.md
-	new file:   node_modules/readable-stream/.travis.yml
-	new file:   node_modules/readable-stream/CONTRIBUTING.md
-	new file:   node_modules/readable-stream/GOVERNANCE.md
-	new file:   node_modules/readable-stream/LICENSE
-	new file:   node_modules/readable-stream/README.md
-	new file:   node_modules/readable-stream/doc/wg-meetings/2015-01-30.md
-	new file:   node_modules/readable-stream/duplex-browser.js
-	new file:   node_modules/readable-stream/duplex.js
-	new file:   node_modules/readable-stream/lib/_stream_duplex.js
-	new file:   node_modules/readable-stream/lib/_stream_passthrough.js
-	new file:   node_modules/readable-stream/lib/_stream_readable.js
-	new file:   node_modules/readable-stream/lib/_stream_transform.js
-	new file:   node_modules/readable-stream/lib/_stream_writable.js
-	new file:   node_modules/readable-stream/lib/internal/streams/BufferList.js
-	new file:   node_modules/readable-stream/lib/internal/streams/destroy.js
-	new file:   node_modules/readable-stream/lib/internal/streams/stream-browser.js
-	new file:   node_modules/readable-stream/lib/internal/streams/stream.js
-	new file:   node_modules/readable-stream/node_modules/safe-buffer/LICENSE
-	new file:   node_modules/readable-stream/node_modules/safe-buffer/README.md
-	new file:   node_modules/readable-stream/node_modules/safe-buffer/index.d.ts
-	new file:   node_modules/readable-stream/node_modules/safe-buffer/index.js
-	new file:   node_modules/readable-stream/node_modules/safe-buffer/package.json
-	new file:   node_modules/readable-stream/package.json
-	new file:   node_modules/readable-stream/passthrough.js
-	new file:   node_modules/readable-stream/readable-browser.js
-	new file:   node_modules/readable-stream/readable.js
-	new file:   node_modules/readable-stream/transform.js
-	new file:   node_modules/readable-stream/writable-browser.js
-	new file:   node_modules/readable-stream/writable.js
-	new file:   node_modules/streamsearch/.eslintrc.js
-	new file:   node_modules/streamsearch/.github/workflows/ci.yml
-	new file:   node_modules/streamsearch/.github/workflows/lint.yml
-	new file:   node_modules/streamsearch/LICENSE
-	new file:   node_modules/streamsearch/README.md
-	new file:   node_modules/streamsearch/lib/sbmh.js
-	new file:   node_modules/streamsearch/package.json
-	new file:   node_modules/streamsearch/test/test.js
-	new file:   node_modules/string_decoder/.travis.yml
-	new file:   node_modules/string_decoder/LICENSE
-	new file:   node_modules/string_decoder/README.md
-	new file:   node_modules/string_decoder/lib/string_decoder.js
-	new file:   node_modules/string_decoder/node_modules/safe-buffer/LICENSE
-	new file:   node_modules/string_decoder/node_modules/safe-buffer/README.md
-	new file:   node_modules/string_decoder/node_modules/safe-buffer/index.d.ts
-	new file:   node_modules/string_decoder/node_modules/safe-buffer/index.js
-	new file:   node_modules/string_decoder/node_modules/safe-buffer/package.json
-	new file:   node_modules/string_decoder/package.json
-	new file:   node_modules/typedarray/.travis.yml
-	new file:   node_modules/typedarray/LICENSE
-	new file:   node_modules/typedarray/example/tarray.js
-	new file:   node_modules/typedarray/index.js
-	new file:   node_modules/typedarray/package.json
-	new file:   node_modules/typedarray/readme.markdown
-	new file:   node_modules/typedarray/test/server/undef_globals.js
-	new file:   node_modules/typedarray/test/tarray.js
-	new file:   node_modules/util-deprecate/History.md
-	new file:   node_modules/util-deprecate/LICENSE
-	new file:   node_modules/util-deprecate/README.md
-	new file:   node_modules/util-deprecate/browser.js
-	new file:   node_modules/util-deprecate/node.js
-	new file:   node_modules/util-deprecate/package.json
-	new file:   node_modules/xtend/.jshintrc
-	new file:   node_modules/xtend/LICENSE
-	new file:   node_modules/xtend/README.md
-	new file:   node_modules/xtend/immutable.js
-	new file:   node_modules/xtend/mutable.js
-	new file:   node_modules/xtend/package.json
-	new file:   node_modules/xtend/test.js
+	deleted:    node_modules/@colors/colors/LICENSE
+	deleted:    node_modules/@colors/colors/README.md
+	deleted:    node_modules/@colors/colors/examples/normal-usage.js
+	deleted:    node_modules/@colors/colors/examples/safe-string.js
+	deleted:    node_modules/@colors/colors/index.d.ts
+	deleted:    node_modules/@colors/colors/lib/colors.js
+	deleted:    node_modules/@colors/colors/lib/custom/trap.js
+	deleted:    node_modules/@colors/colors/lib/custom/zalgo.js
+	deleted:    node_modules/@colors/colors/lib/extendStringPrototype.js
+	deleted:    node_modules/@colors/colors/lib/index.js
+	deleted:    node_modules/@colors/colors/lib/maps/america.js
+	deleted:    node_modules/@colors/colors/lib/maps/rainbow.js
+	deleted:    node_modules/@colors/colors/lib/maps/random.js
+	deleted:    node_modules/@colors/colors/lib/maps/zebra.js
+	deleted:    node_modules/@colors/colors/lib/styles.js
+	deleted:    node_modules/@colors/colors/lib/system/has-flag.js
+	deleted:    node_modules/@colors/colors/lib/system/supports-colors.js
+	deleted:    node_modules/@colors/colors/package.json
+	deleted:    node_modules/@colors/colors/safe.d.ts
+	deleted:    node_modules/@colors/colors/safe.js
+	deleted:    node_modules/@colors/colors/themes/generic-logging.js
+	deleted:    node_modules/@dabh/diagnostics/CHANGELOG.md
+	deleted:    node_modules/@dabh/diagnostics/LICENSE
+	deleted:    node_modules/@dabh/diagnostics/README.md
+	deleted:    node_modules/@dabh/diagnostics/adapters/hash.js
+	deleted:    node_modules/@dabh/diagnostics/adapters/index.js
+	deleted:    node_modules/@dabh/diagnostics/adapters/localstorage.js
+	deleted:    node_modules/@dabh/diagnostics/adapters/process.env.js
+	deleted:    node_modules/@dabh/diagnostics/browser/development.js
+	deleted:    node_modules/@dabh/diagnostics/browser/index.js
+	deleted:    node_modules/@dabh/diagnostics/browser/override.js
+	deleted:    node_modules/@dabh/diagnostics/browser/production.js
+	deleted:    node_modules/@dabh/diagnostics/diagnostics.js
+	deleted:    node_modules/@dabh/diagnostics/logger/console.js
+	deleted:    node_modules/@dabh/diagnostics/modifiers/namespace-ansi.js
+	deleted:    node_modules/@dabh/diagnostics/modifiers/namespace.js
+	deleted:    node_modules/@dabh/diagnostics/node/development.js
+	deleted:    node_modules/@dabh/diagnostics/node/index.js
+	deleted:    node_modules/@dabh/diagnostics/node/override.js
+	deleted:    node_modules/@dabh/diagnostics/node/production.js
+	deleted:    node_modules/@dabh/diagnostics/package.json
+	deleted:    node_modules/@so-ric/colorspace/CHANGELOG.md
+	deleted:    node_modules/@so-ric/colorspace/LICENSE.md
+	deleted:    node_modules/@so-ric/colorspace/README.md
+	deleted:    node_modules/@so-ric/colorspace/dist/index.cjs.js
+	deleted:    node_modules/@so-ric/colorspace/index.js
+	deleted:    node_modules/@so-ric/colorspace/package.json
+	deleted:    node_modules/@so-ric/colorspace/rollup.config.js
+	deleted:    node_modules/@types/triple-beam/LICENSE
+	deleted:    node_modules/@types/triple-beam/README.md
+	deleted:    node_modules/@types/triple-beam/index.d.ts
+	deleted:    node_modules/@types/triple-beam/package.json
+	deleted:    node_modules/ansi-regex/index.d.ts
+	deleted:    node_modules/ansi-regex/index.js
+	deleted:    node_modules/ansi-regex/license
+	deleted:    node_modules/ansi-regex/package.json
+	deleted:    node_modules/ansi-regex/readme.md
+	deleted:    node_modules/ansi-styles/index.d.ts
+	deleted:    node_modules/ansi-styles/index.js
+	deleted:    node_modules/ansi-styles/license
+	deleted:    node_modules/ansi-styles/node_modules/color-convert/CHANGELOG.md
+	deleted:    node_modules/ansi-styles/node_modules/color-convert/LICENSE
+	deleted:    node_modules/ansi-styles/node_modules/color-convert/README.md
+	deleted:    node_modules/ansi-styles/node_modules/color-convert/conversions.js
+	deleted:    node_modules/ansi-styles/node_modules/color-convert/index.js
+	deleted:    node_modules/ansi-styles/node_modules/color-convert/package.json
+	deleted:    node_modules/ansi-styles/node_modules/color-convert/route.js
+	deleted:    node_modules/ansi-styles/node_modules/color-name/LICENSE
+	deleted:    node_modules/ansi-styles/node_modules/color-name/README.md
+	deleted:    node_modules/ansi-styles/node_modules/color-name/index.js
+	deleted:    node_modules/ansi-styles/node_modules/color-name/package.json
+	deleted:    node_modules/ansi-styles/package.json
+	deleted:    node_modules/ansi-styles/readme.md
+	deleted:    node_modules/async/CHANGELOG.md
+	deleted:    node_modules/async/LICENSE
+	deleted:    node_modules/async/README.md
+	deleted:    node_modules/async/all.js
+	deleted:    node_modules/async/allLimit.js
+	deleted:    node_modules/async/allSeries.js
+	deleted:    node_modules/async/any.js
+	deleted:    node_modules/async/anyLimit.js
+	deleted:    node_modules/async/anySeries.js
+	deleted:    node_modules/async/apply.js
+	deleted:    node_modules/async/applyEach.js
+	deleted:    node_modules/async/applyEachSeries.js
+	deleted:    node_modules/async/asyncify.js
+	deleted:    node_modules/async/auto.js
+	deleted:    node_modules/async/autoInject.js
+	deleted:    node_modules/async/bower.json
+	deleted:    node_modules/async/cargo.js
+	deleted:    node_modules/async/cargoQueue.js
+	deleted:    node_modules/async/compose.js
+	deleted:    node_modules/async/concat.js
+	deleted:    node_modules/async/concatLimit.js
+	deleted:    node_modules/async/concatSeries.js
+	deleted:    node_modules/async/constant.js
+	deleted:    node_modules/async/detect.js
+	deleted:    node_modules/async/detectLimit.js
+	deleted:    node_modules/async/detectSeries.js
+	deleted:    node_modules/async/dir.js
+	deleted:    node_modules/async/dist/async.js
+	deleted:    node_modules/async/dist/async.min.js
+	deleted:    node_modules/async/dist/async.mjs
+	deleted:    node_modules/async/doDuring.js
+	deleted:    node_modules/async/doUntil.js
+	deleted:    node_modules/async/doWhilst.js
+	deleted:    node_modules/async/during.js
+	deleted:    node_modules/async/each.js
+	deleted:    node_modules/async/eachLimit.js
+	deleted:    node_modules/async/eachOf.js
+	deleted:    node_modules/async/eachOfLimit.js
+	deleted:    node_modules/async/eachOfSeries.js
+	deleted:    node_modules/async/eachSeries.js
+	deleted:    node_modules/async/ensureAsync.js
+	deleted:    node_modules/async/every.js
+	deleted:    node_modules/async/everyLimit.js
+	deleted:    node_modules/async/everySeries.js
+	deleted:    node_modules/async/filter.js
+	deleted:    node_modules/async/filterLimit.js
+	deleted:    node_modules/async/filterSeries.js
+	deleted:    node_modules/async/find.js
+	deleted:    node_modules/async/findLimit.js
+	deleted:    node_modules/async/findSeries.js
+	deleted:    node_modules/async/flatMap.js
+	deleted:    node_modules/async/flatMapLimit.js
+	deleted:    node_modules/async/flatMapSeries.js
+	deleted:    node_modules/async/foldl.js
+	deleted:    node_modules/async/foldr.js
+	deleted:    node_modules/async/forEach.js
+	deleted:    node_modules/async/forEachLimit.js
+	deleted:    node_modules/async/forEachOf.js
+	deleted:    node_modules/async/forEachOfLimit.js
+	deleted:    node_modules/async/forEachOfSeries.js
+	deleted:    node_modules/async/forEachSeries.js
+	deleted:    node_modules/async/forever.js
+	deleted:    node_modules/async/groupBy.js
+	deleted:    node_modules/async/groupByLimit.js
+	deleted:    node_modules/async/groupBySeries.js
+	deleted:    node_modules/async/index.js
+	deleted:    node_modules/async/inject.js
+	deleted:    node_modules/async/internal/DoublyLinkedList.js
+	deleted:    node_modules/async/internal/Heap.js
+	deleted:    node_modules/async/internal/applyEach.js
+	deleted:    node_modules/async/internal/asyncEachOfLimit.js
+	deleted:    node_modules/async/internal/awaitify.js
+	deleted:    node_modules/async/internal/breakLoop.js
+	deleted:    node_modules/async/internal/consoleFunc.js
+	deleted:    node_modules/async/internal/createTester.js
+	deleted:    node_modules/async/internal/eachOfLimit.js
+	deleted:    node_modules/async/internal/filter.js
+	deleted:    node_modules/async/internal/getIterator.js
+	deleted:    node_modules/async/internal/initialParams.js
+	deleted:    node_modules/async/internal/isArrayLike.js
+	deleted:    node_modules/async/internal/iterator.js
+	deleted:    node_modules/async/internal/map.js
+	deleted:    node_modules/async/internal/once.js
+	deleted:    node_modules/async/internal/onlyOnce.js
+	deleted:    node_modules/async/internal/parallel.js
+	deleted:    node_modules/async/internal/promiseCallback.js
+	deleted:    node_modules/async/internal/queue.js
+	deleted:    node_modules/async/internal/range.js
+	deleted:    node_modules/async/internal/reject.js
+	deleted:    node_modules/async/internal/setImmediate.js
+	deleted:    node_modules/async/internal/withoutIndex.js
+	deleted:    node_modules/async/internal/wrapAsync.js
+	deleted:    node_modules/async/log.js
+	deleted:    node_modules/async/map.js
+	deleted:    node_modules/async/mapLimit.js
+	deleted:    node_modules/async/mapSeries.js
+	deleted:    node_modules/async/mapValues.js
+	deleted:    node_modules/async/mapValuesLimit.js
+	deleted:    node_modules/async/mapValuesSeries.js
+	deleted:    node_modules/async/memoize.js
+	deleted:    node_modules/async/nextTick.js
+	deleted:    node_modules/async/package.json
+	deleted:    node_modules/async/parallel.js
+	deleted:    node_modules/async/parallelLimit.js
+	deleted:    node_modules/async/priorityQueue.js
+	deleted:    node_modules/async/queue.js
+	deleted:    node_modules/async/race.js
+	deleted:    node_modules/async/reduce.js
+	deleted:    node_modules/async/reduceRight.js
+	deleted:    node_modules/async/reflect.js
+	deleted:    node_modules/async/reflectAll.js
+	deleted:    node_modules/async/reject.js
+	deleted:    node_modules/async/rejectLimit.js
+	deleted:    node_modules/async/rejectSeries.js
+	deleted:    node_modules/async/retry.js
+	deleted:    node_modules/async/retryable.js
+	deleted:    node_modules/async/select.js
+	deleted:    node_modules/async/selectLimit.js
+	deleted:    node_modules/async/selectSeries.js
+	deleted:    node_modules/async/seq.js
+	deleted:    node_modules/async/series.js
+	deleted:    node_modules/async/setImmediate.js
+	deleted:    node_modules/async/some.js
+	deleted:    node_modules/async/someLimit.js
+	deleted:    node_modules/async/someSeries.js
+	deleted:    node_modules/async/sortBy.js
+	deleted:    node_modules/async/timeout.js
+	deleted:    node_modules/async/times.js
+	deleted:    node_modules/async/timesLimit.js
+	deleted:    node_modules/async/timesSeries.js
+	deleted:    node_modules/async/transform.js
+	deleted:    node_modules/async/tryEach.js
+	deleted:    node_modules/async/unmemoize.js
+	deleted:    node_modules/async/until.js
+	deleted:    node_modules/async/waterfall.js
+	deleted:    node_modules/async/whilst.js
+	deleted:    node_modules/async/wrapSync.js
+	deleted:    node_modules/base32.js/.npmignore
+	deleted:    node_modules/base32.js/HISTORY.md
+	deleted:    node_modules/base32.js/README.md
+	deleted:    node_modules/base32.js/base32.js
+	deleted:    node_modules/base32.js/dist/.gitkeep
+	deleted:    node_modules/base32.js/index.js
+	deleted:    node_modules/base32.js/jsdoc.json
+	deleted:    node_modules/base32.js/karma.conf.js
+	deleted:    node_modules/base32.js/package.json
+	deleted:    node_modules/base32.js/test/base32_test.js
+	deleted:    node_modules/base32.js/test/fixtures.js
+	deleted:    node_modules/base32.js/webpack.config.js
+	deleted:    node_modules/bcryptjs/.npmignore
+	deleted:    node_modules/bcryptjs/.travis.yml
+	deleted:    node_modules/bcryptjs/.vscode/settings.json
+	deleted:    node_modules/bcryptjs/LICENSE
+	deleted:    node_modules/bcryptjs/README.md
+	deleted:    node_modules/bcryptjs/bin/bcrypt
+	deleted:    node_modules/bcryptjs/bower.json
+	deleted:    node_modules/bcryptjs/dist/README.md
+	deleted:    node_modules/bcryptjs/dist/bcrypt.js
+	deleted:    node_modules/bcryptjs/dist/bcrypt.min.js
+	deleted:    node_modules/bcryptjs/dist/bcrypt.min.js.gz
+	deleted:    node_modules/bcryptjs/dist/bcrypt.min.map
+	deleted:    node_modules/bcryptjs/externs/bcrypt.js
+	deleted:    node_modules/bcryptjs/externs/minimal-env.js
+	deleted:    node_modules/bcryptjs/index.js
+	deleted:    node_modules/bcryptjs/package.json
+	deleted:    node_modules/bcryptjs/scripts/build.js
+	deleted:    node_modules/bcryptjs/src/bcrypt.js
+	deleted:    node_modules/bcryptjs/src/bcrypt/impl.js
+	deleted:    node_modules/bcryptjs/src/bcrypt/prng/README.md
+	deleted:    node_modules/bcryptjs/src/bcrypt/prng/accum.js
+	deleted:    node_modules/bcryptjs/src/bcrypt/prng/isaac.js
+	deleted:    node_modules/bcryptjs/src/bcrypt/util.js
+	deleted:    node_modules/bcryptjs/src/bcrypt/util/base64.js
+	deleted:    node_modules/bcryptjs/src/bower.json
+	deleted:    node_modules/bcryptjs/src/wrap.js
+	deleted:    node_modules/bcryptjs/tests/quickbrown.txt
+	deleted:    node_modules/bcryptjs/tests/suite.js
+	deleted:    node_modules/camelcase/index.d.ts
+	deleted:    node_modules/camelcase/index.js
+	deleted:    node_modules/camelcase/license
+	deleted:    node_modules/camelcase/package.json
+	deleted:    node_modules/camelcase/readme.md
+	deleted:    node_modules/cliui/CHANGELOG.md
+	deleted:    node_modules/cliui/LICENSE.txt
+	deleted:    node_modules/cliui/README.md
+	deleted:    node_modules/cliui/index.js
+	deleted:    node_modules/cliui/package.json
+	deleted:    node_modules/color-convert/LICENSE
+	deleted:    node_modules/color-convert/README.md
+	deleted:    node_modules/color-convert/conversions.js
+	deleted:    node_modules/color-convert/index.d.ts
+	deleted:    node_modules/color-convert/index.js
+	deleted:    node_modules/color-convert/package.json
+	deleted:    node_modules/color-convert/route.js
+	deleted:    node_modules/color-name/LICENSE
+	deleted:    node_modules/color-name/README.md
+	deleted:    node_modules/color-name/index.js
+	deleted:    node_modules/color-name/package.json
+	deleted:    node_modules/color-string/LICENSE
+	deleted:    node_modules/color-string/README.md
+	deleted:    node_modules/color-string/index.d.ts
+	deleted:    node_modules/color-string/index.js
+	deleted:    node_modules/color-string/package.json
+	deleted:    node_modules/color/LICENSE
+	deleted:    node_modules/color/README.md
+	deleted:    node_modules/color/index.d.ts
+	deleted:    node_modules/color/index.js
+	deleted:    node_modules/color/package.json
+	deleted:    node_modules/cookie-parser/HISTORY.md
+	deleted:    node_modules/cookie-parser/LICENSE
+	deleted:    node_modules/cookie-parser/README.md
+	deleted:    node_modules/cookie-parser/index.js
+	deleted:    node_modules/cookie-parser/package.json
+	deleted:    node_modules/cookie/LICENSE
+	deleted:    node_modules/cookie/README.md
+	deleted:    node_modules/cookie/SECURITY.md
+	deleted:    node_modules/cookie/index.js
+	deleted:    node_modules/cookie/package.json
+	deleted:    node_modules/csrf/HISTORY.md
+	deleted:    node_modules/csrf/LICENSE
+	deleted:    node_modules/csrf/README.md
+	deleted:    node_modules/csrf/index.d.ts
+	deleted:    node_modules/csrf/index.js
+	deleted:    node_modules/csrf/package.json
+	deleted:    node_modules/csurf/HISTORY.md
+	deleted:    node_modules/csurf/LICENSE
+	deleted:    node_modules/csurf/README.md
+	deleted:    node_modules/csurf/index.js
+	deleted:    node_modules/csurf/node_modules/cookie/HISTORY.md
+	deleted:    node_modules/csurf/node_modules/cookie/LICENSE
+	deleted:    node_modules/csurf/node_modules/cookie/README.md
+	deleted:    node_modules/csurf/node_modules/cookie/index.js
+	deleted:    node_modules/csurf/node_modules/cookie/package.json
+	deleted:    node_modules/csurf/node_modules/depd/History.md
+	deleted:    node_modules/csurf/node_modules/depd/LICENSE
+	deleted:    node_modules/csurf/node_modules/depd/Readme.md
+	deleted:    node_modules/csurf/node_modules/depd/index.js
+	deleted:    node_modules/csurf/node_modules/depd/lib/browser/index.js
+	deleted:    node_modules/csurf/node_modules/depd/lib/compat/callsite-tostring.js
+	deleted:    node_modules/csurf/node_modules/depd/lib/compat/event-listener-count.js
+	deleted:    node_modules/csurf/node_modules/depd/lib/compat/index.js
+	deleted:    node_modules/csurf/node_modules/depd/package.json
+	deleted:    node_modules/csurf/node_modules/http-errors/HISTORY.md
+	deleted:    node_modules/csurf/node_modules/http-errors/LICENSE
+	deleted:    node_modules/csurf/node_modules/http-errors/README.md
+	deleted:    node_modules/csurf/node_modules/http-errors/index.js
+	deleted:    node_modules/csurf/node_modules/http-errors/package.json
+	deleted:    node_modules/csurf/node_modules/setprototypeof/LICENSE
+	deleted:    node_modules/csurf/node_modules/setprototypeof/README.md
+	deleted:    node_modules/csurf/node_modules/setprototypeof/index.d.ts
+	deleted:    node_modules/csurf/node_modules/setprototypeof/index.js
+	deleted:    node_modules/csurf/node_modules/setprototypeof/package.json
+	deleted:    node_modules/csurf/node_modules/setprototypeof/test/index.js
+	deleted:    node_modules/csurf/node_modules/statuses/HISTORY.md
+	deleted:    node_modules/csurf/node_modules/statuses/LICENSE
+	deleted:    node_modules/csurf/node_modules/statuses/README.md
+	deleted:    node_modules/csurf/node_modules/statuses/codes.json
+	deleted:    node_modules/csurf/node_modules/statuses/index.js
+	deleted:    node_modules/csurf/node_modules/statuses/package.json
+	deleted:    node_modules/csurf/node_modules/toidentifier/LICENSE
+	deleted:    node_modules/csurf/node_modules/toidentifier/README.md
+	deleted:    node_modules/csurf/node_modules/toidentifier/index.js
+	deleted:    node_modules/csurf/node_modules/toidentifier/package.json
+	deleted:    node_modules/csurf/package.json
+	deleted:    node_modules/decamelize/index.js
+	deleted:    node_modules/decamelize/license
+	deleted:    node_modules/decamelize/package.json
+	deleted:    node_modules/decamelize/readme.md
+	deleted:    node_modules/dijkstrajs/.travis.yml
+	deleted:    node_modules/dijkstrajs/CONTRIBUTING.md
+	deleted:    node_modules/dijkstrajs/LICENSE.md
+	deleted:    node_modules/dijkstrajs/README.md
+	deleted:    node_modules/dijkstrajs/dijkstra.js
+	deleted:    node_modules/dijkstrajs/package.json
+	deleted:    node_modules/dijkstrajs/test/dijkstra.test.js
+	deleted:    node_modules/emoji-regex/LICENSE-MIT.txt
+	deleted:    node_modules/emoji-regex/README.md
+	deleted:    node_modules/emoji-regex/es2015/index.js
+	deleted:    node_modules/emoji-regex/es2015/text.js
+	deleted:    node_modules/emoji-regex/index.d.ts
+	deleted:    node_modules/emoji-regex/index.js
+	deleted:    node_modules/emoji-regex/package.json
+	deleted:    node_modules/emoji-regex/text.js
+	deleted:    node_modules/enabled/.travis.yml
+	deleted:    node_modules/enabled/LICENSE
+	deleted:    node_modules/enabled/README.md
+	deleted:    node_modules/enabled/index.js
+	deleted:    node_modules/enabled/package.json
+	deleted:    node_modules/enabled/test.js
+	deleted:    node_modules/express-rate-limit/changelog.md
+	deleted:    node_modules/express-rate-limit/dist/index.cjs
+	deleted:    node_modules/express-rate-limit/dist/index.d.cts
+	deleted:    node_modules/express-rate-limit/dist/index.d.mts
+	deleted:    node_modules/express-rate-limit/dist/index.d.ts
+	deleted:    node_modules/express-rate-limit/dist/index.mjs
+	deleted:    node_modules/express-rate-limit/license.md
+	deleted:    node_modules/express-rate-limit/package.json
+	deleted:    node_modules/express-rate-limit/readme.md
+	deleted:    node_modules/express-rate-limit/tsconfig.json
+	deleted:    node_modules/express-session/HISTORY.md
+	deleted:    node_modules/express-session/LICENSE
+	deleted:    node_modules/express-session/README.md
+	deleted:    node_modules/express-session/index.js
+	deleted:    node_modules/express-session/node_modules/cookie-signature/History.md
+	deleted:    node_modules/express-session/node_modules/cookie-signature/Readme.md
+	deleted:    node_modules/express-session/node_modules/cookie-signature/index.js
+	deleted:    node_modules/express-session/node_modules/cookie-signature/package.json
+	deleted:    node_modules/express-session/package.json
+	deleted:    node_modules/express-session/session/cookie.js
+	deleted:    node_modules/express-session/session/memory.js
+	deleted:    node_modules/express-session/session/session.js
+	deleted:    node_modules/express-session/session/store.js
+	deleted:    node_modules/fecha/LICENSE
+	deleted:    node_modules/fecha/README.md
+	deleted:    node_modules/fecha/dist/fecha.min.js
+	deleted:    node_modules/fecha/dist/fecha.min.js.map
+	deleted:    node_modules/fecha/lib/fecha.d.ts
+	deleted:    node_modules/fecha/lib/fecha.js
+	deleted:    node_modules/fecha/lib/fecha.js.map
+	deleted:    node_modules/fecha/lib/fecha.umd.js
+	deleted:    node_modules/fecha/lib/fecha.umd.js.map
+	deleted:    node_modules/fecha/package.json
+	deleted:    node_modules/fecha/src/fecha.ts
+	deleted:    node_modules/find-up/index.d.ts
+	deleted:    node_modules/find-up/index.js
+	deleted:    node_modules/find-up/license
+	deleted:    node_modules/find-up/package.json
+	deleted:    node_modules/find-up/readme.md
+	deleted:    node_modules/fn.name/.gitattributes
+	deleted:    node_modules/fn.name/.travis.yml
+	deleted:    node_modules/fn.name/LICENSE
+	deleted:    node_modules/fn.name/README.md
+	deleted:    node_modules/fn.name/index.js
+	deleted:    node_modules/fn.name/package.json
+	deleted:    node_modules/fn.name/test.js
+	deleted:    node_modules/get-caller-file/LICENSE.md
+	deleted:    node_modules/get-caller-file/README.md
+	deleted:    node_modules/get-caller-file/index.d.ts
+	deleted:    node_modules/get-caller-file/index.js
+	deleted:    node_modules/get-caller-file/index.js.map
+	deleted:    node_modules/get-caller-file/package.json
+	deleted:    node_modules/helmet/CHANGELOG.md
+	deleted:    node_modules/helmet/LICENSE
+	deleted:    node_modules/helmet/README.md
+	deleted:    node_modules/helmet/SECURITY.md
+	deleted:    node_modules/helmet/index.cjs
+	deleted:    node_modules/helmet/index.d.cts
+	deleted:    node_modules/helmet/index.d.mts
+	deleted:    node_modules/helmet/index.mjs
+	deleted:    node_modules/helmet/package.json
+	deleted:    node_modules/is-fullwidth-code-point/index.d.ts
+	deleted:    node_modules/is-fullwidth-code-point/index.js
+	deleted:    node_modules/is-fullwidth-code-point/license
+	deleted:    node_modules/is-fullwidth-code-point/package.json
+	deleted:    node_modules/is-fullwidth-code-point/readme.md
+	deleted:    node_modules/is-stream/index.d.ts
+	deleted:    node_modules/is-stream/index.js
+	deleted:    node_modules/is-stream/license
+	deleted:    node_modules/is-stream/package.json
+	deleted:    node_modules/is-stream/readme.md
+	deleted:    node_modules/kuler/.travis.yml
+	deleted:    node_modules/kuler/LICENSE
+	deleted:    node_modules/kuler/README.md
+	deleted:    node_modules/kuler/index.js
+	deleted:    node_modules/kuler/package.json
+	deleted:    node_modules/kuler/test.js
+	deleted:    node_modules/locate-path/index.d.ts
+	deleted:    node_modules/locate-path/index.js
+	deleted:    node_modules/locate-path/license
+	deleted:    node_modules/locate-path/package.json
+	deleted:    node_modules/locate-path/readme.md
+	deleted:    node_modules/logform/.babelrc
+	deleted:    node_modules/logform/.eslintrc
+	deleted:    node_modules/logform/.gitattributes
+	deleted:    node_modules/logform/CHANGELOG.md
+	deleted:    node_modules/logform/LICENSE
+	deleted:    node_modules/logform/README.md
+	deleted:    node_modules/logform/align.js
+	deleted:    node_modules/logform/browser.js
+	deleted:    node_modules/logform/cli.js
+	deleted:    node_modules/logform/colorize.js
+	deleted:    node_modules/logform/combine.js
+	deleted:    node_modules/logform/dist/align.js
+	deleted:    node_modules/logform/dist/browser.js
+	deleted:    node_modules/logform/dist/cli.js
+	deleted:    node_modules/logform/dist/colorize.js
+	deleted:    node_modules/logform/dist/combine.js
+	deleted:    node_modules/logform/dist/errors.js
+	deleted:    node_modules/logform/dist/format.js
+	deleted:    node_modules/logform/dist/index.js
+	deleted:    node_modules/logform/dist/json.js
+	deleted:    node_modules/logform/dist/label.js
+	deleted:    node_modules/logform/dist/levels.js
+	deleted:    node_modules/logform/dist/logstash.js
+	deleted:    node_modules/logform/dist/metadata.js
+	deleted:    node_modules/logform/dist/ms.js
+	deleted:    node_modules/logform/dist/pad-levels.js
+	deleted:    node_modules/logform/dist/pretty-print.js
+	deleted:    node_modules/logform/dist/printf.js
+	deleted:    node_modules/logform/dist/simple.js
+	deleted:    node_modules/logform/dist/splat.js
+	deleted:    node_modules/logform/dist/timestamp.js
+	deleted:    node_modules/logform/dist/uncolorize.js
+	deleted:    node_modules/logform/errors.js
+	deleted:    node_modules/logform/format.js
+	deleted:    node_modules/logform/index.d.ts
+	deleted:    node_modules/logform/index.js
+	deleted:    node_modules/logform/json.js
+	deleted:    node_modules/logform/label.js
+	deleted:    node_modules/logform/levels.js
+	deleted:    node_modules/logform/logstash.js
+	deleted:    node_modules/logform/metadata.js
+	deleted:    node_modules/logform/ms.js
+	deleted:    node_modules/logform/package.json
+	deleted:    node_modules/logform/pad-levels.js
+	deleted:    node_modules/logform/pretty-print.js
+	deleted:    node_modules/logform/printf.js
+	deleted:    node_modules/logform/simple.js
+	deleted:    node_modules/logform/splat.js
+	deleted:    node_modules/logform/timestamp.js
+	deleted:    node_modules/logform/tsconfig.json
+	deleted:    node_modules/logform/uncolorize.js
+	deleted:    node_modules/on-headers/HISTORY.md
+	deleted:    node_modules/on-headers/LICENSE
+	deleted:    node_modules/on-headers/README.md
+	deleted:    node_modules/on-headers/index.js
+	deleted:    node_modules/on-headers/package.json
+	deleted:    node_modules/one-time/LICENSE
+	deleted:    node_modules/one-time/README.md
+	deleted:    node_modules/one-time/async.js
+	deleted:    node_modules/one-time/index.js
+	deleted:    node_modules/one-time/package.json
+	deleted:    node_modules/p-limit/index.d.ts
+	deleted:    node_modules/p-limit/index.js
+	deleted:    node_modules/p-limit/license
+	deleted:    node_modules/p-limit/package.json
+	deleted:    node_modules/p-limit/readme.md
+	deleted:    node_modules/p-locate/index.d.ts
+	deleted:    node_modules/p-locate/index.js
+	deleted:    node_modules/p-locate/license
+	deleted:    node_modules/p-locate/package.json
+	deleted:    node_modules/p-locate/readme.md
+	deleted:    node_modules/p-try/index.d.ts
+	deleted:    node_modules/p-try/index.js
+	deleted:    node_modules/p-try/license
+	deleted:    node_modules/p-try/package.json
+	deleted:    node_modules/p-try/readme.md
+	deleted:    node_modules/path-exists/index.d.ts
+	deleted:    node_modules/path-exists/index.js
+	deleted:    node_modules/path-exists/license
+	deleted:    node_modules/path-exists/package.json
+	deleted:    node_modules/path-exists/readme.md
+	deleted:    node_modules/pngjs/.eslintignore
+	deleted:    node_modules/pngjs/.eslintrc.json
+	deleted:    node_modules/pngjs/.prettierignore
+	deleted:    node_modules/pngjs/LICENSE
+	deleted:    node_modules/pngjs/README.md
+	deleted:    node_modules/pngjs/browser.js
+	deleted:    node_modules/pngjs/coverage/lcov-report/base.css
+	deleted:    node_modules/pngjs/coverage/lcov-report/bitmapper.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/bitpacker.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/block-navigation.js
+	deleted:    node_modules/pngjs/coverage/lcov-report/chunkstream.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/constants.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/crc.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/favicon.png
+	deleted:    node_modules/pngjs/coverage/lcov-report/filter-pack.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/filter-parse-async.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/filter-parse-sync.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/filter-parse.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/format-normaliser.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/index.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/interlace.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/packer-async.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/packer-sync.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/packer.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/paeth-predictor.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/parser-async.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/parser-sync.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/parser.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/png-sync.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/png.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/prettify.css
+	deleted:    node_modules/pngjs/coverage/lcov-report/prettify.js
+	deleted:    node_modules/pngjs/coverage/lcov-report/sort-arrow-sprite.png
+	deleted:    node_modules/pngjs/coverage/lcov-report/sorter.js
+	deleted:    node_modules/pngjs/coverage/lcov-report/sync-inflate.js.html
+	deleted:    node_modules/pngjs/coverage/lcov-report/sync-reader.js.html
+	deleted:    node_modules/pngjs/coverage/lcov.info
+	deleted:    node_modules/pngjs/lib/bitmapper.js
+	deleted:    node_modules/pngjs/lib/bitpacker.js
+	deleted:    node_modules/pngjs/lib/chunkstream.js
+	deleted:    node_modules/pngjs/lib/constants.js
+	deleted:    node_modules/pngjs/lib/crc.js
+	deleted:    node_modules/pngjs/lib/filter-pack.js
+	deleted:    node_modules/pngjs/lib/filter-parse-async.js
+	deleted:    node_modules/pngjs/lib/filter-parse-sync.js
+	deleted:    node_modules/pngjs/lib/filter-parse.js
+	deleted:    node_modules/pngjs/lib/format-normaliser.js
+	deleted:    node_modules/pngjs/lib/interlace.js
+	deleted:    node_modules/pngjs/lib/packer-async.js
+	deleted:    node_modules/pngjs/lib/packer-sync.js
+	deleted:    node_modules/pngjs/lib/packer.js
+	deleted:    node_modules/pngjs/lib/paeth-predictor.js
+	deleted:    node_modules/pngjs/lib/parser-async.js
+	deleted:    node_modules/pngjs/lib/parser-sync.js
+	deleted:    node_modules/pngjs/lib/parser.js
+	deleted:    node_modules/pngjs/lib/png-sync.js
+	deleted:    node_modules/pngjs/lib/png.js
+	deleted:    node_modules/pngjs/lib/sync-inflate.js
+	deleted:    node_modules/pngjs/lib/sync-reader.js
+	deleted:    node_modules/pngjs/package.json
+	deleted:    node_modules/qrcode/README.md
+	deleted:    node_modules/qrcode/bin/qrcode
+	deleted:    node_modules/qrcode/helper/to-sjis-browser.js
+	deleted:    node_modules/qrcode/helper/to-sjis.js
+	deleted:    node_modules/qrcode/lib/browser.js
+	deleted:    node_modules/qrcode/lib/can-promise.js
+	deleted:    node_modules/qrcode/lib/core/alignment-pattern.js
+	deleted:    node_modules/qrcode/lib/core/alphanumeric-data.js
+	deleted:    node_modules/qrcode/lib/core/bit-buffer.js
+	deleted:    node_modules/qrcode/lib/core/bit-matrix.js
+	deleted:    node_modules/qrcode/lib/core/byte-data.js
+	deleted:    node_modules/qrcode/lib/core/error-correction-code.js
+	deleted:    node_modules/qrcode/lib/core/error-correction-level.js
+	deleted:    node_modules/qrcode/lib/core/finder-pattern.js
+	deleted:    node_modules/qrcode/lib/core/format-info.js
+	deleted:    node_modules/qrcode/lib/core/galois-field.js
+	deleted:    node_modules/qrcode/lib/core/kanji-data.js
+	deleted:    node_modules/qrcode/lib/core/mask-pattern.js
+	deleted:    node_modules/qrcode/lib/core/mode.js
+	deleted:    node_modules/qrcode/lib/core/numeric-data.js
+	deleted:    node_modules/qrcode/lib/core/polynomial.js
+	deleted:    node_modules/qrcode/lib/core/qrcode.js
+	deleted:    node_modules/qrcode/lib/core/reed-solomon-encoder.js
+	deleted:    node_modules/qrcode/lib/core/regex.js
+	deleted:    node_modules/qrcode/lib/core/segments.js
+	deleted:    node_modules/qrcode/lib/core/utils.js
+	deleted:    node_modules/qrcode/lib/core/version-check.js
+	deleted:    node_modules/qrcode/lib/core/version.js
+	deleted:    node_modules/qrcode/lib/index.js
+	deleted:    node_modules/qrcode/lib/renderer/canvas.js
+	deleted:    node_modules/qrcode/lib/renderer/png.js
+	deleted:    node_modules/qrcode/lib/renderer/svg-tag.js
+	deleted:    node_modules/qrcode/lib/renderer/svg.js
+	deleted:    node_modules/qrcode/lib/renderer/terminal.js
+	deleted:    node_modules/qrcode/lib/renderer/terminal/terminal-small.js
+	deleted:    node_modules/qrcode/lib/renderer/terminal/terminal.js
+	deleted:    node_modules/qrcode/lib/renderer/utf8.js
+	deleted:    node_modules/qrcode/lib/renderer/utils.js
+	deleted:    node_modules/qrcode/lib/server.js
+	deleted:    node_modules/qrcode/license
+	deleted:    node_modules/qrcode/package.json
+	deleted:    node_modules/random-bytes/HISTORY.md
+	deleted:    node_modules/random-bytes/LICENSE
+	deleted:    node_modules/random-bytes/README.md
+	deleted:    node_modules/random-bytes/index.js
+	deleted:    node_modules/random-bytes/package.json
+	deleted:    node_modules/readable-stream/CONTRIBUTING.md
+	deleted:    node_modules/readable-stream/GOVERNANCE.md
+	deleted:    node_modules/readable-stream/LICENSE
+	deleted:    node_modules/readable-stream/README.md
+	deleted:    node_modules/readable-stream/errors-browser.js
+	deleted:    node_modules/readable-stream/errors.js
+	deleted:    node_modules/readable-stream/experimentalWarning.js
+	deleted:    node_modules/readable-stream/lib/_stream_duplex.js
+	deleted:    node_modules/readable-stream/lib/_stream_passthrough.js
+	deleted:    node_modules/readable-stream/lib/_stream_readable.js
+	deleted:    node_modules/readable-stream/lib/_stream_transform.js
+	deleted:    node_modules/readable-stream/lib/_stream_writable.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/async_iterator.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/buffer_list.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/destroy.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/end-of-stream.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/from-browser.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/from.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/pipeline.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/state.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/stream-browser.js
+	deleted:    node_modules/readable-stream/lib/internal/streams/stream.js
+	deleted:    node_modules/readable-stream/package.json
+	deleted:    node_modules/readable-stream/readable-browser.js
+	deleted:    node_modules/readable-stream/readable.js
+	deleted:    node_modules/require-directory/.jshintrc
+	deleted:    node_modules/require-directory/.npmignore
+	deleted:    node_modules/require-directory/.travis.yml
+	deleted:    node_modules/require-directory/LICENSE
+	deleted:    node_modules/require-directory/README.markdown
+	deleted:    node_modules/require-directory/index.js
+	deleted:    node_modules/require-directory/package.json
+	deleted:    node_modules/require-main-filename/CHANGELOG.md
+	deleted:    node_modules/require-main-filename/LICENSE.txt
+	deleted:    node_modules/require-main-filename/README.md
+	deleted:    node_modules/require-main-filename/index.js
+	deleted:    node_modules/require-main-filename/package.json
+	deleted:    node_modules/rndm/LICENSE
+	deleted:    node_modules/rndm/README.md
+	deleted:    node_modules/rndm/index.js
+	deleted:    node_modules/rndm/package.json
+	deleted:    node_modules/safe-stable-stringify/LICENSE
+	deleted:    node_modules/safe-stable-stringify/esm/package.json
+	deleted:    node_modules/safe-stable-stringify/esm/wrapper.d.ts
+	deleted:    node_modules/safe-stable-stringify/esm/wrapper.js
+	deleted:    node_modules/safe-stable-stringify/index.d.ts
+	deleted:    node_modules/safe-stable-stringify/index.js
+	deleted:    node_modules/safe-stable-stringify/package.json
+	deleted:    node_modules/safe-stable-stringify/readme.md
+	deleted:    node_modules/set-blocking/CHANGELOG.md
+	deleted:    node_modules/set-blocking/LICENSE.txt
+	deleted:    node_modules/set-blocking/README.md
+	deleted:    node_modules/set-blocking/index.js
+	deleted:    node_modules/set-blocking/package.json
+	deleted:    node_modules/speakeasy/.npmignore
+	deleted:    node_modules/speakeasy/.travis.yml
+	deleted:    node_modules/speakeasy/CHANGELOG.md
+	deleted:    node_modules/speakeasy/LICENSE
+	deleted:    node_modules/speakeasy/README.md
+	deleted:    node_modules/speakeasy/index.js
+	deleted:    node_modules/speakeasy/jsdoc.json
+	deleted:    node_modules/speakeasy/package.json
+	deleted:    node_modules/stack-trace/.npmignore
+	deleted:    node_modules/stack-trace/License
+	deleted:    node_modules/stack-trace/Makefile
+	deleted:    node_modules/stack-trace/Readme.md
+	deleted:    node_modules/stack-trace/lib/stack-trace.js
+	deleted:    node_modules/stack-trace/package.json
+	deleted:    node_modules/string-width/index.d.ts
+	deleted:    node_modules/string-width/index.js
+	deleted:    node_modules/string-width/license
+	deleted:    node_modules/string-width/package.json
+	deleted:    node_modules/string-width/readme.md
+	deleted:    node_modules/string_decoder/LICENSE
+	deleted:    node_modules/string_decoder/README.md
+	deleted:    node_modules/string_decoder/lib/string_decoder.js
+	deleted:    node_modules/string_decoder/package.json
+	deleted:    node_modules/strip-ansi/index.d.ts
+	deleted:    node_modules/strip-ansi/index.js
+	deleted:    node_modules/strip-ansi/license
+	deleted:    node_modules/strip-ansi/package.json
+	deleted:    node_modules/strip-ansi/readme.md
+	deleted:    node_modules/text-hex/LICENSE
+	deleted:    node_modules/text-hex/README.md
+	deleted:    node_modules/text-hex/index.js
+	deleted:    node_modules/text-hex/package.json
+	deleted:    node_modules/text-hex/test.js
+	deleted:    node_modules/triple-beam/.nyc_output/c579bf8f-6820-47a5-b2da-a11267eb8435.json
+	deleted:    node_modules/triple-beam/.nyc_output/processinfo/c579bf8f-6820-47a5-b2da-a11267eb8435.json
+	deleted:    node_modules/triple-beam/.nyc_output/processinfo/index.json
+	deleted:    node_modules/triple-beam/CHANGELOG.md
+	deleted:    node_modules/triple-beam/LICENSE
+	deleted:    node_modules/triple-beam/README.md
+	deleted:    node_modules/triple-beam/config/cli.js
+	deleted:    node_modules/triple-beam/config/index.js
+	deleted:    node_modules/triple-beam/config/npm.js
+	deleted:    node_modules/triple-beam/config/syslog.js
+	deleted:    node_modules/triple-beam/index.js
+	deleted:    node_modules/triple-beam/package.json
+	deleted:    node_modules/tsscmp/.travis.yml
+	deleted:    node_modules/tsscmp/LICENSE
+	deleted:    node_modules/tsscmp/README.md
+	deleted:    node_modules/tsscmp/appveyor.yml
+	deleted:    node_modules/tsscmp/lib/index.js
+	deleted:    node_modules/tsscmp/package.json
+	deleted:    node_modules/tsscmp/test/benchmark/index.js
+	deleted:    node_modules/tsscmp/test/unit/index.js
+	deleted:    node_modules/uid-safe/HISTORY.md
+	deleted:    node_modules/uid-safe/LICENSE
+	deleted:    node_modules/uid-safe/README.md
+	deleted:    node_modules/uid-safe/index.js
+	deleted:    node_modules/uid-safe/package.json
+	deleted:    node_modules/util-deprecate/History.md
+	deleted:    node_modules/util-deprecate/LICENSE
+	deleted:    node_modules/util-deprecate/README.md
+	deleted:    node_modules/util-deprecate/browser.js
+	deleted:    node_modules/util-deprecate/node.js
+	deleted:    node_modules/util-deprecate/package.json
+	deleted:    node_modules/uuid/CHANGELOG.md
+	deleted:    node_modules/uuid/CONTRIBUTING.md
+	deleted:    node_modules/uuid/LICENSE.md
+	deleted:    node_modules/uuid/README.md
+	deleted:    node_modules/uuid/dist/bin/uuid
+	deleted:    node_modules/uuid/dist/commonjs-browser/index.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/md5.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/native.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/nil.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/parse.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/regex.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/rng.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/sha1.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/stringify.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/v1.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/v3.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/v35.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/v4.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/v5.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/validate.js
+	deleted:    node_modules/uuid/dist/commonjs-browser/version.js
+	deleted:    node_modules/uuid/dist/esm-browser/index.js
+	deleted:    node_modules/uuid/dist/esm-browser/md5.js
+	deleted:    node_modules/uuid/dist/esm-browser/native.js
+	deleted:    node_modules/uuid/dist/esm-browser/nil.js
+	deleted:    node_modules/uuid/dist/esm-browser/parse.js
+	deleted:    node_modules/uuid/dist/esm-browser/regex.js
+	deleted:    node_modules/uuid/dist/esm-browser/rng.js
+	deleted:    node_modules/uuid/dist/esm-browser/sha1.js
+	deleted:    node_modules/uuid/dist/esm-browser/stringify.js
+	deleted:    node_modules/uuid/dist/esm-browser/v1.js
+	deleted:    node_modules/uuid/dist/esm-browser/v3.js
+	deleted:    node_modules/uuid/dist/esm-browser/v35.js
+	deleted:    node_modules/uuid/dist/esm-browser/v4.js
+	deleted:    node_modules/uuid/dist/esm-browser/v5.js
+	deleted:    node_modules/uuid/dist/esm-browser/validate.js
+	deleted:    node_modules/uuid/dist/esm-browser/version.js
+	deleted:    node_modules/uuid/dist/esm-node/index.js
+	deleted:    node_modules/uuid/dist/esm-node/md5.js
+	deleted:    node_modules/uuid/dist/esm-node/native.js
+	deleted:    node_modules/uuid/dist/esm-node/nil.js
+	deleted:    node_modules/uuid/dist/esm-node/parse.js
+	deleted:    node_modules/uuid/dist/esm-node/regex.js
+	deleted:    node_modules/uuid/dist/esm-node/rng.js
+	deleted:    node_modules/uuid/dist/esm-node/sha1.js
+	deleted:    node_modules/uuid/dist/esm-node/stringify.js
+	deleted:    node_modules/uuid/dist/esm-node/v1.js
+	deleted:    node_modules/uuid/dist/esm-node/v3.js
+	deleted:    node_modules/uuid/dist/esm-node/v35.js
+	deleted:    node_modules/uuid/dist/esm-node/v4.js
+	deleted:    node_modules/uuid/dist/esm-node/v5.js
+	deleted:    node_modules/uuid/dist/esm-node/validate.js
+	deleted:    node_modules/uuid/dist/esm-node/version.js
+	deleted:    node_modules/uuid/dist/index.js
+	deleted:    node_modules/uuid/dist/md5-browser.js
+	deleted:    node_modules/uuid/dist/md5.js
+	deleted:    node_modules/uuid/dist/native-browser.js
+	deleted:    node_modules/uuid/dist/native.js
+	deleted:    node_modules/uuid/dist/nil.js
+	deleted:    node_modules/uuid/dist/parse.js
+	deleted:    node_modules/uuid/dist/regex.js
+	deleted:    node_modules/uuid/dist/rng-browser.js
+	deleted:    node_modules/uuid/dist/rng.js
+	deleted:    node_modules/uuid/dist/sha1-browser.js
+	deleted:    node_modules/uuid/dist/sha1.js
+	deleted:    node_modules/uuid/dist/stringify.js
+	deleted:    node_modules/uuid/dist/uuid-bin.js
+	deleted:    node_modules/uuid/dist/v1.js
+	deleted:    node_modules/uuid/dist/v3.js
+	deleted:    node_modules/uuid/dist/v35.js
+	deleted:    node_modules/uuid/dist/v4.js
+	deleted:    node_modules/uuid/dist/v5.js
+	deleted:    node_modules/uuid/dist/validate.js
+	deleted:    node_modules/uuid/dist/version.js
+	deleted:    node_modules/uuid/package.json
+	deleted:    node_modules/uuid/wrapper.mjs
+	deleted:    node_modules/validator/LICENSE
+	deleted:    node_modules/validator/README.md
+	deleted:    node_modules/validator/es/index.js
+	deleted:    node_modules/validator/es/lib/alpha.js
+	deleted:    node_modules/validator/es/lib/blacklist.js
+	deleted:    node_modules/validator/es/lib/contains.js
+	deleted:    node_modules/validator/es/lib/equals.js
+	deleted:    node_modules/validator/es/lib/escape.js
+	deleted:    node_modules/validator/es/lib/isAbaRouting.js
+	deleted:    node_modules/validator/es/lib/isAfter.js
+	deleted:    node_modules/validator/es/lib/isAlpha.js
+	deleted:    node_modules/validator/es/lib/isAlphanumeric.js
+	deleted:    node_modules/validator/es/lib/isAscii.js
+	deleted:    node_modules/validator/es/lib/isBIC.js
+	deleted:    node_modules/validator/es/lib/isBase32.js
+	deleted:    node_modules/validator/es/lib/isBase58.js
+	deleted:    node_modules/validator/es/lib/isBase64.js
+	deleted:    node_modules/validator/es/lib/isBefore.js
+	deleted:    node_modules/validator/es/lib/isBoolean.js
+	deleted:    node_modules/validator/es/lib/isBtcAddress.js
+	deleted:    node_modules/validator/es/lib/isByteLength.js
+	deleted:    node_modules/validator/es/lib/isCreditCard.js
+	deleted:    node_modules/validator/es/lib/isCurrency.js
+	deleted:    node_modules/validator/es/lib/isDataURI.js
+	deleted:    node_modules/validator/es/lib/isDate.js
+	deleted:    node_modules/validator/es/lib/isDecimal.js
+	deleted:    node_modules/validator/es/lib/isDivisibleBy.js
+	deleted:    node_modules/validator/es/lib/isEAN.js
+	deleted:    node_modules/validator/es/lib/isEmail.js
+	deleted:    node_modules/validator/es/lib/isEmpty.js
+	deleted:    node_modules/validator/es/lib/isEthereumAddress.js
+	deleted:    node_modules/validator/es/lib/isFQDN.js
+	deleted:    node_modules/validator/es/lib/isFloat.js
+	deleted:    node_modules/validator/es/lib/isFullWidth.js
+	deleted:    node_modules/validator/es/lib/isHSL.js
+	deleted:    node_modules/validator/es/lib/isHalfWidth.js
+	deleted:    node_modules/validator/es/lib/isHash.js
+	deleted:    node_modules/validator/es/lib/isHexColor.js
+	deleted:    node_modules/validator/es/lib/isHexadecimal.js
+	deleted:    node_modules/validator/es/lib/isIBAN.js
+	deleted:    node_modules/validator/es/lib/isIMEI.js
+	deleted:    node_modules/validator/es/lib/isIP.js
+	deleted:    node_modules/validator/es/lib/isIPRange.js
+	deleted:    node_modules/validator/es/lib/isISBN.js
+	deleted:    node_modules/validator/es/lib/isISIN.js
+	deleted:    node_modules/validator/es/lib/isISO15924.js
+	deleted:    node_modules/validator/es/lib/isISO31661Alpha2.js
+	deleted:    node_modules/validator/es/lib/isISO31661Alpha3.js
+	deleted:    node_modules/validator/es/lib/isISO31661Numeric.js
+	deleted:    node_modules/validator/es/lib/isISO4217.js
+	deleted:    node_modules/validator/es/lib/isISO6346.js
+	deleted:    node_modules/validator/es/lib/isISO6391.js
+	deleted:    node_modules/validator/es/lib/isISO8601.js
+	deleted:    node_modules/validator/es/lib/isISRC.js
+	deleted:    node_modules/validator/es/lib/isISSN.js
+	deleted:    node_modules/validator/es/lib/isIdentityCard.js
+	deleted:    node_modules/validator/es/lib/isIn.js
+	deleted:    node_modules/validator/es/lib/isInt.js
+	deleted:    node_modules/validator/es/lib/isJSON.js
+	deleted:    node_modules/validator/es/lib/isJWT.js
+	deleted:    node_modules/validator/es/lib/isLatLong.js
+	deleted:    node_modules/validator/es/lib/isLength.js
+	deleted:    node_modules/validator/es/lib/isLicensePlate.js
+	deleted:    node_modules/validator/es/lib/isLocale.js
+	deleted:    node_modules/validator/es/lib/isLowercase.js
+	deleted:    node_modules/validator/es/lib/isLuhnNumber.js
+	deleted:    node_modules/validator/es/lib/isMACAddress.js
+	deleted:    node_modules/validator/es/lib/isMD5.js
+	deleted:    node_modules/validator/es/lib/isMagnetURI.js
+	deleted:    node_modules/validator/es/lib/isMailtoURI.js
+	deleted:    node_modules/validator/es/lib/isMimeType.js
+	deleted:    node_modules/validator/es/lib/isMobilePhone.js
+	deleted:    node_modules/validator/es/lib/isMongoId.js
+	deleted:    node_modules/validator/es/lib/isMultibyte.js
+	deleted:    node_modules/validator/es/lib/isNumeric.js
+	deleted:    node_modules/validator/es/lib/isOctal.js
+	deleted:    node_modules/validator/es/lib/isPassportNumber.js
+	deleted:    node_modules/validator/es/lib/isPort.js
+	deleted:    node_modules/validator/es/lib/isPostalCode.js
+	deleted:    node_modules/validator/es/lib/isRFC3339.js
+	deleted:    node_modules/validator/es/lib/isRgbColor.js
+	deleted:    node_modules/validator/es/lib/isSemVer.js
+	deleted:    node_modules/validator/es/lib/isSlug.js
+	deleted:    node_modules/validator/es/lib/isStrongPassword.js
+	deleted:    node_modules/validator/es/lib/isSurrogatePair.js
+	deleted:    node_modules/validator/es/lib/isTaxID.js
+	deleted:    node_modules/validator/es/lib/isTime.js
+	deleted:    node_modules/validator/es/lib/isULID.js
+	deleted:    node_modules/validator/es/lib/isURL.js
+	deleted:    node_modules/validator/es/lib/isUUID.js
+	deleted:    node_modules/validator/es/lib/isUppercase.js
+	deleted:    node_modules/validator/es/lib/isVAT.js
+	deleted:    node_modules/validator/es/lib/isVariableWidth.js
+	deleted:    node_modules/validator/es/lib/isWhitelisted.js
+	deleted:    node_modules/validator/es/lib/ltrim.js
+	deleted:    node_modules/validator/es/lib/matches.js
+	deleted:    node_modules/validator/es/lib/normalizeEmail.js
+	deleted:    node_modules/validator/es/lib/rtrim.js
+	deleted:    node_modules/validator/es/lib/stripLow.js
+	deleted:    node_modules/validator/es/lib/toBoolean.js
+	deleted:    node_modules/validator/es/lib/toDate.js
+	deleted:    node_modules/validator/es/lib/toFloat.js
+	deleted:    node_modules/validator/es/lib/toInt.js
+	deleted:    node_modules/validator/es/lib/trim.js
+	deleted:    node_modules/validator/es/lib/unescape.js
+	deleted:    node_modules/validator/es/lib/util/algorithms.js
+	deleted:    node_modules/validator/es/lib/util/assertString.js
+	deleted:    node_modules/validator/es/lib/util/checkHost.js
+	deleted:    node_modules/validator/es/lib/util/includesArray.js
+	deleted:    node_modules/validator/es/lib/util/includesString.js
+	deleted:    node_modules/validator/es/lib/util/merge.js
+	deleted:    node_modules/validator/es/lib/util/multilineRegex.js
+	deleted:    node_modules/validator/es/lib/util/nullUndefinedCheck.js
+	deleted:    node_modules/validator/es/lib/util/toString.js
+	deleted:    node_modules/validator/es/lib/util/typeOf.js
+	deleted:    node_modules/validator/es/lib/whitelist.js
+	deleted:    node_modules/validator/index.js
+	deleted:    node_modules/validator/lib/alpha.js
+	deleted:    node_modules/validator/lib/blacklist.js
+	deleted:    node_modules/validator/lib/contains.js
+	deleted:    node_modules/validator/lib/equals.js
+	deleted:    node_modules/validator/lib/escape.js
+	deleted:    node_modules/validator/lib/isAbaRouting.js
+	deleted:    node_modules/validator/lib/isAfter.js
+	deleted:    node_modules/validator/lib/isAlpha.js
+	deleted:    node_modules/validator/lib/isAlphanumeric.js
+	deleted:    node_modules/validator/lib/isAscii.js
+	deleted:    node_modules/validator/lib/isBIC.js
+	deleted:    node_modules/validator/lib/isBase32.js
+	deleted:    node_modules/validator/lib/isBase58.js
+	deleted:    node_modules/validator/lib/isBase64.js
+	deleted:    node_modules/validator/lib/isBefore.js
+	deleted:    node_modules/validator/lib/isBoolean.js
+	deleted:    node_modules/validator/lib/isBtcAddress.js
+	deleted:    node_modules/validator/lib/isByteLength.js
+	deleted:    node_modules/validator/lib/isCreditCard.js
+	deleted:    node_modules/validator/lib/isCurrency.js
+	deleted:    node_modules/validator/lib/isDataURI.js
+	deleted:    node_modules/validator/lib/isDate.js
+	deleted:    node_modules/validator/lib/isDecimal.js
+	deleted:    node_modules/validator/lib/isDivisibleBy.js
+	deleted:    node_modules/validator/lib/isEAN.js
+	deleted:    node_modules/validator/lib/isEmail.js
+	deleted:    node_modules/validator/lib/isEmpty.js
+	deleted:    node_modules/validator/lib/isEthereumAddress.js
+	deleted:    node_modules/validator/lib/isFQDN.js
+	deleted:    node_modules/validator/lib/isFloat.js
+	deleted:    node_modules/validator/lib/isFullWidth.js
+	deleted:    node_modules/validator/lib/isHSL.js
+	deleted:    node_modules/validator/lib/isHalfWidth.js
+	deleted:    node_modules/validator/lib/isHash.js
+	deleted:    node_modules/validator/lib/isHexColor.js
+	deleted:    node_modules/validator/lib/isHexadecimal.js
+	deleted:    node_modules/validator/lib/isIBAN.js
+	deleted:    node_modules/validator/lib/isIMEI.js
+	deleted:    node_modules/validator/lib/isIP.js
+	deleted:    node_modules/validator/lib/isIPRange.js
+	deleted:    node_modules/validator/lib/isISBN.js
+	deleted:    node_modules/validator/lib/isISIN.js
+	deleted:    node_modules/validator/lib/isISO15924.js
+	deleted:    node_modules/validator/lib/isISO31661Alpha2.js
+	deleted:    node_modules/validator/lib/isISO31661Alpha3.js
+	deleted:    node_modules/validator/lib/isISO31661Numeric.js
+	deleted:    node_modules/validator/lib/isISO4217.js
+	deleted:    node_modules/validator/lib/isISO6346.js
+	deleted:    node_modules/validator/lib/isISO6391.js
+	deleted:    node_modules/validator/lib/isISO8601.js
+	deleted:    node_modules/validator/lib/isISRC.js
+	deleted:    node_modules/validator/lib/isISSN.js
+	deleted:    node_modules/validator/lib/isIdentityCard.js
+	deleted:    node_modules/validator/lib/isIn.js
+	deleted:    node_modules/validator/lib/isInt.js
+	deleted:    node_modules/validator/lib/isJSON.js
+	deleted:    node_modules/validator/lib/isJWT.js
+	deleted:    node_modules/validator/lib/isLatLong.js
+	deleted:    node_modules/validator/lib/isLength.js
+	deleted:    node_modules/validator/lib/isLicensePlate.js
+	deleted:    node_modules/validator/lib/isLocale.js
+	deleted:    node_modules/validator/lib/isLowercase.js
+	deleted:    node_modules/validator/lib/isLuhnNumber.js
+	deleted:    node_modules/validator/lib/isMACAddress.js
+	deleted:    node_modules/validator/lib/isMD5.js
+	deleted:    node_modules/validator/lib/isMagnetURI.js
+	deleted:    node_modules/validator/lib/isMailtoURI.js
+	deleted:    node_modules/validator/lib/isMimeType.js
+	deleted:    node_modules/validator/lib/isMobilePhone.js
+	deleted:    node_modules/validator/lib/isMongoId.js
+	deleted:    node_modules/validator/lib/isMultibyte.js
+	deleted:    node_modules/validator/lib/isNumeric.js
+	deleted:    node_modules/validator/lib/isOctal.js
+	deleted:    node_modules/validator/lib/isPassportNumber.js
+	deleted:    node_modules/validator/lib/isPort.js
+	deleted:    node_modules/validator/lib/isPostalCode.js
+	deleted:    node_modules/validator/lib/isRFC3339.js
+	deleted:    node_modules/validator/lib/isRgbColor.js
+	deleted:    node_modules/validator/lib/isSemVer.js
+	deleted:    node_modules/validator/lib/isSlug.js
+	deleted:    node_modules/validator/lib/isStrongPassword.js
+	deleted:    node_modules/validator/lib/isSurrogatePair.js
+	deleted:    node_modules/validator/lib/isTaxID.js
+	deleted:    node_modules/validator/lib/isTime.js
+	deleted:    node_modules/validator/lib/isULID.js
+	deleted:    node_modules/validator/lib/isURL.js
+	deleted:    node_modules/validator/lib/isUUID.js
+	deleted:    node_modules/validator/lib/isUppercase.js
+	deleted:    node_modules/validator/lib/isVAT.js
+	deleted:    node_modules/validator/lib/isVariableWidth.js
+	deleted:    node_modules/validator/lib/isWhitelisted.js
+	deleted:    node_modules/validator/lib/ltrim.js
+	deleted:    node_modules/validator/lib/matches.js
+	deleted:    node_modules/validator/lib/normalizeEmail.js
+	deleted:    node_modules/validator/lib/rtrim.js
+	deleted:    node_modules/validator/lib/stripLow.js
+	deleted:    node_modules/validator/lib/toBoolean.js
+	deleted:    node_modules/validator/lib/toDate.js
+	deleted:    node_modules/validator/lib/toFloat.js
+	deleted:    node_modules/validator/lib/toInt.js
+	deleted:    node_modules/validator/lib/trim.js
+	deleted:    node_modules/validator/lib/unescape.js
+	deleted:    node_modules/validator/lib/util/algorithms.js
+	deleted:    node_modules/validator/lib/util/assertString.js
+	deleted:    node_modules/validator/lib/util/checkHost.js
+	deleted:    node_modules/validator/lib/util/includesArray.js
+	deleted:    node_modules/validator/lib/util/includesString.js
+	deleted:    node_modules/validator/lib/util/merge.js
+	deleted:    node_modules/validator/lib/util/multilineRegex.js
+	deleted:    node_modules/validator/lib/util/nullUndefinedCheck.js
+	deleted:    node_modules/validator/lib/util/toString.js
+	deleted:    node_modules/validator/lib/util/typeOf.js
+	deleted:    node_modules/validator/lib/whitelist.js
+	deleted:    node_modules/validator/package.json
+	deleted:    node_modules/validator/validator.js
+	deleted:    node_modules/validator/validator.min.js
+	deleted:    node_modules/which-module/LICENSE
+	deleted:    node_modules/which-module/README.md
+	deleted:    node_modules/which-module/index.js
+	deleted:    node_modules/which-module/package.json
+	deleted:    node_modules/winston-transport/.babelrc
+	deleted:    node_modules/winston-transport/.eslintrc
+	deleted:    node_modules/winston-transport/.gitattributes
+	deleted:    node_modules/winston-transport/.nyc_output/68e78020-c804-4f37-a68a-a967c6380da9.json
+	deleted:    node_modules/winston-transport/.nyc_output/processinfo/68e78020-c804-4f37-a68a-a967c6380da9.json
+	deleted:    node_modules/winston-transport/.nyc_output/processinfo/index.json
+	deleted:    node_modules/winston-transport/CHANGELOG.md
+	deleted:    node_modules/winston-transport/LICENSE
+	deleted:    node_modules/winston-transport/README.md
+	deleted:    node_modules/winston-transport/dist/index.js
+	deleted:    node_modules/winston-transport/dist/legacy.js
+	deleted:    node_modules/winston-transport/dist/modern.js
+	deleted:    node_modules/winston-transport/index.d.ts
+	deleted:    node_modules/winston-transport/index.js
+	deleted:    node_modules/winston-transport/legacy.js
+	deleted:    node_modules/winston-transport/modern.js
+	deleted:    node_modules/winston-transport/package.json
+	deleted:    node_modules/winston/LICENSE
+	deleted:    node_modules/winston/README.md
+	deleted:    node_modules/winston/dist/winston.js
+	deleted:    node_modules/winston/dist/winston/common.js
+	deleted:    node_modules/winston/dist/winston/config/index.js
+	deleted:    node_modules/winston/dist/winston/container.js
+	deleted:    node_modules/winston/dist/winston/create-logger.js
+	deleted:    node_modules/winston/dist/winston/exception-handler.js
+	deleted:    node_modules/winston/dist/winston/exception-stream.js
+	deleted:    node_modules/winston/dist/winston/logger.js
+	deleted:    node_modules/winston/dist/winston/profiler.js
+	deleted:    node_modules/winston/dist/winston/rejection-handler.js
+	deleted:    node_modules/winston/dist/winston/rejection-stream.js
+	deleted:    node_modules/winston/dist/winston/tail-file.js
+	deleted:    node_modules/winston/dist/winston/transports/console.js
+	deleted:    node_modules/winston/dist/winston/transports/file.js
+	deleted:    node_modules/winston/dist/winston/transports/http.js
+	deleted:    node_modules/winston/dist/winston/transports/index.js
+	deleted:    node_modules/winston/dist/winston/transports/stream.js
+	deleted:    node_modules/winston/index.d.ts
+	deleted:    node_modules/winston/lib/winston.js
+	deleted:    node_modules/winston/lib/winston/common.js
+	deleted:    node_modules/winston/lib/winston/config/index.d.ts
+	deleted:    node_modules/winston/lib/winston/config/index.js
+	deleted:    node_modules/winston/lib/winston/container.js
+	deleted:    node_modules/winston/lib/winston/create-logger.js
+	deleted:    node_modules/winston/lib/winston/exception-handler.js
+	deleted:    node_modules/winston/lib/winston/exception-stream.js
+	deleted:    node_modules/winston/lib/winston/logger.js
+	deleted:    node_modules/winston/lib/winston/profiler.js
+	deleted:    node_modules/winston/lib/winston/rejection-handler.js
+	deleted:    node_modules/winston/lib/winston/rejection-stream.js
+	deleted:    node_modules/winston/lib/winston/tail-file.js
+	deleted:    node_modules/winston/lib/winston/transports/console.js
+	deleted:    node_modules/winston/lib/winston/transports/file.js
+	deleted:    node_modules/winston/lib/winston/transports/http.js
+	deleted:    node_modules/winston/lib/winston/transports/index.d.ts
+	deleted:    node_modules/winston/lib/winston/transports/index.js
+	deleted:    node_modules/winston/lib/winston/transports/stream.js
+	deleted:    node_modules/winston/package.json
+	deleted:    node_modules/wrap-ansi/index.js
+	deleted:    node_modules/wrap-ansi/license
+	deleted:    node_modules/wrap-ansi/package.json
+	deleted:    node_modules/wrap-ansi/readme.md
+	deleted:    node_modules/y18n/CHANGELOG.md
+	deleted:    node_modules/y18n/LICENSE
+	deleted:    node_modules/y18n/README.md
+	deleted:    node_modules/y18n/index.js
+	deleted:    node_modules/y18n/package.json
+	deleted:    node_modules/yargs-parser/CHANGELOG.md
+	deleted:    node_modules/yargs-parser/LICENSE.txt
+	deleted:    node_modules/yargs-parser/README.md
+	deleted:    node_modules/yargs-parser/index.js
+	deleted:    node_modules/yargs-parser/lib/tokenize-arg-string.js
+	deleted:    node_modules/yargs-parser/package.json
+	deleted:    node_modules/yargs/CHANGELOG.md
+	deleted:    node_modules/yargs/LICENSE
+	deleted:    node_modules/yargs/README.md
+	deleted:    node_modules/yargs/build/lib/apply-extends.d.ts
+	deleted:    node_modules/yargs/build/lib/apply-extends.js
+	deleted:    node_modules/yargs/build/lib/argsert.d.ts
+	deleted:    node_modules/yargs/build/lib/argsert.js
+	deleted:    node_modules/yargs/build/lib/command.d.ts
+	deleted:    node_modules/yargs/build/lib/command.js
+	deleted:    node_modules/yargs/build/lib/common-types.d.ts
+	deleted:    node_modules/yargs/build/lib/common-types.js
+	deleted:    node_modules/yargs/build/lib/completion-templates.d.ts
+	deleted:    node_modules/yargs/build/lib/completion-templates.js
+	deleted:    node_modules/yargs/build/lib/completion.d.ts
+	deleted:    node_modules/yargs/build/lib/completion.js
+	deleted:    node_modules/yargs/build/lib/is-promise.d.ts
+	deleted:    node_modules/yargs/build/lib/is-promise.js
+	deleted:    node_modules/yargs/build/lib/levenshtein.d.ts
+	deleted:    node_modules/yargs/build/lib/levenshtein.js
+	deleted:    node_modules/yargs/build/lib/middleware.d.ts
+	deleted:    node_modules/yargs/build/lib/middleware.js
+	deleted:    node_modules/yargs/build/lib/obj-filter.d.ts
+	deleted:    node_modules/yargs/build/lib/obj-filter.js
+	deleted:    node_modules/yargs/build/lib/parse-command.d.ts
+	deleted:    node_modules/yargs/build/lib/parse-command.js
+	deleted:    node_modules/yargs/build/lib/process-argv.d.ts
+	deleted:    node_modules/yargs/build/lib/process-argv.js
+	deleted:    node_modules/yargs/build/lib/usage.d.ts
+	deleted:    node_modules/yargs/build/lib/usage.js
+	deleted:    node_modules/yargs/build/lib/validation.d.ts
+	deleted:    node_modules/yargs/build/lib/validation.js
+	deleted:    node_modules/yargs/build/lib/yargs.d.ts
+	deleted:    node_modules/yargs/build/lib/yargs.js
+	deleted:    node_modules/yargs/build/lib/yerror.d.ts
+	deleted:    node_modules/yargs/build/lib/yerror.js
+	deleted:    node_modules/yargs/index.js
+	deleted:    node_modules/yargs/locales/be.json
+	deleted:    node_modules/yargs/locales/de.json
+	deleted:    node_modules/yargs/locales/en.json
+	deleted:    node_modules/yargs/locales/es.json
+	deleted:    node_modules/yargs/locales/fi.json
+	deleted:    node_modules/yargs/locales/fr.json
+	deleted:    node_modules/yargs/locales/hi.json
+	deleted:    node_modules/yargs/locales/hu.json
+	deleted:    node_modules/yargs/locales/id.json
+	deleted:    node_modules/yargs/locales/it.json
+	deleted:    node_modules/yargs/locales/ja.json
+	deleted:    node_modules/yargs/locales/ko.json
+	deleted:    node_modules/yargs/locales/nb.json
+	deleted:    node_modules/yargs/locales/nl.json
+	deleted:    node_modules/yargs/locales/nn.json
+	deleted:    node_modules/yargs/locales/pirate.json
+	deleted:    node_modules/yargs/locales/pl.json
+	deleted:    node_modules/yargs/locales/pt.json
+	deleted:    node_modules/yargs/locales/pt_BR.json
+	deleted:    node_modules/yargs/locales/ru.json
+	deleted:    node_modules/yargs/locales/th.json
+	deleted:    node_modules/yargs/locales/tr.json
+	deleted:    node_modules/yargs/locales/zh_CN.json
+	deleted:    node_modules/yargs/locales/zh_TW.json
+	deleted:    node_modules/yargs/package.json
+	deleted:    node_modules/yargs/yargs.js
 	modified:   package-lock.json
 	modified:   package.json
 	modified:   public/admin.html
-	renamed:    assets/favicon.ico -> public/assets/favicon.ico
-	renamed:    assets/xz_messenger_icon.png -> public/assets/xz_messenger_icon.png
 	modified:   public/chat.html
 	modified:   public/css/style.css
 	modified:   public/groups.html
 	modified:   public/index.html
-	new file:   public/js/amin.js
-	modified:   public/js/auth.js
-	modified:   public/js/chat.js
-	modified:   public/js/group.js
+	modified:   public/js/login.js
 	modified:   public/login.html
 	modified:   public/otp.html
 	modified:   public/profile.html
+	modified:   public/settings.html
 	modified:   server.js
-	new file:   start-server.bat
-	new file:   temp_status.txt
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   data/groups.json
-	modified:   data/messages.json
-	modified:   data/otps.json
-	deleted:    node_modules/.bin/mkdirp
-	deleted:    node_modules/.bin/mkdirp.cmd
-	deleted:    node_modules/.bin/mkdirp.ps1
-	modified:   node_modules/.package-lock.json
-	deleted:    node_modules/append-field/.npmignore
-	deleted:    node_modules/append-field/LICENSE
-	deleted:    node_modules/append-field/README.md
-	deleted:    node_modules/append-field/index.js
-	deleted:    node_modules/append-field/lib/parse-path.js
-	deleted:    node_modules/append-field/lib/set-value.js
-	deleted:    node_modules/append-field/package.json
-	deleted:    node_modules/append-field/test/forms.js
-	deleted:    node_modules/basic-auth/HISTORY.md
-	deleted:    node_modules/basic-auth/LICENSE
-	deleted:    node_modules/basic-auth/README.md
-	deleted:    node_modules/basic-auth/index.js
-	deleted:    node_modules/basic-auth/node_modules/safe-buffer/LICENSE
-	deleted:    node_modules/basic-auth/node_modules/safe-buffer/README.md
-	deleted:    node_modules/basic-auth/node_modules/safe-buffer/index.d.ts
-	deleted:    node_modules/basic-auth/node_modules/safe-buffer/index.js
-	deleted:    node_modules/basic-auth/node_modules/safe-buffer/package.json
-	deleted:    node_modules/basic-auth/package.json
-	deleted:    node_modules/buffer-from/LICENSE
-	deleted:    node_modules/buffer-from/index.js
-	deleted:    node_modules/buffer-from/package.json
-	deleted:    node_modules/buffer-from/readme.md
-	deleted:    node_modules/busboy/.eslintrc.js
-	deleted:    node_modules/busboy/.github/workflows/ci.yml
-	deleted:    node_modules/busboy/.github/workflows/lint.yml
-	deleted:    node_modules/busboy/LICENSE
-	deleted:    node_modules/busboy/README.md
-	deleted:    node_modules/busboy/bench/bench-multipart-fields-100mb-big.js
-	deleted:    node_modules/busboy/bench/bench-multipart-fields-100mb-small.js
-	deleted:    node_modules/busboy/bench/bench-multipart-files-100mb-big.js
-	deleted:    node_modules/busboy/bench/bench-multipart-files-100mb-small.js
-	deleted:    node_modules/busboy/bench/bench-urlencoded-fields-100pairs-small.js
-	deleted:    node_modules/busboy/bench/bench-urlencoded-fields-900pairs-small-alt.js
-	deleted:    node_modules/busboy/lib/index.js
-	deleted:    node_modules/busboy/lib/types/multipart.js
-	deleted:    node_modules/busboy/lib/types/urlencoded.js
-	deleted:    node_modules/busboy/lib/utils.js
-	deleted:    node_modules/busboy/package.json
-	deleted:    node_modules/busboy/test/common.js
-	deleted:    node_modules/busboy/test/test-types-multipart-charsets.js
-	deleted:    node_modules/busboy/test/test-types-multipart-stream-pause.js
-	deleted:    node_modules/busboy/test/test-types-multipart.js
-	deleted:    node_modules/busboy/test/test-types-urlencoded.js
-	deleted:    node_modules/busboy/test/test.js
-	deleted:    node_modules/concat-stream/LICENSE
-	deleted:    node_modules/concat-stream/index.js
-	deleted:    node_modules/concat-stream/package.json
-	deleted:    node_modules/concat-stream/readme.md
-	deleted:    node_modules/core-util-is/LICENSE
-	deleted:    node_modules/core-util-is/README.md
-	deleted:    node_modules/core-util-is/lib/util.js
-	deleted:    node_modules/core-util-is/package.json
-	deleted:    node_modules/cors/CONTRIBUTING.md
-	deleted:    node_modules/cors/HISTORY.md
-	deleted:    node_modules/cors/LICENSE
-	deleted:    node_modules/cors/README.md
-	deleted:    node_modules/cors/lib/index.js
-	deleted:    node_modules/cors/package.json
-	deleted:    node_modules/isarray/.npmignore
-	deleted:    node_modules/isarray/.travis.yml
-	deleted:    node_modules/isarray/Makefile
-	deleted:    node_modules/isarray/README.md
-	deleted:    node_modules/isarray/component.json
-	deleted:    node_modules/isarray/index.js
-	deleted:    node_modules/isarray/package.json
-	deleted:    node_modules/isarray/test.js
-	deleted:    node_modules/minimist/.eslintrc
-	deleted:    node_modules/minimist/.github/FUNDING.yml
-	deleted:    node_modules/minimist/.nycrc
-	deleted:    node_modules/minimist/CHANGELOG.md
-	deleted:    node_modules/minimist/LICENSE
-	deleted:    node_modules/minimist/README.md
-	deleted:    node_modules/minimist/example/parse.js
-	deleted:    node_modules/minimist/index.js
-	deleted:    node_modules/minimist/package.json
-	deleted:    node_modules/minimist/test/all_bool.js
-	deleted:    node_modules/minimist/test/bool.js
-	deleted:    node_modules/minimist/test/dash.js
-	deleted:    node_modules/minimist/test/default_bool.js
-	deleted:    node_modules/minimist/test/dotted.js
-	deleted:    node_modules/minimist/test/kv_short.js
-	deleted:    node_modules/minimist/test/long.js
-	deleted:    node_modules/minimist/test/num.js
-	deleted:    node_modules/minimist/test/parse.js
-	deleted:    node_modules/minimist/test/parse_modified.js
-	deleted:    node_modules/minimist/test/proto.js
-	deleted:    node_modules/minimist/test/short.js
-	deleted:    node_modules/minimist/test/stop_early.js
-	deleted:    node_modules/minimist/test/unknown.js
-	deleted:    node_modules/minimist/test/whitespace.js
-	deleted:    node_modules/mkdirp/LICENSE
-	deleted:    node_modules/mkdirp/bin/cmd.js
-	deleted:    node_modules/mkdirp/bin/usage.txt
-	deleted:    node_modules/mkdirp/index.js
-	deleted:    node_modules/mkdirp/package.json
-	deleted:    node_modules/mkdirp/readme.markdown
-	deleted:    node_modules/multer/LICENSE
-	deleted:    node_modules/multer/README.md
-	deleted:    node_modules/multer/index.js
-	deleted:    node_modules/multer/lib/counter.js
-	deleted:    node_modules/multer/lib/file-appender.js
-	deleted:    node_modules/multer/lib/make-middleware.js
-	deleted:    node_modules/multer/lib/multer-error.js
-	deleted:    node_modules/multer/lib/remove-uploaded-files.js
-	deleted:    node_modules/multer/package.json
-	deleted:    node_modules/multer/storage/disk.js
-	deleted:    node_modules/multer/storage/memory.js
-	deleted:    node_modules/object-assign/index.js
-	deleted:    node_modules/object-assign/license
-	deleted:    node_modules/object-assign/package.json
-	deleted:    node_modules/object-assign/readme.md
-	deleted:    node_modules/process-nextick-args/index.js
-	deleted:    node_modules/process-nextick-args/license.md
-	deleted:    node_modules/process-nextick-args/package.json
-	deleted:    node_modules/process-nextick-args/readme.md
-	deleted:    node_modules/readable-stream/.travis.yml
-	modified:   node_modules/readable-stream/README.md
-	deleted:    node_modules/readable-stream/doc/wg-meetings/2015-01-30.md
-	deleted:    node_modules/readable-stream/duplex-browser.js
-	deleted:    node_modules/readable-stream/duplex.js
-	modified:   node_modules/readable-stream/lib/_stream_duplex.js
-	modified:   node_modules/readable-stream/lib/_stream_passthrough.js
-	modified:   node_modules/readable-stream/lib/_stream_readable.js
-	modified:   node_modules/readable-stream/lib/_stream_transform.js
-	modified:   node_modules/readable-stream/lib/_stream_writable.js
-	deleted:    node_modules/readable-stream/lib/internal/streams/BufferList.js
-	modified:   node_modules/readable-stream/lib/internal/streams/destroy.js
-	deleted:    node_modules/readable-stream/node_modules/safe-buffer/LICENSE
-	deleted:    node_modules/readable-stream/node_modules/safe-buffer/README.md
-	deleted:    node_modules/readable-stream/node_modules/safe-buffer/index.d.ts
-	deleted:    node_modules/readable-stream/node_modules/safe-buffer/index.js
-	deleted:    node_modules/readable-stream/node_modules/safe-buffer/package.json
-	modified:   node_modules/readable-stream/package.json
-	deleted:    node_modules/readable-stream/passthrough.js
-	modified:   node_modules/readable-stream/readable-browser.js
-	modified:   node_modules/readable-stream/readable.js
-	deleted:    node_modules/readable-stream/transform.js
-	deleted:    node_modules/readable-stream/writable-browser.js
-	deleted:    node_modules/readable-stream/writable.js
-	deleted:    node_modules/streamsearch/.eslintrc.js
-	deleted:    node_modules/streamsearch/.github/workflows/ci.yml
-	deleted:    node_modules/streamsearch/.github/workflows/lint.yml
-	deleted:    node_modules/streamsearch/LICENSE
-	deleted:    node_modules/streamsearch/README.md
-	deleted:    node_modules/streamsearch/lib/sbmh.js
-	deleted:    node_modules/streamsearch/package.json
-	deleted:    node_modules/streamsearch/test/test.js
-	deleted:    node_modules/string_decoder/.travis.yml
-	deleted:    node_modules/string_decoder/node_modules/safe-buffer/LICENSE
-	deleted:    node_modules/string_decoder/node_modules/safe-buffer/README.md
-	deleted:    node_modules/string_decoder/node_modules/safe-buffer/index.d.ts
-	deleted:    node_modules/string_decoder/node_modules/safe-buffer/index.js
-	deleted:    node_modules/string_decoder/node_modules/safe-buffer/package.json
-	modified:   node_modules/string_decoder/package.json
-	deleted:    node_modules/typedarray/.travis.yml
-	deleted:    node_modules/typedarray/LICENSE
-	deleted:    node_modules/typedarray/example/tarray.js
-	deleted:    node_modules/typedarray/index.js
-	deleted:    node_modules/typedarray/package.json
-	deleted:    node_modules/typedarray/readme.markdown
-	deleted:    node_modules/typedarray/test/server/undef_globals.js
-	deleted:    node_modules/typedarray/test/tarray.js
-	deleted:    node_modules/ws/LICENSE
-	deleted:    node_modules/ws/README.md
-	deleted:    node_modules/ws/browser.js
-	deleted:    node_modules/ws/index.js
-	deleted:    node_modules/ws/lib/buffer-util.js
-	deleted:    node_modules/ws/lib/constants.js
-	deleted:    node_modules/ws/lib/event-target.js
-	deleted:    node_modules/ws/lib/extension.js
-	deleted:    node_modules/ws/lib/limiter.js
-	deleted:    node_modules/ws/lib/permessage-deflate.js
-	deleted:    node_modules/ws/lib/receiver.js
-	deleted:    node_modules/ws/lib/sender.js
-	deleted:    node_modules/ws/lib/stream.js
-	deleted:    node_modules/ws/lib/subprotocol.js
-	deleted:    node_modules/ws/lib/validation.js
-	deleted:    node_modules/ws/lib/websocket-server.js
-	deleted:    node_modules/ws/lib/websocket.js
-	deleted:    node_modules/ws/package.json
-	deleted:    node_modules/ws/wrapper.mjs
-	deleted:    node_modules/xtend/.jshintrc
-	deleted:    node_modules/xtend/LICENSE
-	deleted:    node_modules/xtend/README.md
-	deleted:    node_modules/xtend/immutable.js
-	deleted:    node_modules/xtend/mutable.js
-	deleted:    node_modules/xtend/package.json
-	deleted:    node_modules/xtend/test.js
-	modified:   package-lock.json
-	modified:   package.json
-	modified:   public/admin.html
-	modified:   public/css/style.css
-	modified:   public/groups.html
-	modified:   public/index.html
-	modified:   public/js/main.js
-	modified:   public/login.html
-	modified:   public/otp.html
-	modified:   public/profile.html
-	modified:   public/register.html
-	modified:   server.js
-	deleted:    start-server.bat
 	modified:   temp_status.txt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	data/privateChats.json
-	node_modules/.bin/qrcode
-	node_modules/.bin/qrcode.cmd
-	node_modules/.bin/qrcode.ps1
-	node_modules/.bin/uuid
-	node_modules/.bin/uuid.cmd
-	node_modules/.bin/uuid.ps1
-	node_modules/@colors/
-	node_modules/@dabh/
-	node_modules/@so-ric/
-	node_modules/@types/
-	node_modules/ansi-regex/
-	node_modules/ansi-styles/
-	node_modules/async/
-	node_modules/base32.js/
-	node_modules/bcryptjs/
-	node_modules/camelcase/
-	node_modules/cliui/
-	node_modules/color-convert/
-	node_modules/color-name/
-	node_modules/color-string/
-	node_modules/color/
-	node_modules/cookie-parser/
-	node_modules/cookie/
-	node_modules/csrf/
-	node_modules/csurf/
-	node_modules/decamelize/
-	node_modules/dijkstrajs/
-	node_modules/emoji-regex/
-	node_modules/enabled/
-	node_modules/express-rate-limit/
-	node_modules/express-session/
-	node_modules/fecha/
-	node_modules/find-up/
-	node_modules/fn.name/
-	node_modules/get-caller-file/
-	node_modules/helmet/
-	node_modules/is-fullwidth-code-point/
-	node_modules/is-stream/
-	node_modules/kuler/
-	node_modules/locate-path/
-	node_modules/logform/
-	node_modules/on-headers/
-	node_modules/one-time/
-	node_modules/p-limit/
-	node_modules/p-locate/
-	node_modules/p-try/
-	node_modules/path-exists/
-	node_modules/pngjs/
-	node_modules/qrcode/
-	node_modules/random-bytes/
-	node_modules/readable-stream/errors-browser.js
-	node_modules/readable-stream/errors.js
-	node_modules/readable-stream/experimentalWarning.js
-	node_modules/readable-stream/lib/internal/streams/async_iterator.js
-	node_modules/readable-stream/lib/internal/streams/buffer_list.js
-	node_modules/readable-stream/lib/internal/streams/end-of-stream.js
-	node_modules/readable-stream/lib/internal/streams/from-browser.js
-	node_modules/readable-stream/lib/internal/streams/from.js
-	node_modules/readable-stream/lib/internal/streams/pipeline.js
-	node_modules/readable-stream/lib/internal/streams/state.js
-	node_modules/require-directory/
-	node_modules/require-main-filename/
-	node_modules/rndm/
-	node_modules/safe-stable-stringify/
-	node_modules/set-blocking/
-	node_modules/speakeasy/
-	node_modules/stack-trace/
-	node_modules/string-width/
-	node_modules/strip-ansi/
-	node_modules/text-hex/
-	node_modules/triple-beam/
-	node_modules/tsscmp/
-	node_modules/uid-safe/
-	node_modules/uuid/
-	node_modules/validator/
-	node_modules/which-module/
-	node_modules/winston-transport/
-	node_modules/winston/
-	node_modules/wrap-ansi/
-	node_modules/y18n/
-	node_modules/yargs-parser/
-	node_modules/yargs/
-	start.bat
+	data/09017825656_avatar.jpg
+	node_modules/ws/
+	public/js/signup.js
+	public/signup.html
+	users.json
 
+no changes added to commit (use "git add" and/or "git commit -a")

@@ -1,1 +1,124 @@
-<!DOCTYPE html><html lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>چت — XZ</title><link rel="stylesheet" href="/css/style.css"></head><body class="app-body"><div id="chatArea" class="chat-area"><div class="topbar"><h3 id="chatTitle"></h3></div><div id="messages" class="messages"></div><div class="chat-input"><input id="msgInput2" placeholder="پیام..." onkeydown="if(event.key==='Enter') sendMessage2();"><button onclick="sendMessage2()">ارسال</button></div></div><script src="/js/chat.js"></script></body></html>
+<!doctype html>
+<html lang="fa">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>چت - XZ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell" style="width:100%;max-width:1100px">
+  <div style="width:320px;background:#111;color:#fff;padding:12px">
+    <button onclick="location.href='groups.html'" class="action-btn" style="background:#222">بازگشت</button>
+    <div style="margin-top:12px"><strong>جزئیات گفتگو</strong></div>
+    <div id="groupInfo" style="margin-top:8px"></div>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;padding:12px;background:#fff">
+    <div class="chat-header">
+      <div class="title" id="chatTitle">درحال بارگذاری...</div>
+      <div><small id="onlineCount"></small></div>
+    </div>
+    <div class="chat-main" id="messages"></div>
+    <div class="chat-input">
+      <input id="input" placeholder="پیام خود را بنویسید..." onkeydown="if(event.key==='Enter'){send()}">
+      <button class="action-btn" onclick="triggerFile()">📎</button>
+      <input type="file" id="file" style="display:none" onchange="uploadFile(event)">
+      <button class="action-btn" onclick="startRecording()">🎤</button>
+      <button class="action-btn" onclick="send()">ارسال</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const ws = new WebSocket((location.protocol === 'https:' ? 'wss' : 'ws') + '://' + location.host);
+const phone = localStorage.getItem("phone");
+const groupId = localStorage.getItem("currentGroup");
+const messagesEl = document.getElementById("messages");
+const chatTitle = document.getElementById("chatTitle");
+
+if(!phone || !groupId){ alert("ابتدا گروه را از صفحهٔ اصلی انتخاب کنید"); location.href="groups.html"; }
+
+async function loadGroupDetails(){
+  const res = await fetch("/api/groups");
+  const data = await res.json();
+  const g = data[groupId];
+  if(!g){ chatTitle.innerText = "گروه یافت نشد"; return; }
+  chatTitle.innerText = g.name;
+  document.getElementById("groupInfo").innerHTML = `<div>سازنده: ${g.creator}</div><div>${g.members} عضو</div>`;
+}
+loadGroupDetails();
+
+ws.onmessage = (ev)=>{
+  try{
+    const d = JSON.parse(ev.data);
+    if(d.type === 'group' && d.groupId === groupId){
+      appendMessage(d.msg);
+    } else if(d.type === 'private'){
+      // ignore here or implement private logic
+    }
+  } catch(e){}
+};
+
+function appendMessage(m){
+  const div = document.createElement('div');
+  div.className = (m.user === phone) ? 'message sent' : 'message received';
+  if(m.voiceUrl){
+    div.innerHTML = `<strong>${m.user}</strong><br><audio controls src="${m.voiceUrl}"></audio>`;
+  } else {
+    div.innerHTML = `<strong>${m.user}</strong><br>${m.message}`;
+  }
+  messagesEl.appendChild(div);
+  div.scrollIntoView({behavior:'smooth', block:'end'});
+}
+
+function send(){
+  const txt = document.getElementById("input").value.trim();
+  if(!txt) return;
+  const payload = { type:'group', groupId, user:phone, message:txt };
+  ws.send(JSON.stringify(payload));
+  document.getElementById("input").value='';
+}
+
+function triggerFile(){ document.getElementById("file").click(); }
+async function uploadFile(e){
+  const f = e.target.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const base = reader.result;
+    // treat as voice or image depending on type
+    if(f.type.startsWith("image/")){
+      // create message with image URL saved via profile update endpoint base64
+      fetch("/api/profile/update", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ phone, avatarBase64: base })})
+        .then(r=>r.json()).then(d=>{ alert("عکس پروفایل ثبت شد (برای تست)."); });
+    } else {
+      // send as voice via ws
+      ws.send(JSON.stringify({ type:'voice', bytesBase64: base, user:phone, to:groupId, targetType:'group' }));
+    }
+  };
+  reader.readAsDataURL(f);
+}
+
+/* basic recorder for voice */
+let mediaRecorder, audioChunks=[];
+async function startRecording(){
+  if(!navigator.mediaDevices) return alert("دستگاه شما پشتیبانی نمی‌کند");
+  const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
+  mediaRecorder = new MediaRecorder(stream);
+  audioChunks = [];
+  mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+  mediaRecorder.onstop = async ()=>{
+    const blob = new Blob(audioChunks, { type:'audio/webm' });
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base = reader.result;
+      ws.send(JSON.stringify({ type:'voice', bytesBase64: base, user:phone, to:groupId, targetType:'group' }));
+    };
+    reader.readAsDataURL(blob);
+  };
+  mediaRecorder.start();
+  alert("در حال ضبط... برای پایان دوباره روی OK بزن");
+  mediaRecorder.stop();
+}
+
+</script>
+</body>
+</html>

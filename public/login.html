@@ -1,33 +1,37 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ورود — XZ</title>
-  <link rel="stylesheet" href="css/style.css">
+<!doctype html>
+<html lang="fa">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ورود - XZ</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="auth-root">
-    <div class="card">
-      <h2>ورود</h2>
-      <input id="phone" placeholder="شماره موبایل">
-      <input id="pin" placeholder="رمز ۴ رقمی" type="password">
-      <button id="loginBtn">ورود</button>
-      <p class="muted"><a href="register.html">ثبت‌نام</a></p>
+<div style="display:flex;align-items:center;justify-content:center;height:100vh;">
+  <div class="panel" style="width:360px">
+    <h3>ورود</h3>
+    <input id="phone" placeholder="شماره موبایل" style="width:100%;padding:10px;border-radius:8px">
+    <input id="pin" placeholder="رمز ۴ رقمی" maxlength="4" type="password" style="width:100%;padding:10px;border-radius:8px;margin-top:8px">
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="loginBtn" class="action-btn">ورود</button>
+      <a href="signup.html"><button class="action-btn" style="background:#ccc;color:#000">ثبت‌نام</button></a>
     </div>
+    <p id="msg" style="color:#a00;margin-top:8px"></p>
   </div>
-
-  <script>
-    document.getElementById('loginBtn').onclick = async () => {
-      const phone = document.getElementById('phone').value.trim();
-      const pin = document.getElementById('pin').value.trim();
-      if(!phone || pin.length!==4) return alert('شماره و رمز صحیح وارد کنید');
-      const res = await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone,pin})});
-      const data = await res.json();
-      if(data.success){
-        localStorage.setItem('user', JSON.stringify({ phone, firstName: data.user?.firstName || '' }));
-        window.location.href = 'groups.html';
-      } else alert(data.message || 'نام کاربری یا رمز اشتباه است');
-    };
-  </script>
+</div>
+<script>
+document.getElementById("loginBtn").addEventListener("click", async ()=>{
+  const phone=document.getElementById("phone").value.trim();
+  const pin=document.getElementById("pin").value.trim();
+  if(!phone || pin.length!==4){document.getElementById("msg").innerText="شماره/رمز را وارد کنید"; return;}
+  const res = await fetch("/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({phone,pin})});
+  const data = await res.json();
+  if(data.success){
+    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("phone", data.user.phone);
+    window.location.href = "groups.html";
+  } else {
+    document.getElementById("msg").innerText = data.message || "خطا";
+  }
+});
+</script>
 </body>
 </html>

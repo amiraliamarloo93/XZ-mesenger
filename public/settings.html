@@ -1,27 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تنظیمات | XZ</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="assets/favicon.png" type="image/png">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تنظیمات - XZ</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-  <h1>تنظیمات کاربر</h1>
-  <form>
-    <label>نام و نام خانوادگی</label>
-    <input type="text" name="fullname">
-    <label>رمز ۴ رقمی</label>
-    <input type="password" name="pin" maxlength="4">
-    <button type="submit" class="btn btn-black">ذخیره</button>
-  </form>
-  <div class="creator">
-    <p>سازنده: ساخته شده توسط امیرعلی عمارلو و ChatGPT</p>
+<div style="display:flex;align-items:center;justify-content:center;height:100vh">
+  <div class="panel" style="width:620px">
+    <h3>تنظیمات امنيت و حريم خصوصی</h3>
+    <div style="display:flex;gap:12px">
+      <div style="flex:1">
+        <label>تم:</label>
+        <select id="theme">
+          <option value="auto">خودکار</option>
+          <option value="dark">تاریک</option>
+          <option value="light">روشن</option>
+        </select>
+        <div style="margin-top:8px">
+          <label>اعلان‌ها:</label>
+          <select id="notifications"><option value="1">فعال</option><option value="0">غیرفعال</option></select>
+        </div>
+      </div>
+      <div style="flex:1">
+        <label>حذف خودکار حساب در صورت عدم فعالیت (روز):</label>
+        <input id="autoDelete" type="number" min="0" style="width:100%;padding:8px;border-radius:8px" />
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:12px">
+      <button id="save" class="action-btn">ذخیره تنظیمات</button>
+      <a href="groups.html"><button class="action-btn" style="background:#ccc;color:#000">بازگشت</button></a>
+    </div>
+    <p id="msg" style="color:green"></p>
   </div>
-  <a href="index.html" class="link">بازگشت</a>
 </div>
-<script src="js/main.js"></script>
+<script>
+const phone = localStorage.getItem("phone");
+async function load(){
+  const user = JSON.parse(localStorage.getItem("user")||"null");
+  if(user && user.settings){
+    document.getElementById("theme").value = user.settings.theme || "auto";
+    document.getElementById("notifications").value = user.settings.notifications ? "1":"0";
+    document.getElementById("autoDelete").value = user.settings.autoDeleteIfInactiveDays || 0;
+  }
+}
+load();
+document.getElementById("save").addEventListener("click", async ()=>{
+  const theme = document.getElementById("theme").value;
+  const notifications = document.getElementById("notifications").value === "1";
+  const autoDelete = Number(document.getElementById("autoDelete").value) || 0;
+  const phone = localStorage.getItem("phone");
+  const res = await fetch("/api/profile/update",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({phone, settings:{theme,notifications,autoDeleteIfInactiveDays:autoDelete}})});
+  const d = await res.json();
+  if(d.success){
+    document.getElementById("msg").innerText = "تنظیمات ذخیره شد";
+    // update local
+    const u = JSON.parse(localStorage.getItem("user")||"null") || {};
+    u.settings = d.user ? d.user.settings : {theme,notifications,autoDeleteIfInactiveDays:autoDelete};
+    localStorage.setItem("user", JSON.stringify(u));
+  }
+});
+</script>
 </body>
 </html>

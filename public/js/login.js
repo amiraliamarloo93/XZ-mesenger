@@ -18,3 +18,31 @@ function loginHandler(){
     } else alert('شماره یا رمز اشتباه است');
   });
 }
+document.getElementById("login-btn").addEventListener("click", async () => {
+  const phone = document.getElementById("login-phone").value.trim();
+  const pass = document.getElementById("login-pass").value.trim();
+
+  if (!phone || !pass) {
+    alert("تمام فیلدها را پر کنید!");
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone, pass }),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("خوش آمدید!");
+      window.location.href = "groups.html"; // بعداً این صفحه ساخته می‌شه
+    } else {
+      alert(data.message || "ورود ناموفق!");
+    }
+  } catch (err) {
+    alert("خطا در اتصال به سرور!");
+  }
+});

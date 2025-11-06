@@ -1,33 +1,30 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>ادمین — XZ</title><link rel="stylesheet" href="css/style.css"></head>
+<!doctype html>
+<html lang="fa">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ادمین - XZ</title>
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <div class="auth-root">
-    <div class="card">
-      <h2>پنل ادمین</h2>
-      <input id="adminPass" placeholder="رمز ادمین">
-      <button id="adminLogin">ورود ادمین</button>
-      <div id="otpsArea" style="display:none;margin-top:12px;">
-        <h3>لیست کد های ورود</h3>
-        <pre id="otpsPre" style="white-space:pre-wrap;"></pre>
-      </div>
-      <p class="muted"><a href="index.html">بازگشت</a></p>
-    </div>
+<div style="display:flex;align-items:center;justify-content:center;height:100vh">
+  <div class="panel" style="width:760px">
+    <h3>پنل ادمین</h3>
+    <p>برای مشاهدهٔ OTPها رمز را وارد کنید</p>
+    <input id="pass" placeholder="رمز admin" style="width:100%;padding:10px;border-radius:8px">
+    <button id="btn" class="action-btn" style="margin-top:8px">نمایش OTPها</button>
+    <pre id="out" style="margin-top:12px;max-height:400px;overflow:auto;background:#fafafa;padding:10px;border-radius:6px"></pre>
   </div>
-
+</div>
 <script>
-  document.getElementById('adminLogin').onclick = async ()=>{
-    const p = document.getElementById('adminPass').value;
-    const res = await fetch('/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:p})});
-    const data = await res.json();
-    if(data.success){
-      // fetch otps with header token
-      const r2 = await fetch('/admin/otps',{headers:{'x-admin-token':p}});
-      const js = await r2.json();
-      document.getElementById('otpsArea').style.display='block';
-      document.getElementById('otpsPre').innerText = JSON.stringify(js, null, 2);
-    } else alert('رمز اشتباه است');
-  };
+document.getElementById("btn").addEventListener("click", async ()=>{
+  const pass = document.getElementById("pass").value.trim();
+  const res = await fetch("/api/admin/otps",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pass})});
+  const data = await res.json();
+  if(data && data !== null){
+    document.getElementById("out").innerText = JSON.stringify(data, null, 2);
+  } else {
+    document.getElementById("out").innerText = "دسترسی رد شد";
+  }
+});
 </script>
 </body>
 </html>

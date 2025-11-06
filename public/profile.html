@@ -1,34 +1,47 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>پروفایل — XZ</title><link rel="stylesheet" href="css/style.css"></head>
+<!doctype html>
+<html lang="fa">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پروفایل - XZ</title>
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <div class="auth-root">
-    <div class="card">
-      <h2>پروفایل</h2>
-      <input id="firstName" placeholder="نام">
-      <input id="lastName" placeholder="نام خانوادگی">
-      <input id="pin" placeholder="رمز ۴ رقمی" maxlength="4" type="password">
-      <button id="saveBtn">ذخیره</button>
-      <p class="muted"><a href="groups.html">بازگشت</a></p>
+<div style="display:flex;align-items:center;justify-content:center;height:100vh">
+  <div class="panel" style="width:420px">
+    <h3>پروفایل شما</h3>
+    <input id="firstName" placeholder="نام" style="width:100%;padding:10px;border-radius:8px">
+    <input id="lastName" placeholder="نام خانوادگی" style="width:100%;padding:10px;border-radius:8px;margin-top:8px">
+    <input id="pin" placeholder="رمز جدید (۴ رقم)" maxlength="4" type="password" style="width:100%;padding:10px;border-radius:8px;margin-top:8px">
+    <input id="avatarFile" type="file" style="margin-top:8px">
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="saveBtn" class="action-btn">ذخیره</button>
+      <a href="groups.html"><button class="action-btn" style="background:#ccc;color:#000">بازگشت</button></a>
     </div>
+    <p id="msg" style="color:#0a0"></p>
   </div>
+</div>
 <script>
-  const u = JSON.parse(localStorage.getItem('user')||'null');
-  if(!u) location.href='login.html';
-  document.getElementById('firstName').value = u.firstName || '';
-  document.getElementById('lastName').value = u.lastName || '';
-  document.getElementById('saveBtn').onclick = async ()=> {
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-    const pin = document.getElementById('pin').value.trim();
-    // call server to update
-    const res = await fetch('/update-profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ phone:u.phone, firstName, lastName, pin })});
-    const data = await res.json();
-    if(data.success){
-      alert('به‌روزرسانی شد');
-      localStorage.setItem('user', JSON.stringify({ phone:u.phone, firstName, lastName }));
-    } else alert('خطا');
-  };
+const phone = localStorage.getItem("phone");
+if(!phone) { location.href = "login.html"; }
+document.getElementById("saveBtn").addEventListener("click", async ()=>{
+  const firstName=document.getElementById("firstName").value.trim();
+  const lastName=document.getElementById("lastName").value.trim();
+  const pin=document.getElementById("pin").value.trim();
+  const file = document.getElementById("avatarFile").files[0];
+  if(file){
+    const r = new FileReader();
+    r.onload = async ()=> {
+      const base = r.result;
+      const res = await fetch("/api/profile/update",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({phone,firstName,lastName,pin,avatarBase64:base})});
+      const d = await res.json();
+      if(d.success) { document.getElementById("msg").innerText="ذخیره شد"; localStorage.setItem("user", JSON.stringify(d.user)); }
+    };
+    r.readAsDataURL(file);
+  } else {
+    const res = await fetch("/api/profile/update",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({phone,firstName,lastName,pin})});
+    const d = await res.json();
+    if(d.success) { document.getElementById("msg").innerText="ذخیره شد"; localStorage.setItem("user", JSON.stringify(d.user)); }
+  }
+});
 </script>
 </body>
 </html>

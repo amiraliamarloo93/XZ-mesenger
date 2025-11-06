@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fa">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ثبت‌نام - XZ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div style="display:flex;align-items:center;justify-content:center;height:100vh;">
+  <div class="panel" style="width:400px">
+    <h3>ثبت‌نام</h3>
+    <input id="phone" placeholder="شماره موبایل (09...)" style="width:100%;margin-top:8px;padding:10px;border-radius:8px">
+    <input id="firstName" placeholder="نام" style="width:100%;margin-top:8px;padding:10px;border-radius:8px">
+    <input id="lastName" placeholder="نام خانوادگی" style="width:100%;margin-top:8px;padding:10px;border-radius:8px">
+    <input id="pin" placeholder="رمز ۴ رقمی" maxlength="4" type="password" style="width:100%;margin-top:8px;padding:10px;border-radius:8px">
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="sendOtp" class="action-btn" style="background:#0b9;color:#000">ارسال کد تایید</button>
+      <a href="index.html"><button class="action-btn" style="background:#ccc;color:#000">بازگشت</button></a>
+    </div>
+    <p id="msg" style="margin-top:10px;color:#a00"></p>
+  </div>
+</div>
+<script>
+document.getElementById("sendOtp").addEventListener("click", async ()=>{
+  const phone = document.getElementById("phone").value.trim();
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const pin = document.getElementById("pin").value.trim();
+  if(!phone || !firstName || !lastName || pin.length!==4){ document.getElementById("msg").innerText="همه فیلدها را درست پر کنید"; return;}
+  const res = await fetch("/api/signup",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({phone,firstName,lastName,pin})});
+  const data = await res.json();
+  if(data.success){
+    // move to otp page with phone parameter
+    localStorage.setItem("pendingPhone", phone);
+    alert("کد OTP تولید شد (در سرور ذخیره شده). برای ادامه صفحهٔ تایید را باز کنید.");
+    window.location.href = "otp.html?phone="+encodeURIComponent(phone);
+  } else {
+    document.getElementById("msg").innerText = data.message || "خطا";
+  }
+});
+</script>
+</body>
+</html>

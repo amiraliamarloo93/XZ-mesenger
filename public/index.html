@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>پیام‌رسان XZ — خوش آمدید</title>
-  <link rel="icon" href="assets/xz_messenger_icon.png">
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>پیام‌رسان XZ - ورود</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="welcome-root">
-    <div class="welcome-card">
-      <div class="brand"><img src="assets/xz_messenger_icon.png" alt="XZ" class="logo"> <h1>XZ Messenger</h1></div>
-      <div class="welcome-actions">
-        <a class="btn dark" href="login.html">ورود</a>
-        <a class="btn light" href="register.html">ثبت‌نام</a>
-      </div>
-      <p class="note"نسخه اصلی — ساخته شده توسط امیرعلی عمارلو و </p>
+  <div class="container fade-in">
+    <div class="box">
+      <h1 class="logo">پیام‌رسان XZ</h1>
+      <h2>ورود</h2>
+
+      <input type="text" id="login-phone" placeholder="شماره موبایل" maxlength="11" />
+      <input type="password" id="login-pass" placeholder="رمز ۴ رقمی" maxlength="4" />
+
+      <button id="login-btn">ورود</button>
+      <p class="switch">حساب ندارید؟ <a href="signup.html">ثبت‌نام کنید</a></p>
     </div>
   </div>
+
+  <script src="js/login.js"></script>
 </body>
 </html>
